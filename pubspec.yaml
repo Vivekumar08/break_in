@@ -23,10 +23,23 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
+    - assets/icons/
 
   fonts:
     - family: Urbanist
       fonts:
         - asset: assets/fonts/Urbanist-Regular.ttf
+    - family: Urbanist_Bold
+      fonts:
+        - asset: assets/fonts/Urbanist-Bold.ttf
+    - family: Urbanist_Medium
+      fonts:
+        - asset: assets/fonts/Urbanist-Medium.ttf
+    - family: Urbanist_Light
+      fonts:
+        - asset: assets/fonts/Urbanist-Light.ttf
+    - family: Urbanist_SemiBold
+      fonts:
+        - asset: assets/fonts/Urbanist-SemiBold.ttf
