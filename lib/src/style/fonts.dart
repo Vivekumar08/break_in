@@ -38,4 +38,7 @@ class Fonts {
       fontWeight: FontWeight.w600,
       fontFamily: _urbSemiBold,
       color: Palette.background_2);
+
+  static TextStyle get inputText => TextStyle(
+      fontSize: 14, height: 1.25, fontFamily: _urbMed, color: Palette.primary);
 }
