@@ -1,5 +1,5 @@
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../style/palette.dart';
 
 const String _urbReg = "Urbanist";
 const String _urbBold = "Urbanist_Bold";
@@ -12,17 +12,20 @@ class Fonts {
       fontSize: 30,
       fontWeight: FontWeight.bold,
       fontFamily: _urbBold,
+      height: 1.3,
+      letterSpacing: -1,
       color: Palette.text);
 
-  static TextStyle get simptext => TextStyle(
+  static TextStyle get simText => TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500,
       fontFamily: _urbReg,
       color: Palette.text);
   static TextStyle get medText => TextStyle(
-      fontSize: 30,
-      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
       fontFamily: _urbMed,
+      height: 1.5,
       color: Palette.text);
   static TextStyle get lightText => TextStyle(
       fontSize: 30,
