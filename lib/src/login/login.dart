@@ -13,6 +13,7 @@ class Login extends StatelessWidget {
     TextEditingController passwd = TextEditingController();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 56),
         child: Column(

@@ -4,12 +4,13 @@ import '../components/input_field.dart';
 import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+class NewPassword extends StatelessWidget {
+  const NewPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
+    TextEditingController Passwd = TextEditingController();
+    TextEditingController confirmPasswd = TextEditingController();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -35,11 +36,16 @@ class ForgotPassword extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 InputField(
-                    inputText: "Email*",
-                    hintText: "Enter your email",
-                    controller: email),
+                    inputText: "New Password*",
+                    hintText: "Enter new password",
+                    controller: Passwd),
+                const SizedBox(height: 16.0),
+                InputField(
+                    inputText: "Confirm New Password*",
+                    hintText: "Enter confirm new password",
+                    controller: confirmPasswd),
                 const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Verify"),
+                Button(onPressed: () {}, buttonText: "Reset Password"),
               ],
             ),
           ],
