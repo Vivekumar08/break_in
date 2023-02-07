@@ -1,30 +1,45 @@
-import 'package:break_in/src/style/fonts.dart';
+import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../style/fonts.dart';
 
 class InputField extends StatelessWidget {
-  const InputField({super.key, required this.inputText, required this.hintText, required this.controller});
+  const InputField({
+    super.key,
+    required this.inputText,
+    required this.hintText,
+    required this.controller,
+  });
+
   final String inputText;
   final String hintText;
   final TextEditingController controller;
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
-        padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-        child: Text(
-          inputText,
-          style: Fonts.inputText,
-        ),
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Text(inputText, style: Fonts.inputText),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: TextField(
           controller: controller,
           decoration: InputDecoration(
-            border: const OutlineInputBorder( borderRadius: BorderRadius.all(Radius.circular(8))),
-            hintText: '    $hintText',
+            filled: true,
+            fillColor: Palette.inputField,
+            border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                borderSide: BorderSide(width: 1, color: Palette.stroke)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                borderSide: BorderSide(width: 1, color: Palette.stroke)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                borderSide: BorderSide(width: 1, color: Palette.stroke)),
+            contentPadding: const EdgeInsets.all(16.0),
+            hintText: hintText,
+            hintStyle: Fonts.hintText,
           ),
         ),
       ),

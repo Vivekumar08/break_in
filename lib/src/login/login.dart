@@ -1,10 +1,8 @@
-// ignore: file_names
-import 'package:break_in/src/components/button.dart';
-import 'package:break_in/src/components/input_field.dart';
-import 'package:break_in/src/style/fonts.dart';
-
-import '/src/components/chev_back_button.dart';
 import 'package:flutter/material.dart';
+import '../components/button.dart';
+import '../components/input_field.dart';
+import '../style/fonts.dart';
+import '../components/chev_back_button.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -25,11 +23,12 @@ class Login extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const ChevBackButton(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 24.0),
                 Text(
                   "Welcome back! Glad\nto see you, Again!",
                   style: Fonts.title,
                 ),
+                const SizedBox(height: 16.0),
                 InputField(
                     inputText: "Email*",
                     hintText: "Enter your email",
@@ -38,11 +37,12 @@ class Login extends StatelessWidget {
                     inputText: "Password*",
                     hintText: "Enter your password",
                     controller: passwd),
-                Button(onPressed: () {}, buttonText: "Login")
+                const SizedBox(height: 8.0),
+                Text("Forgot Password?", style: Fonts.textButton),
+                const SizedBox(height: 24.0),
+                Button(onPressed: () {}, buttonText: "Login"),
               ],
             ),
-            // ),
-            // Expanded(child: Container())
           ],
         ),
       ),

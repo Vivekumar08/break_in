@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: Palette.background_2),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       onGenerateRoute: Router.generateRoute,
       initialRoute: login,
     );
