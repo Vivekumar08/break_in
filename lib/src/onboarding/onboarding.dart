@@ -34,7 +34,7 @@ class Onboarding extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 27.0),
+            padding: const EdgeInsets.fromLTRB(22.0, 0.0, 22.0, 27.0),
             child: Button(buttonText: "Next", onPressed: () {}),
           ),
         ],
