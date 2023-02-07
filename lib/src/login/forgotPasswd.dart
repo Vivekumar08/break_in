@@ -4,13 +4,12 @@ import '../components/input_field.dart';
 import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class ForgotPassword extends StatelessWidget {
+  const ForgotPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
-    TextEditingController passwd = TextEditingController();
 
     return Scaffold(
       body: Padding(
@@ -25,25 +24,21 @@ class Login extends StatelessWidget {
                 const ChevBackButton(),
                 const SizedBox(height: 24.0),
                 Text(
-                  "Welcome back! Glad\nto see you, Again!",
+                  "Forgot Password?",
                   style: Fonts.title,
+                ),
+                const SizedBox(height: 24.0),
+                Text(
+                  "Don't worry! It occurs. Please enter the email\naddress linked with your account.",
+                  style: Fonts.medText,
                 ),
                 const SizedBox(height: 16.0),
                 InputField(
                     inputText: "Email*",
                     hintText: "Enter your email",
                     controller: email),
-                InputField(
-                    inputText: "Password*",
-                    hintText: "Enter your password",
-                    controller: passwd),
-                const SizedBox(height: 8.0),
-                Align(
-                  alignment: Alignment.bottomRight,
-                child:Text("Forgot Password?", style: Fonts.textButton),
-                ),
                 const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Login"),
+                Button(onPressed: () {}, buttonText: "Verify"),
               ],
             ),
           ],

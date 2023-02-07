@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Palette.background_2),
       debugShowCheckedModeBanner: true,
       onGenerateRoute: Router.generateRoute,
-      initialRoute: login,
+      initialRoute: forgotPasswd,
     );
   }
 }
