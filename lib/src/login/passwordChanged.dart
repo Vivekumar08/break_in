@@ -11,33 +11,26 @@ class PasswordChanged extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(flex: 2, child: Container()),
-          Expanded(
-            flex: 5,
-            child: Column(
-              children: [
-                Images.successMark,
-                Padding(
-                  padding: const EdgeInsets.only(top: 11),
-                  child: Text("Password Changed", style: Fonts.title),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
-                  child: Text(
-                    "Your password has been changed\nsuccessfully.",
-                    style: Fonts.medText,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+          Images.successMark,
+          Padding(
+            padding: const EdgeInsets.only(top: 11),
+            child: Text("Password Changed", style: Fonts.title),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(22.0, 0.0, 22.0, 27.0),
-            child: Button(buttonText: "Back to Login", onPressed: () {}),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(
+              "Your password has been changed\nsuccessfully.",
+              style: Fonts.medText,
+              textAlign: TextAlign.center,
+            ),
           ),
+          const SizedBox(height: 32.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22.0),
+            child: Button(buttonText: "Back to Login", onPressed: () {}),
+          )
         ],
       ),
     );

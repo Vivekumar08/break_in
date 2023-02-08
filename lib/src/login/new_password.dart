@@ -9,7 +9,7 @@ class NewPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController Passwd = TextEditingController();
+    TextEditingController passwd = TextEditingController();
     TextEditingController confirmPasswd = TextEditingController();
 
     return Scaffold(
@@ -38,7 +38,7 @@ class NewPassword extends StatelessWidget {
                 InputField(
                     inputText: "New Password*",
                     hintText: "Enter new password",
-                    controller: Passwd),
+                    controller: passwd),
                 const SizedBox(height: 16.0),
                 InputField(
                     inputText: "Confirm New Password*",

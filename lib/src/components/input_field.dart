@@ -1,5 +1,5 @@
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../style/palette.dart';
 import '../style/fonts.dart';
 
 class InputField extends StatelessWidget {

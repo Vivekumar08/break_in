@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+String _initialPath = 'assets/images';
+
 class Images {
   static Image get onboarding =>
-      Image.asset("assets/images/onboarding.png", scale: 4);
+      Image.asset("$_initialPath/onboarding.png", scale: 4);
   static Image get successMark =>
-      Image.asset("assets/images/Successmark.png", scale: 4);
+      Image.asset("$_initialPath/successMark.png", scale: 4);
 }

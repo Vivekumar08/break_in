@@ -1,9 +1,9 @@
-import 'package:break_in/src/login/forgotPasswd.dart';
-import 'package:break_in/src/login/passwordChanged.dart';
-import 'package:break_in/src/navigation/constants.dart';
 import 'package:flutter/material.dart';
+import 'constants.dart';
 import '../onboarding/onboarding.dart';
 import '../login/Login.dart';
+import '../login/forgotPasswd.dart';
+import '../login/passwordChanged.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
