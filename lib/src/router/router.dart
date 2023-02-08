@@ -1,14 +1,16 @@
-import 'package:break_in/src/location/detected_location.dart';
-import 'package:break_in/src/location/detecting_location.dart';
-import 'package:break_in/src/location/manually_location.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import '../onboarding/onboarding.dart';
 import '../login/Login.dart';
+import '../login/login_with_phone.dart';
 import '../login/forgotPasswd.dart';
+import '../login/new_password.dart';
 import '../login/passwordChanged.dart';
 import '../login/register_with_mail.dart';
 import '../login/register_with_phone.dart';
+import '../location/detected_location.dart';
+import '../location/detecting_location.dart';
+import '../location/manual_location.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -17,14 +19,18 @@ class Router {
         return MaterialPageRoute(builder: (_) => const Onboarding());
       case login:
         return MaterialPageRoute(builder: (_) => const Login());
-      case passwdChanged:
-        return MaterialPageRoute(builder: (_) => const PasswordChanged());
+      case loginWithPhone:
+        return MaterialPageRoute(builder: (_) => const LoginWithPhone());
       case forgotPasswd:
         return MaterialPageRoute(builder: (_) => const ForgotPassword());
-      case registerWithMail:
-        return MaterialPageRoute(builder: (_) => const RegiterWithMail());
+      case newPasswd:
+        return MaterialPageRoute(builder: (_) => const NewPassword());
+      case passwdChanged:
+        return MaterialPageRoute(builder: (_) => const PasswordChanged());
       case registerWithPhone:
         return MaterialPageRoute(builder: (_) => const RegiterWithPhone());
+      case registerWithMail:
+        return MaterialPageRoute(builder: (_) => const RegisterWithMail());
       case detectingLocation:
         return MaterialPageRoute(builder: (_) => const DetectingLocation());
       case detectedLocation:

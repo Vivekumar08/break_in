@@ -1,0 +1,11 @@
+const String root = '/';
+const String login = '/login';
+const String loginWithPhone = '/loginWithPhone';
+const String forgotPasswd = '/forgotPasswd';
+const String newPasswd = '/newPasswd';
+const String passwdChanged = '/passwdChanged';
+const String registerWithPhone = '/registerWithPhone';
+const String registerWithMail = '/registerWithMail';
+const String detectingLocation = '/detectingLocation';
+const String detectedLocation = '/detectedLocation';
+const String manualLocation = '/manualLocation';

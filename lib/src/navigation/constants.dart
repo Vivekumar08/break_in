@@ -1,9 +1,0 @@
-const String root = '/';
-const String login = '/login';
-const String passwdChanged= '/passwdChanged';
-const String forgotPasswd= '/forgotPasswd';
-const String registerWithPhone= '/registerWithPhone';
-const String registerWithMail= '/registerWithMail';
-const String detectingLocation= '/detectingLocation';
-const String detectedLocation= '/detectedLocation';
-const String manualLocation= '/manualLocation';

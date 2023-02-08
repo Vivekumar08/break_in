@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide Router;
-import 'src/navigation/constants.dart';
-import 'src/navigation/router.dart';
+import 'src/router/constants.dart';
+import 'src/router/router.dart';
 import 'src/style/palette.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: Palette.background_2),
+      theme: ThemeData(scaffoldBackgroundColor: Palette.white),
       debugShowCheckedModeBanner: true,
       onGenerateRoute: Router.generateRoute,
       initialRoute: manualLocation,
