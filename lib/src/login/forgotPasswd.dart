@@ -39,7 +39,7 @@ class ForgotPassword extends StatelessWidget {
                     hintText: "Enter your email",
                     controller: email),
                 const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Verify"),
+                Button(onPressed: () {}, buttonText: "Send Code"),
               ],
             ),
           ],
