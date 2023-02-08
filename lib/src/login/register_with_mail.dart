@@ -1,3 +1,4 @@
+import 'package:break_in/src/components/auth_options.dart';
 import 'package:flutter/material.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
@@ -48,6 +49,9 @@ class RegiterWithMail extends StatelessWidget {
                     controller: phone),
                 const SizedBox(height: 16.0),
                 Button(onPressed: () {}, buttonText: "Register"),
+                const SizedBox(height: 24.0),
+                Button(onPressed: () {}, buttonText: "Login"),
+                const AuthOptions(emailAuth: false, text: "Or Login with")
               ],
             ),
           ],
