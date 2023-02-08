@@ -8,7 +8,7 @@ const String _urbMed = "Urbanist_Medium";
 const String _urbLight = "Urbanist_Light";
 
 class Fonts {
-  static TextStyle get title => TextStyle(
+  static TextStyle get heading => TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
       fontFamily: _urbBold,
@@ -16,11 +16,21 @@ class Fonts {
       letterSpacing: -1,
       color: Palette.text);
 
+  static TextStyle get subHeading => TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
+      fontFamily: _urbBold,
+      height: 1.3,
+      letterSpacing: -1,
+      color: Palette.primary);
+
   static TextStyle get simText => TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      height: 1.3,
+      letterSpacing: -1,
       fontFamily: _urbReg,
-      color: Palette.text);
+      color: Palette.primary);
 
   static TextStyle get medText => TextStyle(
       fontSize: 16,

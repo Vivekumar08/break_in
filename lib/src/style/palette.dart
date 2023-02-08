@@ -10,4 +10,5 @@ class Palette {
   static Color get stroke => const Color(0xffE8ECF4);
   static Color get iconsCol => const Color(0xff6A707C);
   static Color get greyNormal => const Color(0xff8391A1);
+  static Color get link => const Color(0xff5D5FEF);
 }

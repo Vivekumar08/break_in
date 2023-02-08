@@ -16,7 +16,8 @@ class PasswordChanged extends StatelessWidget {
           Images.successMark,
           Padding(
             padding: const EdgeInsets.only(top: 11),
-            child: Text("Password Changed", style: Fonts.title),
+            child: Text("Password Changed", style: Fonts.heading),
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),

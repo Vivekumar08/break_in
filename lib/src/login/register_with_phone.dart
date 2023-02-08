@@ -1,15 +1,17 @@
+import 'package:break_in/src/components/auth_options.dart';
 import 'package:flutter/material.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
 import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+class RegiterWithPhone extends StatelessWidget {
+  const RegiterWithPhone({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
+    TextEditingController name = TextEditingController();
+    TextEditingController phone = TextEditingController();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -25,21 +27,23 @@ class ForgotPassword extends StatelessWidget {
                 const ChevBackButton(),
                 const SizedBox(height: 24.0),
                 Text(
-                  "Forgot Password?",
+                  "Hello! Register to get\nstarted",
                   style: Fonts.heading,
-                ),
-                const SizedBox(height: 24.0),
-                Text(
-                  "Don't worry! It occurs. Please enter the email\naddress linked with your account.",
-                  style: Fonts.medText,
                 ),
                 const SizedBox(height: 16.0),
                 InputField(
-                    inputText: "Email*",
-                    hintText: "Enter your email",
-                    controller: email),
+                    inputText: "Full Name*",
+                    hintText: "Enter your full name",
+                    controller: name),
+                InputField(
+                    inputText: "Phone Number*",
+                    hintText: "Enter your phone number",
+                    controller: phone),
                 const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Send Code"),
+                Button(onPressed: () {}, buttonText: "Send OTP"),
+                const SizedBox(height: 24.0),
+                Button(onPressed: () {}, buttonText: "Login"),
+                const AuthOptions(emailAuth: true, text: "Or Login with")
               ],
             ),
           ],

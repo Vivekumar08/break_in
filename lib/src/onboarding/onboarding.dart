@@ -19,7 +19,7 @@ class Onboarding extends StatelessWidget {
                 Images.onboarding,
                 Padding(
                   padding: const EdgeInsets.only(top: 11),
-                  child: Text("Discover food at work", style: Fonts.title),
+                  child: Text("Discover food at work", style: Fonts.heading),
                 ),
                 Padding(
                   padding:

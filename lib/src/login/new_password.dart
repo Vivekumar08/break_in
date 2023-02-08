@@ -27,7 +27,7 @@ class NewPassword extends StatelessWidget {
                 const SizedBox(height: 24.0),
                 Text(
                   "Forgot Password?",
-                  style: Fonts.title,
+                  style: Fonts.heading,
                 ),
                 const SizedBox(height: 24.0),
                 Text(
