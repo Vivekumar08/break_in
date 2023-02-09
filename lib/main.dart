@@ -1,3 +1,6 @@
+import 'package:break_in/src/login/login_with_phone.dart';
+import 'package:break_in/src/login/new_password.dart';
+import 'package:break_in/src/onboarding/onboarding.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'src/navigation/constants.dart';
 import 'src/navigation/router.dart';
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Palette.background_2),
       debugShowCheckedModeBanner: true,
       onGenerateRoute: Router.generateRoute,
-      initialRoute: manualLocation,
+      initialRoute: root,
     );
   }
 }

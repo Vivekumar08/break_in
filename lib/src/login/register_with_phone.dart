@@ -41,8 +41,6 @@ class RegiterWithPhone extends StatelessWidget {
                     controller: phone),
                 const SizedBox(height: 24.0),
                 Button(onPressed: () {}, buttonText: "Send OTP"),
-                const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Login"),
                 const AuthOptions(emailAuth: true, text: "Or Login with")
               ],
             ),

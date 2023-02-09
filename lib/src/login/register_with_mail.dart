@@ -49,8 +49,6 @@ class RegiterWithMail extends StatelessWidget {
                     controller: phone),
                 const SizedBox(height: 16.0),
                 Button(onPressed: () {}, buttonText: "Register"),
-                const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Login"),
                 const AuthOptions(emailAuth: false, text: "Or Login with")
               ],
             ),

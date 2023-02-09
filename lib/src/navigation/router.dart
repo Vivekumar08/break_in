@@ -1,6 +1,8 @@
 import 'package:break_in/src/location/detected_location.dart';
 import 'package:break_in/src/location/detecting_location.dart';
 import 'package:break_in/src/location/manually_location.dart';
+import 'package:break_in/src/login/login_with_phone.dart';
+import 'package:break_in/src/login/new_password.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import '../onboarding/onboarding.dart';
@@ -17,6 +19,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => const Onboarding());
       case login:
         return MaterialPageRoute(builder: (_) => const Login());
+      case loginWithPhone:
+        return MaterialPageRoute(builder: (_) => const LoginWithPhone());
       case passwdChanged:
         return MaterialPageRoute(builder: (_) => const PasswordChanged());
       case forgotPasswd:
@@ -31,6 +35,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => const DetectedLocation());
       case manualLocation:
         return MaterialPageRoute(builder: (_) => const ManualLocation());
+      case newPassword:
+        return MaterialPageRoute(builder: (_) => const NewPassword());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

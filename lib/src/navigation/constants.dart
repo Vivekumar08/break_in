@@ -1,7 +1,9 @@
 const String root = '/';
 const String login = '/login';
+const String loginWithPhone = '/loginWithPhone';
 const String passwdChanged= '/passwdChanged';
 const String forgotPasswd= '/forgotPasswd';
+const String newPassword = '/newPassword';
 const String registerWithPhone= '/registerWithPhone';
 const String registerWithMail= '/registerWithMail';
 const String detectingLocation= '/detectingLocation';

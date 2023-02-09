@@ -29,7 +29,7 @@ class DetectedLocation extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const LocationDetection(
-                      head: "Detecting Location", location: "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006"),
+                      head: "Location Detected", location: "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006"),
                   // Text(
                   //   "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006",
                   //   style: Fonts.simText,
