@@ -25,28 +25,28 @@ class ManualLocation extends StatelessWidget {
                 color: Palette.stroke),
             width: 330,
             height: 374,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const LocationDetection(
-                    head: "Detecting Location",
-                    location:
-                        "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006"),
-                const SizedBox(height: 8.0),
-                Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 22),
-                    child: Column(
-                      children: [
-                        InputField(
-                            inputText: "Location*",
-                            hintText: "Enter your location",
-                            controller: location),
-                        const SizedBox(height: 16.0),
-                        Button(onPressed: () {}, buttonText: "Save Lovation"),
-                      ],
-                    )),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const LocationDetection(
+                      head: "Detecting Location",
+                      location:
+                          "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006"),
+                  const SizedBox(height: 8.0),
+                  InputField(
+                    inputText: "Location*",
+                    hintText: "Enter your location",
+                    controller: location,
+                    keyboardType: TextInputType.multiline,
+                    expands: true,
+                    height: 80.0,
+                  ),
+                  const SizedBox(height: 16.0),
+                  Button(onPressed: () {}, buttonText: "Save Location"),
+                ],
+              ),
             ),
           ),
         ),

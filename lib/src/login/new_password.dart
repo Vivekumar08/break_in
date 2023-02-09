@@ -1,3 +1,4 @@
+import 'package:break_in/src/components/password_field.dart';
 import 'package:flutter/material.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
@@ -15,39 +16,34 @@ class NewPassword extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 56),
+        padding: const EdgeInsets.fromLTRB(22.0, 56.0, 22.0, 27.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Expanded(
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ChevBackButton(),
-                const SizedBox(height: 24.0),
-                Text(
-                  "Forgot Password?",
-                  style: Fonts.heading,
-                ),
-                const SizedBox(height: 24.0),
-                Text(
-                  "Don't worry! It occurs. Please enter the email\naddress linked with your account.",
-                  style: Fonts.medText,
-                ),
-                const SizedBox(height: 16.0),
-                InputField(
-                    inputText: "New Password*",
-                    hintText: "Enter new password",
-                    controller: passwd),
-                const SizedBox(height: 16.0),
-                InputField(
-                    inputText: "Confirm New Password*",
-                    hintText: "Enter confirm new password",
-                    controller: confirmPasswd),
-                const SizedBox(height: 24.0),
-                Button(onPressed: () {}, buttonText: "Reset Password"),
-              ],
+            const ChevBackButton(),
+            const SizedBox(height: 24.0),
+            Text(
+              "Create new password",
+              style: Fonts.heading,
             ),
+            const SizedBox(height: 24.0),
+            Text(
+              "Your new password must be unique from those previously used.",
+              style: Fonts.medText,
+            ),
+            const SizedBox(height: 16.0),
+            PasswordField(
+                inputText: "Password*",
+                hintText: "Enter your password",
+                controller: passwd),
+            const SizedBox(height: 16.0),
+            InputField(
+              inputText: "Confirm New Password*",
+              hintText: "Enter new password",
+              controller: confirmPasswd,
+            ),
+            const SizedBox(height: 24.0),
+            Button(onPressed: () {}, buttonText: "Reset Password"),
           ],
         ),
       ),

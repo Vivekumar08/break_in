@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../style/fonts.dart';
+import '../style/palette.dart';
 
 class BottomText extends StatelessWidget {
   /// Bottom Text is a [Row] for a text & button
@@ -21,12 +22,15 @@ class BottomText extends StatelessWidget {
       children: [
         text == null
             ? Container()
-            : Text(text!, style: Fonts.textButton.copyWith(fontSize: 14.0)),
+            : Text(text!,
+                style: Fonts.hintText
+                    .copyWith(fontSize: 14.0, color: Palette.iconsCol)),
         buttonText == null
             ? Container()
             : TextButton(
                 onPressed: onPressed,
-                child: Text(buttonText!, style: Fonts.inputText)),
+                child: Text(buttonText!,
+                    style: Fonts.buttonText.copyWith(color: Palette.primary))),
       ],
     );
   }

@@ -5,20 +5,28 @@ import 'package:flutter/material.dart';
 class LocationDetection extends StatelessWidget {
   final String head;
   final String location;
-  const LocationDetection({super.key,required this.head,required this.location});
+  const LocationDetection(
+      {super.key, required this.head, required this.location});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Symbols.locationMark,
         Padding(
-          padding: const EdgeInsets.only(top: 11),
-          child: Text(head, style: Fonts.subHeading),
+          padding: const EdgeInsets.only(top: 24),
+          child: Column(
+            children: [
+              Symbols.locationMark,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical:16.0),
+                child: Text(head, style: Fonts.subHeading),
+              ),
+            ],
+          ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.only(bottom: 0.0),
           child: Text(
             location,
             style: Fonts.simText,

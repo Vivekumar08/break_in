@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:break_in/src/components/location_detection.dart';
 import 'package:break_in/src/style/fonts.dart';
 import 'package:break_in/src/style/palette.dart';
@@ -37,7 +35,8 @@ class DetectedLocation extends StatelessWidget {
                   const SizedBox(height: 16.0),
                   Text(
                     "Edit Location Manually",
-                    style: Fonts.simText.copyWith(color: const Color(0xff5d5fEF)),
+                    style:
+                        Fonts.simText.copyWith(color: const Color(0xff5d5fEF)),
                   ),
                 ],
               )),

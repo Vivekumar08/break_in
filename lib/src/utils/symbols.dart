@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 String _initialPath = 'assets/icons';
 
 class Symbols {
+  static Image get passwordIcon =>
+      Image.asset("$_initialPath/fluent_eye-20-filled.png", scale: 2);
   static Image get googleIcon =>
       Image.asset("$_initialPath/google_ic.png", scale: 2);
   static Image get facebookIcon =>
