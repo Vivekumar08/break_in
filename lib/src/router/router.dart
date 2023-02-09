@@ -17,7 +17,7 @@ class Router {
     switch (settings.name) {
       case root:
         return MaterialPageRoute(builder: (_) => const Onboarding());
-      case login:
+      case loginWithEmail:
         return MaterialPageRoute(builder: (_) => const Login());
       case loginWithPhone:
         return MaterialPageRoute(builder: (_) => const LoginWithPhone());
