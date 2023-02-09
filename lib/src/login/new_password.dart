@@ -37,7 +37,7 @@ class NewPassword extends StatelessWidget {
                 hintText: "Enter your password",
                 controller: passwd),
             const SizedBox(height: 16.0),
-            InputField(
+            PasswordField(
               inputText: "Confirm New Password*",
               hintText: "Enter new password",
               controller: confirmPasswd,

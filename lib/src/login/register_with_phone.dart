@@ -41,8 +41,8 @@ class RegiterWithPhone extends StatelessWidget {
             const AuthOptions(emailAuth: true, text: "Or Register with"),
             const Spacer(),
             const BottomText(
-              text: 'Don’t have an account?',
-              buttonText: 'Register Now',
+              text: 'Already have an account?',
+              buttonText: 'Login',
             ),
           ],
         ),

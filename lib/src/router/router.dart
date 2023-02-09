@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
 import '../login/new_password.dart';
-import '../login/Login.dart';
+import '../login/login_with_mail.dart';
 import '../login/forgotPasswd.dart';
 import '../login/passwordChanged.dart';
 import '../login/register_with_mail.dart';
@@ -19,7 +19,7 @@ class Router {
       case root:
         return MaterialPageRoute(builder: (_) => const Onboarding());
       case loginWithMail:
-        return MaterialPageRoute(builder: (_) => const Login());
+        return MaterialPageRoute(builder: (_) => const LoginWithMail());
       case loginWithPhone:
         return MaterialPageRoute(builder: (_) => const LoginWithPhone());
       case forgotPassword:

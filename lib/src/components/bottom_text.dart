@@ -7,13 +7,13 @@ class BottomText extends StatelessWidget {
   ///
   /// Input [text] for text at [bottom-center]
   ///
-  /// Input [buttonText] & [onPressed] for button at [bottom-center]
-  const BottomText({Key? key, this.text, this.buttonText, this.onPressed})
+  /// Input [buttonText] & [onTap] for button at [bottom-center]
+  const BottomText({Key? key, this.text, this.buttonText, this.onTap})
       : super(key: key);
 
   final String? text;
   final String? buttonText;
-  final VoidCallback? onPressed;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,11 @@ class BottomText extends StatelessWidget {
             : Text(text!,
                 style: Fonts.hintText
                     .copyWith(fontSize: 14.0, color: Palette.iconsCol)),
+        const SizedBox(width: 5.0),
         buttonText == null
             ? Container()
-            : TextButton(
-                onPressed: onPressed,
+            : GestureDetector(
+                onTap: onTap,
                 child: Text(buttonText!,
                     style: Fonts.buttonText.copyWith(color: Palette.primary))),
       ],
