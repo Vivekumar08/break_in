@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
-import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
+import '../style/fonts.dart';
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});

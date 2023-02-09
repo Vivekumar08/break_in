@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/button.dart';
-import '../utils/images.dart';
+import '../utils/gifs.dart';
 import '../style/fonts.dart';
 
 class Salutation extends StatelessWidget {
@@ -10,20 +9,13 @@ class Salutation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(flex: 2, child: Container()),
-          Expanded(
-            flex: 5,
-            child: Column(
-              children: [
-                Images.hello,
-                Padding(
-                  padding: const EdgeInsets.only(top: 1),
-                  child: Text("John", style: Fonts.title),
-                ),
-              ],
-            ),
-          ),
+          Gifs.hello,
+          Text("John", style: Fonts.title, textAlign: TextAlign.center),
+          Expanded(flex: 4, child: Container()),
         ],
       ),
     );

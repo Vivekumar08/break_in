@@ -1,16 +1,15 @@
 const String root = '/';
-const String loginWithEmail = '/loginWithEmail';
+const String loginWithMail = '/loginWithMail';
 const String loginWithPhone = '/loginWithPhone';
 const String otpWithPhone = '$loginWithPhone/otpWithPhone';
-const String forgotPasswd = '$loginWithEmail/forgotPasswd';
-const String otpWithEmail = '$forgotPasswd/otpWithEmail';
-const String newPasswd = '$forgotPasswd/newPasswd';
-const String passwdChanged = '$loginWithEmail/passwdChanged';
+const String forgotPassword = '$loginWithMail/forgotPassword';
+const String otpWithEmail = '$forgotPassword/otpWithEmail';
+const String newPassword = '$forgotPassword/newPassword';
+const String passwdChanged = '$loginWithMail/passwdChanged';
 const String registerWithPhone = '$loginWithPhone/registerWithPhone';
-const String registerWithMail = '$loginWithEmail/registerWithMail';
+const String registerWithMail = '$loginWithMail/registerWithMail';
 
 // Todo: Configure root
-const String welcomeScreen = 'welcomeScreen';
 const String detectingLocation = '/detectingLocation';
 const String detectedLocation = '/detectedLocation';
 const String manualLocation = '/manualLocation';

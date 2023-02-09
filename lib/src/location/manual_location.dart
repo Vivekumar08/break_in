@@ -1,8 +1,9 @@
-import 'package:break_in/src/components/button.dart';
-import 'package:break_in/src/components/input_field.dart';
-import 'package:break_in/src/components/location_detection.dart';
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../components/button.dart';
+import '../components/input_field.dart';
+import '../components/location_detection.dart';
+import '../style/palette.dart';
+import '../utils/images.dart';
 
 class ManualLocation extends StatelessWidget {
   const ManualLocation({super.key});
@@ -13,9 +14,8 @@ class ManualLocation extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/map.png"), fit: BoxFit.cover),
+        decoration: BoxDecoration(
+          image: DecorationImage(image: Images.bg.image, fit: BoxFit.cover),
         ),
         child: Center(
           child: Container(

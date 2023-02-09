@@ -1,11 +1,11 @@
-import 'package:break_in/src/components/password_field.dart';
 import 'package:flutter/material.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
-import '../components/input_field.dart';
-import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
+import '../components/input_field.dart';
+import '../components/password_field.dart';
+import '../style/fonts.dart';
 
 class RegisterWithMail extends StatelessWidget {
   const RegisterWithMail({super.key});
