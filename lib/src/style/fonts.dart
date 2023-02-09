@@ -21,14 +21,14 @@ class Fonts {
       fontWeight: FontWeight.w700,
       fontFamily: _urbBold,
       height: 1.3,
-      letterSpacing: -1,
+      letterSpacing: -0.5,
       color: Palette.primary);
 
   static TextStyle get simText => TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       height: 1.3,
-      letterSpacing: -1,
+      // letterSpacing: -1,
       fontFamily: _urbReg,
       color: Palette.primary);
 
@@ -49,7 +49,7 @@ class Fonts {
       fontSize: 15,
       fontWeight: FontWeight.w600,
       fontFamily: _urbSemiBold,
-      color: Palette.background_2);
+      color: Palette.white);
 
   static TextStyle get inputText => TextStyle(
       fontSize: 14,
