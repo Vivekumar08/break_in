@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
+import '../components/chev_back_button.dart';
 import '../components/input_field.dart';
 import '../style/fonts.dart';
-import '../components/chev_back_button.dart';
 
 class RegiterWithPhone extends StatelessWidget {
   const RegiterWithPhone({super.key});
@@ -41,8 +41,8 @@ class RegiterWithPhone extends StatelessWidget {
             const AuthOptions(emailAuth: true, text: "Or Register with"),
             const Spacer(),
             const BottomText(
-              text: 'Don’t have an account?',
-              buttonText: 'Register Now',
+              text: 'Already have an account?',
+              buttonText: 'Login',
             ),
           ],
         ),

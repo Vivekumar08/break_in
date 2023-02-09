@@ -1,6 +1,6 @@
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/utils/symbols.dart';
 import 'package:flutter/material.dart';
+import '../style/fonts.dart';
+import '../utils/symbols.dart';
 
 class LocationDetection extends StatelessWidget {
   final String head;
@@ -19,7 +19,7 @@ class LocationDetection extends StatelessWidget {
             children: [
               Symbols.locationMark,
               Padding(
-                padding: const EdgeInsets.symmetric(vertical:16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(head, style: Fonts.subHeading),
               ),
             ],

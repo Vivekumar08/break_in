@@ -78,4 +78,10 @@ class Fonts {
       fontWeight: FontWeight.w600,
       fontFamily: _urbSemiBold,
       color: Palette.iconsCol);
+
+  static TextStyle get otpText => TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w700,
+      fontFamily: _urbBold,
+      color: Palette.text);
 }

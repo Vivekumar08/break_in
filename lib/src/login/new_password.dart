@@ -1,9 +1,9 @@
-import 'package:break_in/src/components/password_field.dart';
 import 'package:flutter/material.dart';
 import '../components/button.dart';
-import '../components/input_field.dart';
-import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
+import '../components/input_field.dart';
+import '../components/password_field.dart';
+import '../style/fonts.dart';
 
 class NewPassword extends StatelessWidget {
   const NewPassword({super.key});
@@ -37,7 +37,7 @@ class NewPassword extends StatelessWidget {
                 hintText: "Enter your password",
                 controller: passwd),
             const SizedBox(height: 16.0),
-            InputField(
+            PasswordField(
               inputText: "Confirm New Password*",
               hintText: "Enter new password",
               controller: confirmPasswd,

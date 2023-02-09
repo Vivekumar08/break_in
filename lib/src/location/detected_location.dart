@@ -1,7 +1,8 @@
-import 'package:break_in/src/components/location_detection.dart';
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../components/location_detection.dart';
+import '../style/fonts.dart';
+import '../style/palette.dart';
+import '../utils/images.dart';
 
 class DetectedLocation extends StatelessWidget {
   const DetectedLocation({super.key});
@@ -10,9 +11,8 @@ class DetectedLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/map.png"), fit: BoxFit.cover),
+        decoration: BoxDecoration(
+          image: DecorationImage(image: Images.bg.image, fit: BoxFit.cover),
         ),
         child: Center(
           child: Container(
@@ -27,7 +27,9 @@ class DetectedLocation extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const LocationDetection(
-                      head: "Location Detected", location: "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006"),
+                      head: "Location Detected",
+                      location:
+                          "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006"),
                   // Text(
                   //   "L4, Jagdish Nagar, Varachha Surat,\nGujarat, India, 395006",
                   //   style: Fonts.simText,
