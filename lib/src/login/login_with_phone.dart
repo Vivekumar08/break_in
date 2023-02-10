@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 import '../components/chev_back_button.dart';
 
@@ -32,12 +34,19 @@ class LoginWithPhone extends StatelessWidget {
                 hintText: "Enter your phone number",
                 controller: phone),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Send OTP"),
-            const AuthOptions(emailAuth: true, text: "Or Register with"),
+            Button(
+                onPressed: () => context.go(otpWithPhone),
+                buttonText: "Send OTP"),
+            AuthOptions(
+              emailAuth: true,
+              text: "Or Register with",
+              onTapWithMail: () => context.pushReplacement(loginWithMail),
+            ),
             const Spacer(),
-            const BottomText(
+            BottomText(
               text: 'Don’t have an account?',
               buttonText: 'Register Now',
+              onTap: () => context.go(registerWithPhone),
             ),
           ],
         ),

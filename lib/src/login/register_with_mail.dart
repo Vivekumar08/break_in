@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
 import '../components/input_field.dart';
 import '../components/password_field.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
 class RegisterWithMail extends StatelessWidget {
@@ -47,11 +49,19 @@ class RegisterWithMail extends StatelessWidget {
                 hintText: "Enter your password",
                 controller: confirmPasswd),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Register"),
-            const AuthOptions(emailAuth: false, text: "Or Register with"),
-            const BottomText(
+            Button(
+                onPressed: () => context.go(salutation),
+                buttonText: "Register"),
+            AuthOptions(
+              emailAuth: false,
+              text: "Or Register with",
+              onTapWithPhone: () => context.pushReplacement(registerWithPhone),
+            ),
+            const SizedBox(height: 30),
+            BottomText(
               text: 'Already have an account?',
               buttonText: 'Login',
+              onTap: () => context.pop(),
             ),
           ],
         ),

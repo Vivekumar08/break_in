@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../router/constants.dart';
 import '../utils/gifs.dart';
 import '../style/fonts.dart';
 
@@ -7,6 +9,7 @@ class Salutation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 5), () => context.go(home));
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,3 @@
-import 'package:break_in/src/login/otp_with_mail.dart';
-import 'package:break_in/src/login/otp_with_phone.dart';
-import 'package:break_in/src/login/register_with_otp.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
@@ -10,12 +7,16 @@ import '../login/forgotPasswd.dart';
 import '../login/passwordChanged.dart';
 import '../login/register_with_mail.dart';
 import '../login/register_with_phone.dart';
+import '../login/otp_with_mail.dart';
+import '../login/otp_with_phone.dart';
+import '../login/register_with_otp.dart';
 import '../onboarding/onboarding.dart';
 import '../onboarding/salutation.dart';
 import '../location/detected_location.dart';
+import '../home/home.dart';
 
 final router = GoRouter(
-  initialLocation: registerWithOtp,
+  initialLocation: root,
   routes: [
     GoRoute(
       path: '/',
@@ -31,7 +32,7 @@ final router = GoRouter(
               routes: [
                 GoRoute(
                   path: 'otpWithMail',
-                  builder: (context, state) => const OTPWithEmail(),
+                  builder: (context, state) => const OTPWithMail(),
                 ),
                 GoRoute(
                   path: 'newPassword',
@@ -59,7 +60,7 @@ final router = GoRouter(
             ),
             GoRoute(
               path: 'registerWithPhone',
-              builder: (context, state) => const RegiterWithPhone(),
+              builder: (context, state) => const RegisterWithPhone(),
               routes: [
                 GoRoute(
                   path: "registerWithOtp",
@@ -78,6 +79,18 @@ final router = GoRouter(
     GoRoute(
       path: '/detectedLocation',
       builder: (context, state) => const DetectedLocation(),
+    ),
+
+    // Salutation
+    GoRoute(
+      path: '/salutation',
+      builder: (context, state) => const Salutation(),
+    ),
+
+    // Home
+    GoRoute(
+      path: '/home',
+      builder: (context, state) => const Home(),
     ),
   ],
 );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/button.dart';
 import '../utils/images.dart';
 import '../style/fonts.dart';
@@ -29,7 +30,8 @@ class PasswordChanged extends StatelessWidget {
           const SizedBox(height: 32.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22.0),
-            child: Button(buttonText: "Back to Login", onPressed: () {}),
+            child: Button(
+                buttonText: "Back to Login", onPressed: () => context.pop()),
           )
         ],
       ),

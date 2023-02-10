@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/otp_field.dart';
-import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
 class RegisterWithOTP extends StatelessWidget {
@@ -26,15 +27,21 @@ class RegisterWithOTP extends StatelessWidget {
               style: Fonts.heading,
             ),
             const SizedBox(height: 10.0),
-            Text(
-              "Enter the verification code we just sent on your mobile number +91 9876543210.",
-              style: Fonts.medText,
+            Text.rich(
+              TextSpan(
+                text:
+                    "Enter the verification code we just sent on your mobile number ",
+                style: Fonts.medText,
+                children: <TextSpan>[
+                  TextSpan(text: "+91 9876543210", style: Fonts.medTextBlack)
+                ],
+              ),
             ),
             const SizedBox(height: 32.0),
             OtpField(length: 4, controller: otp),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Verify"),
-            const AuthOptions(emailAuth: true, text: "Or Register with"),
+            Button(
+                onPressed: () => context.go(salutation), buttonText: "Verify"),
             const Spacer(),
             const BottomText(
               text: 'Didn\'t received code?',

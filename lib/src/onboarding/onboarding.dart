@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/button.dart';
+import '../router/constants.dart';
 import '../utils/images.dart';
 import '../style/fonts.dart';
 
@@ -35,7 +37,8 @@ class Onboarding extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(22.0, 0.0, 22.0, 27.0),
-            child: Button(buttonText: "Next", onPressed: () {}),
+            child: Button(
+                buttonText: "Next", onPressed: () => context.go(loginWithMail)),
           ),
         ],
       ),

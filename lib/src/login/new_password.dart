@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
-import '../components/input_field.dart';
 import '../components/password_field.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
 class NewPassword extends StatelessWidget {
@@ -43,7 +44,9 @@ class NewPassword extends StatelessWidget {
               controller: confirmPasswd,
             ),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Reset Password"),
+            Button(
+                onPressed: () => context.go(passwdChanged),
+                buttonText: "Reset Password"),
           ],
         ),
       ),
