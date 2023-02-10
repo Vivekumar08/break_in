@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import '../components/otp_field.dart';
+import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
-import '../components/input_field.dart';
 import '../components/chev_back_button.dart';
 import '../style/fonts.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+class RegisterWithOTP extends StatelessWidget {
+  const RegisterWithOTP({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-
+    TextEditingController otp = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -22,25 +22,23 @@ class ForgotPassword extends StatelessWidget {
             const ChevBackButton(),
             const SizedBox(height: 24.0),
             Text(
-              "Forgot Password?",
+              "OTP Verification",
               style: Fonts.heading,
             ),
             const SizedBox(height: 10.0),
             Text(
-              "Don't worry! It occurs. Please enter the email address linked with your account.",
+              "Enter the verification code we just sent on your mobile number +91 9876543210.",
               style: Fonts.medText,
             ),
             const SizedBox(height: 32.0),
-            InputField(
-                inputText: "Email*",
-                hintText: "Enter your email",
-                controller: email),
+            OtpField(length: 4, controller: otp),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Send Code"),
+            Button(onPressed: () {}, buttonText: "Verify"),
+            const AuthOptions(emailAuth: true, text: "Or Register with"),
             const Spacer(),
             const BottomText(
-              text: 'Remember Password?',
-              buttonText: 'Login',
+              text: 'Didn\'t received code?',
+              buttonText: 'Resend',
             ),
           ],
         ),

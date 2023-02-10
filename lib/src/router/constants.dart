@@ -3,10 +3,11 @@ const String loginWithMail = '/loginWithMail';
 const String loginWithPhone = '/loginWithPhone';
 const String otpWithPhone = '$loginWithPhone/otpWithPhone';
 const String forgotPassword = '$loginWithMail/forgotPassword';
-const String otpWithEmail = '$forgotPassword/otpWithEmail';
+const String otpWithMail = '$forgotPassword/otpWithMail';
 const String newPassword = '$forgotPassword/newPassword';
 const String passwdChanged = '$loginWithMail/passwdChanged';
 const String registerWithPhone = '$loginWithPhone/registerWithPhone';
+const String registerWithOtp= '$registerWithPhone/registerWithOtp';
 const String registerWithMail = '$loginWithMail/registerWithMail';
 
 // TODO: Configure root

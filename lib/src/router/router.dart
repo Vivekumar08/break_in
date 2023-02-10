@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:break_in/src/login/otp_with_mail.dart';
+import 'package:break_in/src/login/otp_with_phone.dart';
+import 'package:break_in/src/login/register_with_otp.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
@@ -11,11 +13,9 @@ import '../login/register_with_phone.dart';
 import '../onboarding/onboarding.dart';
 import '../onboarding/salutation.dart';
 import '../location/detected_location.dart';
-import '../location/detecting_location.dart';
-import '../location/manual_location.dart';
 
 final router = GoRouter(
-  initialLocation: newPassword,
+  initialLocation: registerWithOtp,
   routes: [
     GoRoute(
       path: '/',
@@ -30,8 +30,8 @@ final router = GoRouter(
               builder: (context, state) => const ForgotPassword(),
               routes: [
                 GoRoute(
-                  path: 'otpWithEmail',
-                  builder: (context, state) => const Scaffold(),
+                  path: 'otpWithMail',
+                  builder: (context, state) => const OTPWithEmail(),
                 ),
                 GoRoute(
                   path: 'newPassword',
@@ -55,11 +55,17 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: 'otpWithPhone',
-              builder: (context, state) => const Scaffold(),
+              builder: (context, state) => const OTPWithPhone(),
             ),
             GoRoute(
               path: 'registerWithPhone',
               builder: (context, state) => const RegiterWithPhone(),
+              routes: [
+                GoRoute(
+                  path: "registerWithOtp",
+                  builder: (context, state) => const RegisterWithOTP(),
+                )
+              ],
             ),
           ],
         ),
