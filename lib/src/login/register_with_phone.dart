@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
 import '../components/input_field.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
-class RegiterWithPhone extends StatelessWidget {
-  const RegiterWithPhone({super.key});
+class RegisterWithPhone extends StatelessWidget {
+  const RegisterWithPhone({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +39,19 @@ class RegiterWithPhone extends StatelessWidget {
                 hintText: "Enter your phone number",
                 controller: phone),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Send OTP"),
-            const AuthOptions(emailAuth: true, text: "Or Register with"),
+            Button(
+                onPressed: () => context.go(registerWithOtp),
+                buttonText: "Send OTP"),
+            AuthOptions(
+              emailAuth: true,
+              text: "Or Register with",
+              onTapWithMail: () => context.pushReplacement(registerWithMail),
+            ),
             const Spacer(),
-            const BottomText(
+            BottomText(
               text: 'Already have an account?',
               buttonText: 'Login',
+              onTap: () => context.pop(),
             ),
           ],
         ),

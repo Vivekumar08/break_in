@@ -45,6 +45,13 @@ class Fonts {
       fontWeight: FontWeight.w500,
       fontFamily: _urbMed,
       height: 1.5,
+      color: Palette.iconsCol);
+
+  static TextStyle get medTextBlack => TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      fontFamily: _urbMed,
+      height: 1.5,
       color: Palette.text);
 
   static TextStyle get lightText => TextStyle(

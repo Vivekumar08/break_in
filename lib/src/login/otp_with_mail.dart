@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/otp_field.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
-class OTPWithEmail extends StatelessWidget {
-  const OTPWithEmail({super.key});
+class OTPWithMail extends StatelessWidget {
+  const OTPWithMail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +28,20 @@ class OTPWithEmail extends StatelessWidget {
               style: Fonts.heading,
             ),
             const SizedBox(height: 10.0),
-            Text(
-              "Enter the verification code we just sent on your email address jhondoe@gmail.com",
-              style: Fonts.medText,
+            Text.rich(
+              TextSpan(
+                text:
+                    "Enter the verification code we just sent on your email address ",
+                style: Fonts.medText,
+                children: <TextSpan>[
+                  TextSpan(text: "jhondoe@gmail.com", style: Fonts.medTextBlack)
+                ],
+              ),
             ),
             const SizedBox(height: 32.0),
             OtpField(length: 4, controller: otp),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Verify"),
-            const AuthOptions(emailAuth: true, text: "Or Register with"),
+            Button(onPressed: () => context.go(home), buttonText: "Verify"),
             const Spacer(),
             const BottomText(
               text: 'Didn\'t received code?',

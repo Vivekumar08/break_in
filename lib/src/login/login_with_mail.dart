@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
 import '../components/input_field.dart';
 import '../components/password_field.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
 class LoginWithMail extends StatelessWidget {
@@ -40,15 +42,22 @@ class LoginWithMail extends StatelessWidget {
             const SizedBox(height: 8.0),
             Align(
               alignment: Alignment.bottomRight,
-              child: Text("Forgot Password?", style: Fonts.textButton),
+              child: GestureDetector(
+                  onTap: () => context.go(forgotPassword),
+                  child: Text("Forgot Password?", style: Fonts.textButton)),
             ),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Login"),
-            const AuthOptions(emailAuth: false, text: "Or Login with"),
+            Button(onPressed: () => context.go(home), buttonText: "Login"),
+            AuthOptions(
+              emailAuth: false,
+              text: "Or Login with",
+              onTapWithPhone: () => context.pushReplacement(loginWithPhone),
+            ),
             const Spacer(),
-            const BottomText(
+            BottomText(
               text: 'Don’t have an account?',
               buttonText: 'Register Now',
+              onTap: () => context.go(registerWithMail),
             ),
           ],
         ),

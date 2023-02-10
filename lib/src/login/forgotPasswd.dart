@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
 import '../components/chev_back_button.dart';
+import '../router/constants.dart';
 import '../style/fonts.dart';
 
 class ForgotPassword extends StatelessWidget {
@@ -36,11 +38,14 @@ class ForgotPassword extends StatelessWidget {
                 hintText: "Enter your email",
                 controller: email),
             const SizedBox(height: 24.0),
-            Button(onPressed: () {}, buttonText: "Send Code"),
+            Button(
+                onPressed: () => context.go(newPassword),
+                buttonText: "Send Code"),
             const Spacer(),
-            const BottomText(
+            BottomText(
               text: 'Remember Password?',
               buttonText: 'Login',
+              onTap: () => context.pop(),
             ),
           ],
         ),

@@ -4,11 +4,19 @@ import '../style/palette.dart';
 import '../utils/symbols.dart';
 
 class AuthOptions extends StatelessWidget {
-  const AuthOptions({Key? key, required this.emailAuth, required this.text})
-      : super(key: key);
+  const AuthOptions(
+      {super.key,
+      required this.emailAuth,
+      required this.text,
+      this.onTapWithMail,
+      this.onTapWithPhone})
+      : assert((emailAuth && onTapWithMail != null && onTapWithPhone == null) ||
+            (!emailAuth && onTapWithMail == null && onTapWithPhone != null));
 
   final String text;
   final bool emailAuth;
+  final VoidCallback? onTapWithMail;
+  final VoidCallback? onTapWithPhone;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +43,11 @@ class AuthOptions extends StatelessWidget {
           const SizedBox(width: 8),
           emailAuth
               ? Expanded(
-                  child: _AuthButton(icon: Symbols.mailIcon, onTap: () {}))
+                  child:
+                      _AuthButton(icon: Symbols.mailIcon, onTap: onTapWithMail))
               : Expanded(
-                  child: _AuthButton(icon: Symbols.phoneIcon, onTap: () {})),
+                  child: _AuthButton(
+                      icon: Symbols.phoneIcon, onTap: onTapWithPhone)),
         ],
       )
     ]);
@@ -45,10 +55,10 @@ class AuthOptions extends StatelessWidget {
 }
 
 class _AuthButton extends StatelessWidget {
-  const _AuthButton({super.key, required this.icon, required this.onTap});
+  const _AuthButton({super.key, required this.icon, this.onTap});
 
   final Image icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
