@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
 import '../login/new_password.dart';
@@ -13,39 +14,64 @@ import '../location/detected_location.dart';
 import '../location/detecting_location.dart';
 import '../location/manual_location.dart';
 
-class Router {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case root:
-        return MaterialPageRoute(builder: (_) => const Onboarding());
-      case loginWithMail:
-        return MaterialPageRoute(builder: (_) => const LoginWithMail());
-      case loginWithPhone:
-        return MaterialPageRoute(builder: (_) => const LoginWithPhone());
-      case forgotPassword:
-        return MaterialPageRoute(builder: (_) => const ForgotPassword());
-      case newPassword:
-        return MaterialPageRoute(builder: (_) => const NewPassword());
-      case passwdChanged:
-        return MaterialPageRoute(builder: (_) => const PasswordChanged());
-      case registerWithPhone:
-        return MaterialPageRoute(builder: (_) => const RegiterWithPhone());
-      case registerWithMail:
-        return MaterialPageRoute(builder: (_) => const RegisterWithMail());
-      case salutation:
-        return MaterialPageRoute(builder: (_) => const Salutation());
-      case detectingLocation:
-        return MaterialPageRoute(builder: (_) => const DetectingLocation());
-      case detectedLocation:
-        return MaterialPageRoute(builder: (_) => const DetectedLocation());
-      case manualLocation:
-        return MaterialPageRoute(builder: (_) => const ManualLocation());
-      default:
-        return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(child: Text('No route defined for ${settings.name}')),
-          ),
-        );
-    }
-  }
-}
+final router = GoRouter(
+  initialLocation: newPassword,
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const Onboarding(),
+      routes: [
+        GoRoute(
+          path: 'loginWithMail',
+          builder: (context, state) => const LoginWithMail(),
+          routes: [
+            GoRoute(
+              path: 'forgotPassword',
+              builder: (context, state) => const ForgotPassword(),
+              routes: [
+                GoRoute(
+                  path: 'otpWithEmail',
+                  builder: (context, state) => const Scaffold(),
+                ),
+                GoRoute(
+                  path: 'newPassword',
+                  builder: (context, state) => const NewPassword(),
+                ),
+              ],
+            ),
+            GoRoute(
+              path: 'passwdChanged',
+              builder: (context, state) => const PasswordChanged(),
+            ),
+            GoRoute(
+              path: 'registerWithMail',
+              builder: (context, state) => const RegisterWithMail(),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'loginWithPhone',
+          builder: (context, state) => const LoginWithPhone(),
+          routes: [
+            GoRoute(
+              path: 'otpWithPhone',
+              builder: (context, state) => const Scaffold(),
+            ),
+            GoRoute(
+              path: 'registerWithPhone',
+              builder: (context, state) => const RegiterWithPhone(),
+            ),
+          ],
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/salutation',
+      builder: (context, state) => const Salutation(),
+    ),
+    GoRoute(
+      path: '/detectedLocation',
+      builder: (context, state) => const DetectedLocation(),
+    ),
+  ],
+);
