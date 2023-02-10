@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../components/otp_field.dart';
-import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';
@@ -41,7 +40,8 @@ class OTPWithPhone extends StatelessWidget {
             const SizedBox(height: 32.0),
             OtpField(length: 4, controller: otp),
             const SizedBox(height: 24.0),
-            Button(onPressed: () => context.go(home), buttonText: "Verify"),
+            Button(
+                onPressed: () => context.go(salutation), buttonText: "Verify"),
             const Spacer(),
             const BottomText(
               text: 'Didn\'t received code?',

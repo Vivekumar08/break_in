@@ -23,10 +23,11 @@ class CategoriesForHome extends StatelessWidget {
             image: DecorationImage(image: image, fit: BoxFit.cover),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8.0),
         Text(
           text,
-          style: Fonts.medTextBlack.copyWith(fontWeight: FontWeight.bold,fontSize: 14),
+          style: Fonts.medTextBlack
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 14),
         )
       ],
     );

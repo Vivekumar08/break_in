@@ -16,7 +16,7 @@ import '../location/detected_location.dart';
 import '../home/home.dart';
 
 final router = GoRouter(
-  initialLocation: home,
+  initialLocation: root,
   routes: [
     GoRoute(
       path: '/',
@@ -72,10 +72,7 @@ final router = GoRouter(
         ),
       ],
     ),
-    GoRoute(
-      path: '/salutation',
-      builder: (context, state) => const Salutation(),
-    ),
+
     GoRoute(
       path: '/detectedLocation',
       builder: (context, state) => const DetectedLocation(),
