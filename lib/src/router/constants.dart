@@ -9,7 +9,7 @@ const String passwdChanged = '$loginWithMail/passwdChanged';
 const String registerWithPhone = '$loginWithPhone/registerWithPhone';
 const String registerWithMail = '$loginWithMail/registerWithMail';
 
-// Todo: Configure root
+// TODO: Configure root
 const String detectingLocation = '/detectingLocation';
 const String detectedLocation = '/detectedLocation';
 const String manualLocation = '/manualLocation';
