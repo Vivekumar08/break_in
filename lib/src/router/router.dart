@@ -16,7 +16,7 @@ import '../location/detected_location.dart';
 import '../home/home.dart';
 
 final router = GoRouter(
-  initialLocation: root,
+  initialLocation: home,
   routes: [
     GoRoute(
       path: '/',
