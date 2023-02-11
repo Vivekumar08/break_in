@@ -3,7 +3,7 @@ import 'constants.dart';
 import '../login/login_with_phone.dart';
 import '../login/new_password.dart';
 import '../login/login_with_mail.dart';
-import '../login/forgotPasswd.dart';
+import '../login/forgot_passwd.dart';
 import '../login/passwordChanged.dart';
 import '../login/register_with_mail.dart';
 import '../login/register_with_phone.dart';
