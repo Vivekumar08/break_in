@@ -15,4 +15,6 @@ class Symbols {
       Image.asset("$_initialPath/mail_ic.png", scale: 2);
   static Image get locationMark =>
       Image.asset("$_initialPath/Vector.png", scale: 2);
+  static Image get profile =>
+      Image.asset("$_initialPath/profile.png", scale: 1.6);
 }
