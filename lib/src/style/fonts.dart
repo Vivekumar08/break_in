@@ -36,9 +36,15 @@ class Fonts {
       fontSize: 14,
       fontWeight: FontWeight.w400,
       height: 1.3,
-      // letterSpacing: -1,
       fontFamily: _urbReg,
       color: Palette.primary);
+
+  static TextStyle get simTextBlack => TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      fontFamily: _urbReg,
+      letterSpacing: -0.2,
+      color: Palette.text);
 
   static TextStyle get medText => TextStyle(
       fontSize: 16,
