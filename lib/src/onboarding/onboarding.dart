@@ -27,7 +27,7 @@ class Onboarding extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
                   child: Text(
-                    "We make it simple to find the food at your \nwork. Enter your address and let us do the rest.",
+                    "We make it simple to find the food at your work. Enter your address and let us do the rest.",
                     style: Fonts.medText,
                     textAlign: TextAlign.center,
                   ),
