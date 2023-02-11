@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../components/otp_field.dart';
-import '../components/auth_options.dart';
 import '../components/bottom_text.dart';
 import '../components/button.dart';
 import '../components/chev_back_button.dart';

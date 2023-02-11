@@ -4,12 +4,22 @@ import '../router/constants.dart';
 import '../utils/gifs.dart';
 import '../style/fonts.dart';
 
-class Salutation extends StatelessWidget {
+class Salutation extends StatefulWidget {
   const Salutation({super.key});
 
   @override
+  State<Salutation> createState() => _SalutationState();
+}
+
+class _SalutationState extends State<Salutation> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 4), () => context.go(home));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 5), () => context.go(home));
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

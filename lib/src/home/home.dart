@@ -9,44 +9,46 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Categories",
-              style: Fonts.heading.copyWith(fontSize: 18),
-            ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    CategoriesForHome(
-                        text: "Canteen", image: Images.canteen.image),
-                    const SizedBox(width: 16),
-                    CategoriesForHome(
-                        text: "Mess", image: Images.hostelMess.image),
-                    const SizedBox(width: 16),
-                    CategoriesForHome(
-                        text: "Micro Cafe`", image: Images.microCafe.image),
-                    const SizedBox(width: 16),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    CategoriesForHome(
-                        text: "Corners", image: Images.corners.image),
-                    const SizedBox(width: 16),
-                    CategoriesForHome(
-                        text: "Others", image: Images.others.image),
-                    const SizedBox(width: 16),
-                  ],
-                )
-              ],
-            )
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Categories",
+                style: Fonts.heading.copyWith(fontSize: 18),
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      CategoriesForHome(
+                          text: "Canteen", image: Images.canteen.image),
+                      const SizedBox(width: 16),
+                      CategoriesForHome(
+                          text: "Mess", image: Images.hostelMess.image),
+                      const SizedBox(width: 16),
+                      CategoriesForHome(
+                          text: "Micro Cafe", image: Images.microCafe.image),
+                      const SizedBox(width: 16),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      CategoriesForHome(
+                          text: "Corners", image: Images.corners.image),
+                      const SizedBox(width: 16),
+                      CategoriesForHome(
+                          text: "Others", image: Images.others.image),
+                      const SizedBox(width: 16),
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

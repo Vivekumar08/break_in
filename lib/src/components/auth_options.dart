@@ -55,7 +55,8 @@ class AuthOptions extends StatelessWidget {
 }
 
 class _AuthButton extends StatelessWidget {
-  const _AuthButton({super.key, required this.icon, this.onTap});
+  const _AuthButton({Key? key, required this.icon, this.onTap})
+      : super(key: key);
 
   final Image icon;
   final VoidCallback? onTap;

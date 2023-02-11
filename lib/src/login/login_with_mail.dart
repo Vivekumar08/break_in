@@ -47,7 +47,8 @@ class LoginWithMail extends StatelessWidget {
                   child: Text("Forgot Password?", style: Fonts.textButton)),
             ),
             const SizedBox(height: 24.0),
-            Button(onPressed: () => context.go(home), buttonText: "Login"),
+            Button(
+                onPressed: () => context.go(salutation), buttonText: "Login"),
             AuthOptions(
               emailAuth: false,
               text: "Or Login with",
