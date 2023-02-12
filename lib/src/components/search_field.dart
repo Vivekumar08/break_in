@@ -1,6 +1,6 @@
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../style/fonts.dart';
+import '../style/palette.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({
@@ -14,7 +14,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(22.0,16.0,22.0,4.0),
+      padding: const EdgeInsets.fromLTRB(22.0, 16.0, 22.0, 4.0),
       child: Container(
         height: 48.0,
         decoration: BoxDecoration(
