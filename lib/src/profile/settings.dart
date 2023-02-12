@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../style/message_dialog.dart';
 import '../components/button.dart';
 import '../style/fonts.dart';
 import '../style/palette.dart';
 import '../utils/images.dart';
+import '../router/constants.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -53,12 +55,15 @@ class Settings extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Button(
-                    onPressed: () {},
+                    onPressed: () => context.go(feedback),
                     buttonText: 'Send Feedback',
                     color: Palette.iconsCol,
                   ),
                   const SizedBox(height: 16.0),
-                  Button(onPressed: () {}, buttonText: 'Logout Anyway')
+                  Button(
+                    onPressed: () => context.go(root),
+                    buttonText: 'Logout Anyway',
+                  )
                 ],
               ),
             ),

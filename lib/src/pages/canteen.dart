@@ -14,11 +14,15 @@ class Canteen extends StatelessWidget {
           title: Text("Canteen", style: Fonts.appBarTitle),
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal:22.0),
-          child:ListView(
-          children: const [
-            FoodCard(),
-          ],
-        )));
+            padding: EdgeInsets.symmetric(horizontal: 22.0),
+            child: ListView(
+              children: [
+                FoodCard(
+                  isFavourite: true,
+                  isVisited: true,
+                  date: '04/02/2023',
+                ),
+              ],
+            )));
   }
 }
