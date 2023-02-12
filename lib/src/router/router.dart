@@ -1,11 +1,10 @@
-import 'package:break_in/src/home/categories.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
 import '../login/new_password.dart';
 import '../login/login_with_mail.dart';
 import '../login/forgot_passwd.dart';
-import '../login/passwordChanged.dart';
+import '../login/password_changed.dart';
 import '../login/register_with_mail.dart';
 import '../login/register_with_phone.dart';
 import '../login/otp_with_mail.dart';
@@ -15,9 +14,11 @@ import '../onboarding/onboarding.dart';
 import '../onboarding/salutation.dart';
 import '../location/detected_location.dart';
 import '../home/home.dart';
+import '../home/categories.dart';
+import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: categories,
+  initialLocation: home,
   routes: [
     GoRoute(
       path: '/',
@@ -85,85 +86,18 @@ final router = GoRouter(
       builder: (context, state) => const Salutation(),
     ),
 
-      // ShellRoute(
-      //   builder: (BuildContext context, GoRouterState state, Widget child) {
-      //     return MusicAppShell(
-      //       child: child,
-      //     );
-      //   },
-      //   routes: <RouteBase>[
-      //     GoRoute(
-      //       path: '/library',
-      //       pageBuilder: (context, state) {
-      //         return FadeTransitionPage(
-      //           child: const LibraryScreen(),
-      //           key: state.pageKey,
-      //         );
-      //       },
-      //       routes: <RouteBase>[
-      //         GoRoute(
-      //           path: 'album/:albumId',
-      //           builder: (BuildContext context, GoRouterState state) {
-      //             return AlbumScreen(
-      //               albumId: state.params['albumId'],
-      //             );
-      //           },
-      //           routes: [
-      //             GoRoute(
-      //               path: 'song/:songId',
-      //               // Display on the root Navigator
-      //               builder: (BuildContext context, GoRouterState state) {
-      //                 return SongScreen(
-      //                   songId: state.params['songId']!,
-      //                 );
-      //               },
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     GoRoute(
-      //       path: '/recents',
-      //       pageBuilder: (context, state) {
-      //         return FadeTransitionPage(
-      //           child: const RecentlyPlayedScreen(),
-      //           key: state.pageKey,
-      //         );
-      //       },
-      //       routes: <RouteBase>[
-      //         GoRoute(
-      //           path: 'song/:songId',
-      //           // Display on the root Navigator
-      //           builder: (BuildContext context, GoRouterState state) {
-      //             return SongScreen(
-      //               songId: state.params['songId']!,
-      //             );
-      //           },
-      //         ),
-      //       ],
-      //     ),
-      //     GoRoute(
-      //       path: '/search',
-      //       pageBuilder: (context, state) {
-      //         final query = state.queryParams['q'] ?? '';
-      //         return FadeTransitionPage(
-      //           child: SearchScreen(
-      //             query: query,
-      //           ),
-      //           key: state.pageKey,
-      //         );
-      //       },
-      //     ),
-      //   ],
-      // ),
-
     // Home
     GoRoute(
       path: '/home',
-      builder: (context, state) => const Home(),
+      pageBuilder: (context, state) =>
+          FadeTransitionPage(child: const Home(), key: state.pageKey),
       routes: [
-        GoRoute(path: 'categories',builder: (context, state) => const Categories(),)
-      ]
+        GoRoute(
+          path: 'categories',
+          pageBuilder: (context, state) =>
+              FadeTransitionPage(child: const Categories(), key: state.pageKey),
+        )
+      ],
     ),
   ],
 );
