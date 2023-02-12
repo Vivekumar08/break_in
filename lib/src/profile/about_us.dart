@@ -1,26 +1,36 @@
+import 'package:break_in/src/router/constants.dart';
 import 'package:break_in/src/style/fonts.dart';
+import 'package:break_in/src/style/palette.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
-  Widget _aboutUsCategories(String text, VoidCallback onPressed) => ListTile(
-        title: Text(text, style: Fonts.poppins),
+  Widget _aboutUsCategories(String text, BuildContext context, String route) =>
+      ListTile(
+        title: Text(
+          text,
+          style: Fonts.buttonText.copyWith(color: Palette.text),
+        ),
         horizontalTitleGap: 0,
         dense: true,
         trailing: const Icon(
           Icons.chevron_right,
           size: 32,
         ),
+        shape: text != "Our Team"
+            ? UnderlineInputBorder(
+                borderSide: BorderSide(color: Palette.greyNormal))
+            : null,
+        onTap: () => context.go(route),
       );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.only(left: 20.0),
-          child: Icon(Icons.chevron_left, size: 32.0),
-        ),
+        automaticallyImplyLeading: true,
+        leadingWidth: 72.0,
         title: Text("About Us", style: Fonts.appBarTitle),
       ),
       body: Padding(
@@ -28,10 +38,10 @@ class AboutUs extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _aboutUsCategories("Our Story", () {}),
-            _aboutUsCategories("Our Values", () {}),
-            _aboutUsCategories("Our Mission", () {}),
-            _aboutUsCategories("Our Team", () {}),
+            _aboutUsCategories("Our Story", context, ourStory),
+            _aboutUsCategories("Our Values", context, ourValue),
+            _aboutUsCategories("Our Mission", context, ourMission),
+            _aboutUsCategories("Our Team", context, ourTeam),
           ],
         ),
       ),

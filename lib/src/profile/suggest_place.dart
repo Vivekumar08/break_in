@@ -14,10 +14,8 @@ class SuggestPlace extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.only(left: 20.0),
-          child: Icon(Icons.chevron_left, size: 32.0),
-        ),
+        automaticallyImplyLeading: true,
+        leadingWidth: 72.0,
         title: Text("Suggest a Place", style: Fonts.appBarTitle),
       ),
       body: Padding(

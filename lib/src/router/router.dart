@@ -9,6 +9,7 @@ import 'package:break_in/src/profile/our_team.dart';
 import 'package:break_in/src/profile/our_value.dart';
 import 'package:break_in/src/profile/suggest_place.dart';
 import 'package:break_in/src/profile/about_us.dart';
+import 'package:break_in/src/profile/settings.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
@@ -28,7 +29,7 @@ import '../home/home.dart';
 import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: home,
+  initialLocation: settings,
   routes: [
     GoRoute(
       path: '/',
@@ -96,85 +97,23 @@ final router = GoRouter(
       builder: (context, state) => const Salutation(),
     ),
 
-    // ShellRoute(
-    //   builder: (BuildContext context, GoRouterState state, Widget child) {
-    //     return MusicAppShell(
-    //       child: child,
-    //     );
-    //   },
-    //   routes: <RouteBase>[
-    //     GoRoute(
-    //       path: '/library',
-    //       pageBuilder: (context, state) {
-    //         return FadeTransitionPage(
-    //           child: const LibraryScreen(),
-    //           key: state.pageKey,
-    //         );
-    //       },
-    //       routes: <RouteBase>[
-    //         GoRoute(
-    //           path: 'album/:albumId',
-    //           builder: (BuildContext context, GoRouterState state) {
-    //             return AlbumScreen(
-    //               albumId: state.params['albumId'],
-    //             );
-    //           },
-    //           routes: [
-    //             GoRoute(
-    //               path: 'song/:songId',
-    //               // Display on the root Navigator
-    //               builder: (BuildContext context, GoRouterState state) {
-    //                 return SongScreen(
-    //                   songId: state.params['songId']!,
-    //                 );
-    //               },
-    //             ),
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //     GoRoute(
-    //       path: '/recents',
-    //       pageBuilder: (context, state) {
-    //         return FadeTransitionPage(
-    //           child: const RecentlyPlayedScreen(),
-    //           key: state.pageKey,
-    //         );
-    //       },
-    //       routes: <RouteBase>[
-    //         GoRoute(
-    //           path: 'song/:songId',
-    //           // Display on the root Navigator
-    //           builder: (BuildContext context, GoRouterState state) {
-    //             return SongScreen(
-    //               songId: state.params['songId']!,
-    //             );
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //     GoRoute(
-    //       path: '/search',
-    //       pageBuilder: (context, state) {
-    //         final query = state.queryParams['q'] ?? '';
-    //         return FadeTransitionPage(
-    //           child: SearchScreen(
-    //             query: query,
-    //           ),
-    //           key: state.pageKey,
-    //         );
-    //       },
-    //     ),
-    //   ],
-    // ),
-
     // Home
-    GoRoute(path: '/home', builder: (context, state) => const Home(), routes: [
-      GoRoute(
-        path: 'categories',
-        builder: (context, state) => const Categories(),
-      )
-    ]),
+    GoRoute(
+        path: '/home',
+        pageBuilder: (context, state) =>
+            FadeTransitionPage(key: state.pageKey, child: const Home()),
+        routes: [
+          GoRoute(
+            path: 'categories',
+            pageBuilder: (context, state) => FadeTransitionPage(
+                key: state.pageKey, child: const Categories()),
+          ),
+          // GoRoute(
+          //   path: 'Ratings',
+          //   pageBuilder: (context, state) => FadeTransitionPage(
+          //       key: state.pageKey, child: const Categories()),
+          // ),
+        ]),
     GoRoute(path: '/about', builder: (context, state) => const Home(), routes: [
       GoRoute(
           path: 'myProfile',
@@ -196,6 +135,10 @@ final router = GoRouter(
       GoRoute(
         path: 'feedback',
         builder: (context, state) => const Feedback(),
+      ),
+      GoRoute(
+        path: 'settings',
+        builder: (context, state) => const Settings(),
       ),
       GoRoute(
           path: 'aboutUs',
