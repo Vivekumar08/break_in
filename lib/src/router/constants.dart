@@ -19,3 +19,18 @@ const String salutation = '/salutation';
 // Home Route
 const String home = '/home';
 const String categories = '$home/categories';
+
+// About Route
+const String about = '/about';
+const String myProfile = '$about/myProfile';
+const String help = '$about/help';
+const String feedback = '$about/feedback';
+const String settings = '$about/settings';
+const String aboutUs = '$about/aboutUs';
+const String ourStory = '$aboutUs/ourStory';
+const String ourValue = '$aboutUs/ourValue';
+const String ourMission = '$aboutUs/ourMission';
+const String ourTeam = '$aboutUs/ourTeam';
+const String suggestPlace = '$about/suggestPlace';
+const String detectionNewLocation = '$myProfile/detectionNewLocation';
+const String detectNewLocation = '$myProfile/detectedNewLocation';
