@@ -12,4 +12,5 @@ class Palette {
   static Color get greyNormal => const Color(0xff8391A1);
   static Color get link => const Color(0xff5D5FEF);
   static Color get otp => const Color(0xff35C2C1);
+  static Color get red => const Color(0xFFFF0000);
 }
