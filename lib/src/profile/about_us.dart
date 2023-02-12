@@ -1,17 +1,16 @@
-import 'package:break_in/src/router/constants.dart';
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/style/palette.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import '../router/constants.dart';
+import '../style/fonts.dart';
+import '../style/palette.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
   Widget _aboutUsCategories(String text, BuildContext context, String route) =>
       ListTile(
-        title: Text(
-          text,
-          style: Fonts.buttonText.copyWith(color: Palette.text),
-        ),
+        title:
+            Text(text, style: Fonts.buttonText.copyWith(color: Palette.text)),
+        contentPadding: EdgeInsets.zero,
         horizontalTitleGap: 0,
         dense: true,
         trailing: const Icon(

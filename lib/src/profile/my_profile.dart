@@ -1,6 +1,7 @@
-import 'package:break_in/src/components/input_field.dart';
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
+import '../components/input_field.dart';
+import '../style/fonts.dart';
+import '../style/palette.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
@@ -42,7 +43,7 @@ class MyProfile extends StatelessWidget {
             const SizedBox(height: 16.0),
             Text(
               "Detect New Location",
-              style: Fonts.simText.copyWith(color: const Color(0xff5d5fEF)),
+              style: Fonts.textButton.copyWith(color: Palette.link),
             ),
           ],
         ),

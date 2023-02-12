@@ -1,7 +1,8 @@
-import 'package:break_in/src/components/button.dart';
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:break_in/src/components/input_field.dart';
+import '../components/button.dart';
+import '../components/input_field.dart';
+import '../style/fonts.dart';
+import '../style/message_dialog.dart';
 
 class SuggestPlace extends StatelessWidget {
   const SuggestPlace({super.key});
@@ -37,7 +38,22 @@ class SuggestPlace extends StatelessWidget {
                 controller: phone),
             const SizedBox(height: 16.0),
             const Spacer(),
-            Button(onPressed: () {}, buttonText: "Suggest Place"),
+            Button(
+              onPressed: () => showMessageDialog(
+                context: context,
+                children: [
+                  Text('Thank You',
+                      style: Fonts.subHeading, textAlign: TextAlign.center),
+                  const SizedBox(height: 16.0),
+                  Text(
+                      'We really love people volunteer about their favorite place. '
+                      'We will try our best to onboard the place which you can asked for.',
+                      style: Fonts.simText,
+                      textAlign: TextAlign.center)
+                ],
+              ),
+              buttonText: "Suggest Place",
+            ),
           ],
         ),
       ),

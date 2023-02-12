@@ -1,7 +1,8 @@
-import 'package:break_in/src/components/button.dart';
-import 'package:break_in/src/components/input_field.dart';
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
+import '../components/button.dart';
+import '../components/input_field.dart';
+import '../style/fonts.dart';
+import '../style/message_dialog.dart';
 
 class Feedback extends StatelessWidget {
   const Feedback({super.key});
@@ -30,7 +31,22 @@ class Feedback extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             const Spacer(),
-            Button(onPressed: () {}, buttonText: "Send Feedback"),
+            Button(
+                onPressed: () => showMessageDialog(
+                      context: context,
+                      children: [
+                        Text('Thanks for your feedback',
+                            style: Fonts.subHeading,
+                            textAlign: TextAlign.center),
+                        const SizedBox(height: 16.0),
+                        Text(
+                            'Thank you so much for your feedback. We are trying our best to make '
+                            'this application more better for you. We appreciate your feedback a lot.',
+                            style: Fonts.simText,
+                            textAlign: TextAlign.center)
+                      ],
+                    ),
+                buttonText: "Send Feedback"),
           ],
         ),
       ),
