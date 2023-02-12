@@ -1,3 +1,4 @@
+import 'package:break_in/src/home/categories.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
@@ -16,7 +17,7 @@ import '../location/detected_location.dart';
 import '../home/home.dart';
 
 final router = GoRouter(
-  initialLocation: home,
+  initialLocation: categories,
   routes: [
     GoRoute(
       path: '/',
@@ -84,10 +85,85 @@ final router = GoRouter(
       builder: (context, state) => const Salutation(),
     ),
 
+      // ShellRoute(
+      //   builder: (BuildContext context, GoRouterState state, Widget child) {
+      //     return MusicAppShell(
+      //       child: child,
+      //     );
+      //   },
+      //   routes: <RouteBase>[
+      //     GoRoute(
+      //       path: '/library',
+      //       pageBuilder: (context, state) {
+      //         return FadeTransitionPage(
+      //           child: const LibraryScreen(),
+      //           key: state.pageKey,
+      //         );
+      //       },
+      //       routes: <RouteBase>[
+      //         GoRoute(
+      //           path: 'album/:albumId',
+      //           builder: (BuildContext context, GoRouterState state) {
+      //             return AlbumScreen(
+      //               albumId: state.params['albumId'],
+      //             );
+      //           },
+      //           routes: [
+      //             GoRoute(
+      //               path: 'song/:songId',
+      //               // Display on the root Navigator
+      //               builder: (BuildContext context, GoRouterState state) {
+      //                 return SongScreen(
+      //                   songId: state.params['songId']!,
+      //                 );
+      //               },
+      //             ),
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //     GoRoute(
+      //       path: '/recents',
+      //       pageBuilder: (context, state) {
+      //         return FadeTransitionPage(
+      //           child: const RecentlyPlayedScreen(),
+      //           key: state.pageKey,
+      //         );
+      //       },
+      //       routes: <RouteBase>[
+      //         GoRoute(
+      //           path: 'song/:songId',
+      //           // Display on the root Navigator
+      //           builder: (BuildContext context, GoRouterState state) {
+      //             return SongScreen(
+      //               songId: state.params['songId']!,
+      //             );
+      //           },
+      //         ),
+      //       ],
+      //     ),
+      //     GoRoute(
+      //       path: '/search',
+      //       pageBuilder: (context, state) {
+      //         final query = state.queryParams['q'] ?? '';
+      //         return FadeTransitionPage(
+      //           child: SearchScreen(
+      //             query: query,
+      //           ),
+      //           key: state.pageKey,
+      //         );
+      //       },
+      //     ),
+      //   ],
+      // ),
+
     // Home
     GoRoute(
       path: '/home',
       builder: (context, state) => const Home(),
+      routes: [
+        GoRoute(path: 'categories',builder: (context, state) => const Categories(),)
+      ]
     ),
   ],
 );

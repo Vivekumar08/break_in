@@ -91,10 +91,21 @@ class Fonts {
       fontWeight: FontWeight.w600,
       fontFamily: _urbSemiBold,
       color: Palette.iconsCol);
+  static TextStyle get appBarTitle => TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      fontFamily: _urbSemiBold,
+      color: Palette.text);
 
   static TextStyle get otpText => TextStyle(
       fontSize: 22,
       fontWeight: FontWeight.w700,
       fontFamily: _urbBold,
+      color: Palette.text);
+
+  static TextStyle get poppins => TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      fontFamily: "Poppins",
       color: Palette.text);
 }

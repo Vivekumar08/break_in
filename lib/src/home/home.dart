@@ -43,37 +43,43 @@ class Home extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 16.0, 16.0, 16.0),
-              child: image,
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 16.0, 16.0, 16.0),
+                child: image,
+              ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(heading, style: Fonts.otpText.copyWith(fontSize: 14)),
-                const SizedBox(height: 4.0),
-                Text(text, style: Fonts.simTextBlack),
-                const SizedBox(height: 16.0),
-                SizedBox(
-                  height: 20.0,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Palette.primary,
-                        padding: EdgeInsets.zero,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(4.0)))),
-                    onPressed: onPressed,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 8.0),
-                      child: Text(buttonText,
-                          style: Fonts.buttonText.copyWith(fontSize: 10.0)),
+            Expanded(
+              flex: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(heading, style: Fonts.otpText.copyWith(fontSize: 14)),
+                  const SizedBox(height: 4.0),
+                  Text(text, style: Fonts.simTextBlack),
+                  const SizedBox(height: 16.0),
+                  SizedBox(
+                    height: 20.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Palette.primary,
+                          padding: EdgeInsets.zero,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0)))),
+                      onPressed: onPressed,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4.0, horizontal: 8.0),
+                        child: Text(buttonText,
+                            style: Fonts.buttonText.copyWith(fontSize: 10.0)),
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -108,12 +114,15 @@ class Home extends StatelessWidget {
           Symbols.profile,
           const SizedBox(width: 24.0),
         ],
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(48),
+            child: SearchField(
+                hintText: "Search for canteen", controller: search)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
         child: ListView(
           children: [
-            SearchField(hintText: "Search for canteen", controller: search),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
@@ -188,7 +197,7 @@ class Home extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildExploreByFeeling(
-                    "Have a meeting in next 10\n minutes?",
+                    "Have a meeting in next 10 minutes?",
                     "Find Nearest Canteen",
                     "Explore food in your institute premises",
                     () {},

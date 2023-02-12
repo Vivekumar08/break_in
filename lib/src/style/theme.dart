@@ -10,7 +10,7 @@ final ThemeData theme = ThemeData(
     iconTheme: IconThemeData(color: Palette.iconsCol, size: 19.0),
     titleTextStyle: Fonts.textButton.copyWith(color: Palette.text),
     titleSpacing: 4.0,
-    centerTitle: false,
+    centerTitle: true,
     actionsIconTheme: IconThemeData(color: Palette.text, size: 24.0),
   ),
   scaffoldBackgroundColor: Palette.white,

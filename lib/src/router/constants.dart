@@ -18,3 +18,4 @@ const String salutation = '/salutation';
 
 // Home Route
 const String home = '/home';
+const String categories = '$home/categories';

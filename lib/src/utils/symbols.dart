@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 String _initialPath = 'assets/icons';
 
 class Symbols {
+  static Image get rate =>
+      Image.asset("$_initialPath/rate.png", scale: 2);
+  static Image get home =>
+      Image.asset("$_initialPath/home.png", scale: 2);
+  static Image get grid =>
+      Image.asset("$_initialPath/grid.png", scale: 2);
   static Image get passwordIcon =>
       Image.asset("$_initialPath/fluent_eye-20-filled.png", scale: 2);
   static Image get googleIcon =>
@@ -19,4 +25,23 @@ class Symbols {
       Image.asset("$_initialPath/profile.png", scale: 1.6);
   static Image get searchIcon =>
       Image.asset("$_initialPath/search.png", scale: 2);
+  static Image get canteen =>
+      Image.asset("$_initialPath/samosa.png", width: 18,);
+  static Image get mess =>
+      Image.asset("$_initialPath/canteen.png", width: 18);
+  static Image get microCafe =>
+      Image.asset("$_initialPath/microCafe.png", width: 18);
+  static Image get juiceCorner =>
+      Image.asset("$_initialPath/juice.png", width: 18);
+  static Image get teaStall =>
+      Image.asset("$_initialPath/teaStall.png", width: 18);
+  static Image get fruit =>
+      Image.asset("$_initialPath/fruit.png", width: 18);
+  static Image get diary =>
+      Image.asset("$_initialPath/diary_product.png", width: 18);
+  static Image get ice =>
+      Image.asset("$_initialPath/iceCream.png", width: 18);
+  static Image get others =>
+      Image.asset("$_initialPath/foodStall.png", width: 18);
+
 }
