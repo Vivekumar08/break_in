@@ -37,4 +37,5 @@ class Symbols {
   static Image get ice => Image.asset("$_initialPath/iceCream.png", width: 18);
   static Image get others =>
       Image.asset("$_initialPath/foodStall.png", width: 18);
+  static Image get edit => Image.asset("$_initialPath/edit.png", width: 18);
 }

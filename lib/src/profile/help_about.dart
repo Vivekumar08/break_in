@@ -1,7 +1,7 @@
-import 'package:break_in/src/components/button.dart';
-import 'package:break_in/src/components/input_field.dart';
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
+import '../components/button.dart';
+import '../components/input_field.dart';
+import '../style/fonts.dart';
 
 class HelpAbout extends StatelessWidget {
   const HelpAbout({super.key});
@@ -32,11 +32,12 @@ class HelpAbout extends StatelessWidget {
                 hintText: "Enter your Email",
                 controller: email),
             InputField(
-                inputText: "Message*",
-                hintText: "I want help in ...",
-                controller: message,
-                expands: true,
-                height: 90.0,),
+              inputText: "Message*",
+              hintText: "I want help in ...",
+              controller: message,
+              expands: true,
+              height: 90.0,
+            ),
             const SizedBox(height: 16.0),
             const Spacer(),
             Button(onPressed: () {}, buttonText: "Send Message"),

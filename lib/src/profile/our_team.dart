@@ -1,5 +1,5 @@
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
+import '../style/fonts.dart';
 
 class OurTeam extends StatelessWidget {
   const OurTeam({super.key});

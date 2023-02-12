@@ -1,5 +1,5 @@
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
+import '../style/fonts.dart';
 
 class OurStory extends StatelessWidget {
   const OurStory({super.key});
