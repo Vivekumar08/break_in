@@ -15,7 +15,7 @@ import '../login/login_with_phone.dart';
 import '../login/new_password.dart';
 import '../login/login_with_mail.dart';
 import '../login/forgot_passwd.dart';
-import '../login/passwordChanged.dart';
+import '../login/password_changed.dart';
 import '../login/register_with_mail.dart';
 import '../login/register_with_phone.dart';
 import '../login/otp_with_mail.dart';
@@ -25,9 +25,10 @@ import '../onboarding/onboarding.dart';
 import '../onboarding/salutation.dart';
 import '../location/detected_location.dart';
 import '../home/home.dart';
+import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: feedback,
+  initialLocation: home,
   routes: [
     GoRoute(
       path: '/',
@@ -197,15 +198,26 @@ final router = GoRouter(
         builder: (context, state) => const Feedback(),
       ),
       GoRoute(
-        path: 'aboutUs',
-        builder: (context, state) => const AboutUs(),
-        routes:[
-          GoRoute(path: "ourStory",builder: (context, state) => const OurStory(),),
-          GoRoute(path: "ourValue",builder: (context, state) => const OurValue(),),
-          GoRoute(path: "ourMission",builder: (context, state) => const OurMission(),),
-          GoRoute(path: "ourTeam",builder: (context, state) => const OurTeam(),),
-        ]
-      ),
+          path: 'aboutUs',
+          builder: (context, state) => const AboutUs(),
+          routes: [
+            GoRoute(
+              path: "ourStory",
+              builder: (context, state) => const OurStory(),
+            ),
+            GoRoute(
+              path: "ourValue",
+              builder: (context, state) => const OurValue(),
+            ),
+            GoRoute(
+              path: "ourMission",
+              builder: (context, state) => const OurMission(),
+            ),
+            GoRoute(
+              path: "ourTeam",
+              builder: (context, state) => const OurTeam(),
+            ),
+          ]),
     ]),
   ],
 );

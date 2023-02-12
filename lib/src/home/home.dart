@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide MenuBar;
 import '../components/search_field.dart';
 import '../style/fonts.dart';
 import '../style/palette.dart';
 import '../utils/images.dart';
 import '../utils/symbols.dart';
 import '../utils/gifs.dart';
+import 'menu_bar.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -229,6 +230,7 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const MenuBar(),
     );
   }
 }

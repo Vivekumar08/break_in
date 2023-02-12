@@ -13,5 +13,12 @@ final ThemeData theme = ThemeData(
     centerTitle: true,
     actionsIconTheme: IconThemeData(color: Palette.text, size: 24.0),
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Palette.text,
+    selectedLabelStyle:
+        Fonts.medText.copyWith(color: Palette.white, fontSize: 10.0),
+    unselectedLabelStyle:
+        Fonts.medText.copyWith(color: Palette.white, fontSize: 10.0),
+  ),
   scaffoldBackgroundColor: Palette.white,
 );
