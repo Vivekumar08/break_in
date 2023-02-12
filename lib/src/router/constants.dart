@@ -20,6 +20,9 @@ const String salutation = '/salutation';
 const String home = '/home';
 const String categories = '$home/categories';
 
+// Pages Route
+const String canteen = '$categories/canteen';
+
 // About Route
 const String profile = '/profile';
 const String myProfile = '$profile/myProfile';

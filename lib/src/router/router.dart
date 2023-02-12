@@ -1,3 +1,5 @@
+import 'package:break_in/src/components/food_card.dart';
+import 'package:break_in/src/pages/canteen.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
@@ -30,7 +32,7 @@ import '../profile/settings.dart';
 import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: profile,
+  initialLocation: canteen,
   routes: [
     GoRoute(
       path: '/',
@@ -108,6 +110,9 @@ final router = GoRouter(
           path: 'categories',
           pageBuilder: (context, state) =>
               FadeTransitionPage(key: state.pageKey, child: const Categories()),
+              routes: [
+                GoRoute(path: 'canteen',builder: (context, state) => const Canteen(),)
+              ]
         ),
         // GoRoute(
         //   path: 'Ratings',
