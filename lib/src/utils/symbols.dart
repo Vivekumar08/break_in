@@ -40,4 +40,5 @@ class Symbols {
   static Image get edit => Image.asset("$_initialPath/edit.png", width: 18);
   static Image get star => Image.asset("$_initialPath/star.png", scale: 2);
   static Image get menu => Image.asset("$_initialPath/menu.png", scale: 2);
+  static Image get menuBig => Image.asset("$_initialPath/menu.png");
 }
