@@ -21,4 +21,5 @@ class Images {
       Image.asset("$_initialPath/feeding.png", scale: 4, height: 100);
   static Image get sad => Image.asset("$_initialPath/sad.png", height: 40);
   static Image get tempFood => Image.asset("$_initialPath/rectangle_food.png");
+  static Image get menu => Image.asset("$_initialPath/menu.png");
 }

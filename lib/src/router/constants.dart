@@ -22,6 +22,7 @@ const String categories = '$home/categories';
 
 // Pages Route
 const String canteen = '$categories/canteen';
+const String menu = '$canteen/menu';
 
 // About Route
 const String profile = '/profile';

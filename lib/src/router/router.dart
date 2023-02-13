@@ -1,5 +1,6 @@
 import 'package:break_in/src/components/food_card.dart';
 import 'package:break_in/src/pages/canteen.dart';
+import 'package:break_in/src/pages/menu.dart';
 import 'package:go_router/go_router.dart';
 import 'constants.dart';
 import '../login/login_with_phone.dart';
@@ -32,7 +33,7 @@ import '../profile/settings.dart';
 import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: canteen,
+  initialLocation: menu,
   routes: [
     GoRoute(
       path: '/',
@@ -110,9 +111,18 @@ final router = GoRouter(
           path: 'categories',
           pageBuilder: (context, state) =>
               FadeTransitionPage(key: state.pageKey, child: const Categories()),
+          routes: [
+            GoRoute(
+              path: 'canteen',
+              builder: (context, state) => const Canteen(),
               routes: [
-                GoRoute(path: 'canteen',builder: (context, state) => const Canteen(),)
-              ]
+                GoRoute(
+                  path: 'menu',
+                  builder: (context, state) => const Menu(),
+                )
+              ],
+            )
+          ],
         ),
         // GoRoute(
         //   path: 'Ratings',
@@ -124,55 +134,58 @@ final router = GoRouter(
 
     // Profile
     GoRoute(
-        path: '/profile',
-        builder: (context, state) => const Profile(),
-        routes: [
-          GoRoute(
-              path: 'myProfile',
-              builder: (context, state) => const MyProfile(),
-              routes: [
-                GoRoute(
-                  path: 'detectionNewLocation',
-                  builder: (context, state) => const DetectingNewLocation(),
-                )
-              ]),
-          GoRoute(
-            path: 'suggestPlace',
-            builder: (context, state) => const SuggestPlace(),
-          ),
-          GoRoute(
-            path: 'help',
-            builder: (context, state) => const HelpAbout(),
-          ),
-          GoRoute(
-            path: 'feedback',
-            builder: (context, state) => const Feedback(),
-          ),
-          GoRoute(
-            path: 'settings',
-            builder: (context, state) => const Settings(),
-          ),
-          GoRoute(
-              path: 'aboutUs',
-              builder: (context, state) => const AboutUs(),
-              routes: [
-                GoRoute(
-                  path: "ourStory",
-                  builder: (context, state) => const OurStory(),
-                ),
-                GoRoute(
-                  path: "ourValue",
-                  builder: (context, state) => const OurValue(),
-                ),
-                GoRoute(
-                  path: "ourMission",
-                  builder: (context, state) => const OurMission(),
-                ),
-                GoRoute(
-                  path: "ourTeam",
-                  builder: (context, state) => const OurTeam(),
-                ),
-              ]),
-        ]),
+      path: '/profile',
+      builder: (context, state) => const Profile(),
+      routes: [
+        GoRoute(
+          path: 'myProfile',
+          builder: (context, state) => const MyProfile(),
+          routes: [
+            GoRoute(
+              path: 'detectionNewLocation',
+              builder: (context, state) => const DetectingNewLocation(),
+            )
+          ],
+        ),
+        GoRoute(
+          path: 'suggestPlace',
+          builder: (context, state) => const SuggestPlace(),
+        ),
+        GoRoute(
+          path: 'help',
+          builder: (context, state) => const HelpAbout(),
+        ),
+        GoRoute(
+          path: 'feedback',
+          builder: (context, state) => const Feedback(),
+        ),
+        GoRoute(
+          path: 'settings',
+          builder: (context, state) => const Settings(),
+        ),
+        GoRoute(
+          path: 'aboutUs',
+          builder: (context, state) => const AboutUs(),
+          routes: [
+            GoRoute(
+              path: "ourStory",
+              builder: (context, state) => const OurStory(),
+            ),
+            GoRoute(
+              path: "ourValue",
+              builder: (context, state) => const OurValue(),
+            ),
+            GoRoute(
+              path: "ourMission",
+              builder: (context, state) => const OurMission(),
+            ),
+            GoRoute(
+              path: "ourTeam",
+              builder: (context, state) => const OurTeam(),
+            ),
+          ],
+        ),
+      ],
+    ),
   ],
 );
