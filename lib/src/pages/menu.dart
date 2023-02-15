@@ -1,11 +1,12 @@
-import 'package:break_in/src/components/app_menu.dart';
+import 'package:break_in/src/components/accordion.dart';
 import 'package:break_in/src/components/food_card.dart';
 import 'package:break_in/src/style/fonts.dart';
 import 'package:break_in/src/style/message_dialog.dart';
 import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import '../models/example.dart';
+import '../models/menu.dart';
 import '../utils/images.dart';
 import '../utils/symbols.dart';
 
@@ -99,8 +100,9 @@ class Menu extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 6.0),
-                  for (String item in _menu)
-                    AppMenu(text: item, onPressed: () {})
+                  for (Map<String, dynamic> item
+                      in menuComplete['menuCategories'])
+                    Accordion(menu: MenuCategory.fromJson(item))
                 ],
               ),
             ),

@@ -91,6 +91,7 @@ class Fonts {
       fontWeight: FontWeight.w600,
       fontFamily: _urbSemiBold,
       color: Palette.iconsCol);
+
   static TextStyle get appBarTitle => TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w600,
