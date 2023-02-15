@@ -23,9 +23,10 @@ const String categories = '$home/categories';
 // Pages Route
 const String canteen = '$categories/canteen';
 const String menu = '$canteen/menu';
+const String favourite = '$profile/favourite';
 
-// About Route
-const String profile = '/profile';
+// Settings Route
+const String profile = '$home/profile';
 const String myProfile = '$profile/myProfile';
 const String help = '$profile/help';
 const String feedback = '$profile/feedback';
