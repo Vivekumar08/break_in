@@ -44,7 +44,7 @@ class OTPWithPhone extends StatelessWidget {
                 onPressed: () => context.go(salutation), buttonText: "Verify"),
             const Spacer(),
             const BottomText(
-              text: 'Didn\'t received code?',
+              text: 'Didn\'t receive code?',
               buttonText: 'Resend',
             ),
           ],

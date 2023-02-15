@@ -39,7 +39,7 @@ class ForgotPassword extends StatelessWidget {
                 controller: email),
             const SizedBox(height: 24.0),
             Button(
-                onPressed: () => context.go(newPassword),
+                onPressed: () => context.go(otpWithMail),
                 buttonText: "Send Code"),
             const Spacer(),
             BottomText(

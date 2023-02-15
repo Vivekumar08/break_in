@@ -33,7 +33,7 @@ import '../profile/settings.dart';
 import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: menu,
+  initialLocation: profile,
   routes: [
     GoRoute(
       path: '/',
