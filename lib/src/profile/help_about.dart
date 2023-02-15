@@ -1,3 +1,5 @@
+import 'package:break_in/src/style/message_dialog.dart';
+import 'package:break_in/src/utils/images.dart';
 import 'package:flutter/material.dart';
 import '../components/button.dart';
 import '../components/input_field.dart';
@@ -40,7 +42,18 @@ class HelpAbout extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             const Spacer(),
-            Button(onPressed: () {}, buttonText: "Send Message"),
+            Button(
+                onPressed: () => showMessageDialog(
+                      context: context,
+                      children: [
+                        Images.happy,
+                        const SizedBox(height: 12.0),
+                        Text('Thank You!',
+                            style: Fonts.subHeading,
+                            textAlign: TextAlign.center),
+                      ],
+                    ),
+                buttonText: "Send Message"),
           ],
         ),
       ),

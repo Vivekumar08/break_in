@@ -39,7 +39,7 @@ class LoginWithPhone extends StatelessWidget {
                 buttonText: "Send OTP"),
             AuthOptions(
               emailAuth: true,
-              text: "Or Register with",
+              text: "Or Login with",
               onTapWithMail: () => context.pushReplacement(loginWithMail),
             ),
             const Spacer(),

@@ -40,10 +40,11 @@ class OTPWithMail extends StatelessWidget {
             const SizedBox(height: 32.0),
             OtpField(length: 4, controller: otp),
             const SizedBox(height: 24.0),
-            Button(onPressed: () => context.go(home), buttonText: "Verify"),
+            Button(
+                onPressed: () => context.go(newPassword), buttonText: "Verify"),
             const Spacer(),
             const BottomText(
-              text: 'Didn\'t received code?',
+              text: 'Didn\'t receive code?',
               buttonText: 'Resend',
             ),
           ],
