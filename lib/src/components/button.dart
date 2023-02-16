@@ -22,10 +22,7 @@ class Button extends StatelessWidget {
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)))),
         onPressed: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 19.0),
-          child: Text(buttonText, style: Fonts.buttonText),
-        ),
+        child: Text(buttonText, style: Fonts.buttonText),
       ),
     );
   }

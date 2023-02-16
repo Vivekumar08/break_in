@@ -24,7 +24,7 @@ class LoginWithMail extends StatelessWidget {
             const ChevBackButton(),
             const SizedBox(height: 24.0),
             Text(
-              "Welcome back! Glad\nto see you, Again!",
+              "Welcome back! Glad to see you, Again!",
               style: Fonts.heading,
             ),
             const SizedBox(height: 16.0),

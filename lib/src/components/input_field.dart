@@ -30,6 +30,15 @@ class InputField extends StatelessWidget {
   final bool expands;
   final double? height;
 
+  double _textSize(String text, TextStyle style) {
+    final TextPainter textPainter = TextPainter(
+        text: TextSpan(text: text, style: style),
+        maxLines: 1,
+        textDirection: TextDirection.ltr)
+      ..layout(minWidth: 0, maxWidth: double.infinity);
+    return textPainter.size.width;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,6 +61,15 @@ class InputField extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Palette.inputField,
+                prefix: SizedBox(
+                  width: _textSize(
+                          '+91  |', Fonts.hintText.copyWith(fontSize: 16.0)) +
+                      10,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('+91  |',
+                          style: Fonts.hintText.copyWith(fontSize: 16.0))),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide(width: 1, color: Palette.stroke)),

@@ -107,16 +107,16 @@ final router = GoRouter(
           path: 'categories',
           pageBuilder: (context, state) =>
               FadeTransitionPage(key: state.pageKey, child: const Categories()),
+        ),
+
+        GoRoute(
+          path: 'canteen/:appBarTitle',
+          builder: (context, state) =>
+              Canteen(appBarTitle: state.params['appBarTitle']!),
           routes: [
             GoRoute(
-              path: 'canteen',
-              builder: (context, state) => const Canteen(),
-              routes: [
-                GoRoute(
-                  path: 'menu',
-                  builder: (context, state) => const Menu(),
-                )
-              ],
+              path: 'menu',
+              builder: (context, state) => const Menu(),
             )
           ],
         ),

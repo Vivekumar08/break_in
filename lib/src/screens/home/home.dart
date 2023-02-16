@@ -11,18 +11,29 @@ import '../../utils/gifs.dart';
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  Widget _buildCategories(String text, ImageProvider image, double width) =>
+  Widget _buildCategories({
+    required String text,
+    required Image image,
+    required double width,
+    required BuildContext context,
+    required String route,
+    bool params = true,
+  }) =>
       Column(
         children: [
-          Container(
-            width: width,
-            height: 100,
-            padding: const EdgeInsets.symmetric(
-                vertical: 13.08 - 8.0, horizontal: 14.17 - 8.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Palette.stroke),
-              borderRadius: BorderRadius.circular(12.0),
-              image: DecorationImage(image: image, fit: BoxFit.cover),
+          GestureDetector(
+            onTap: () =>
+                params ? context.go('$route/$text') : context.go(route),
+            child: Container(
+              width: width,
+              height: 100,
+              padding: const EdgeInsets.symmetric(
+                  vertical: 13.08 - 8.0, horizontal: 14.17 - 8.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Palette.stroke),
+                borderRadius: BorderRadius.circular(12.0),
+                image: DecorationImage(image: image.image, fit: BoxFit.cover),
+              ),
             ),
           ),
           const SizedBox(height: 8.0),
@@ -37,7 +48,7 @@ class Home extends StatelessWidget {
   Widget _buildExploreByFeeling(String heading, String buttonText, String text,
           VoidCallback onPressed, Image image) =>
       Container(
-        height: 118,
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
         decoration: BoxDecoration(
           border: Border.all(color: Palette.stroke),
           borderRadius: BorderRadius.circular(8.0),
@@ -48,7 +59,7 @@ class Home extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12.0, 16.0, 16.0, 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: image,
               ),
             ),
@@ -102,13 +113,17 @@ class Home extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: const [
-                Text('376 Ground Floor, Mukherjee Nagar,'),
-                SizedBox(width: 12.0),
-                Icon(Icons.keyboard_arrow_down),
+              children: [
+                Text('376 Ground Floor, Mukherjee Nagar,',
+                    textScaleFactor:
+                        MediaQuery.of(context).textScaleFactor.clamp(1, 1.2)),
+                const SizedBox(width: 12.0),
+                const Icon(Icons.keyboard_arrow_down),
               ],
             ),
-            const Text('Delhi, India, 110009'),
+            Text('Delhi, India, 110009',
+                textScaleFactor:
+                    MediaQuery.of(context).textScaleFactor.clamp(1, 1.2)),
           ],
         ),
         leadingWidth: 40.0,
@@ -138,23 +153,44 @@ class Home extends StatelessWidget {
                 Row(
                   children: [
                     _buildCategories(
-                        "Canteen", Images.canteen.image, categorySize),
+                        text: "Canteen",
+                        image: Images.canteen,
+                        width: categorySize,
+                        context: context,
+                        route: canteen),
                     const SizedBox(width: 16),
                     _buildCategories(
-                        "Mess", Images.hostelMess.image, categorySize),
+                        text: "Mess",
+                        image: Images.hostelMess,
+                        width: categorySize,
+                        context: context,
+                        route: canteen),
                     const SizedBox(width: 16),
                     _buildCategories(
-                        "Micro Cafe", Images.microCafe.image, categorySize),
+                        text: "Micro Cafe",
+                        image: Images.microCafe,
+                        width: categorySize,
+                        context: context,
+                        route: canteen),
                   ],
                 ),
                 const SizedBox(height: 16.0),
                 Row(
                   children: [
                     _buildCategories(
-                        "Corners", Images.corners.image, categorySize),
+                        text: "Corners",
+                        image: Images.corners,
+                        width: categorySize,
+                        context: context,
+                        route: canteen),
                     const SizedBox(width: 16),
                     _buildCategories(
-                        "Others", Images.others.image, categorySize),
+                        text: "Others",
+                        image: Images.others,
+                        width: categorySize,
+                        context: context,
+                        route: categories,
+                        params: false),
                     const SizedBox(width: 16),
                   ],
                 )

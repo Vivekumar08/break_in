@@ -22,7 +22,6 @@ class FoodCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 312,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(width: 1.0, color: Palette.stroke),
@@ -32,7 +31,7 @@ class FoodCard extends StatelessWidget {
             children: [
               Images.tempFood,
               Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 16.0, 16.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(8.0, 16.0, 16.0, 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

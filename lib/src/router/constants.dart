@@ -21,7 +21,7 @@ const String home = '/home';
 const String categories = '$home/categories';
 
 // Pages Route
-const String canteen = '$categories/canteen';
+const String canteen = '$home/canteen';
 const String menu = '$canteen/menu';
 const String favourite = '$profile/favourite';
 
