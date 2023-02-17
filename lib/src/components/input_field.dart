@@ -97,10 +97,14 @@ class SearchField extends StatelessWidget {
   const SearchField({
     super.key,
     required this.hintText,
-    required this.controller,
+    this.controller,
+    this.onTap,
+    this.readOnly = false,
   });
   final String hintText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final VoidCallback? onTap;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +118,7 @@ class SearchField extends StatelessWidget {
             border: Border.all(width: 1, color: Palette.stroke)),
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
+          readOnly: readOnly,
           controller: controller,
           decoration: InputDecoration(
             filled: true,
@@ -126,6 +131,7 @@ class SearchField extends StatelessWidget {
             hintStyle: Fonts.simText.copyWith(color: Palette.greyNormal),
             border: InputBorder.none,
           ),
+          onTap: onTap,
         ),
       ),
     );

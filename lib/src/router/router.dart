@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'constants.dart';
-import '../screens/home/home.dart';
 import '../screens/home/categories.dart';
+import '../screens/home/home.dart';
+import '../screens/home/search.dart';
 import '../screens/location/detected_location.dart';
 import '../screens/onboarding/forgot_passwd.dart';
 import '../screens/onboarding/login_with_mail.dart';
@@ -28,6 +28,7 @@ import '../screens/settings/suggest_place.dart';
 import '../screens/settings/about.dart';
 import '../screens/settings/settings.dart';
 import '../style/transitions.dart';
+import 'constants.dart';
 
 final router = GoRouter(
   initialLocation: home,
@@ -104,6 +105,11 @@ final router = GoRouter(
       pageBuilder: (context, state) =>
           FadeTransitionPage(key: state.pageKey, child: const Home()),
       routes: [
+        GoRoute(
+          path: 'search',
+          builder: (context, state) => const Search(),
+        ),
+
         GoRoute(
           path: 'categories',
           pageBuilder: (context, state) =>

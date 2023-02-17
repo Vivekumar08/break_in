@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide MenuBar;
 import 'package:go_router/go_router.dart';
+import '../../components/button.dart';
 import '../../components/input_field.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
@@ -73,24 +74,16 @@ class Home extends StatelessWidget {
                   const SizedBox(height: 4.0),
                   Text(text, style: Fonts.simTextBlack),
                   const SizedBox(height: 16.0),
-                  SizedBox(
+                  Button(
+                    onPressed: () {},
+                    buttonText: buttonText,
                     height: 20.0,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Palette.primary,
-                          padding: EdgeInsets.zero,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0)))),
-                      onPressed: onPressed,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4.0, horizontal: 8.0),
-                        child: Text(buttonText,
-                            style: Fonts.buttonText.copyWith(fontSize: 10.0)),
-                      ),
-                    ),
-                  )
+                    borderRadius: 4.0,
+                    fontSize: 10.0,
+                    expands: false,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 4.0, horizontal: 8.0),
+                  ),
                 ],
               ),
             ),
@@ -98,9 +91,50 @@ class Home extends StatelessWidget {
         ),
       );
 
+  Widget _buildHotspots(
+          {required String type,
+          required String name,
+          required Image image,
+          required Color color}) =>
+      Container(
+        decoration: BoxDecoration(
+            color: color, borderRadius: BorderRadius.circular(8.0)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(type, style: Fonts.textButton.copyWith(fontSize: 10.0)),
+                  Text(name,
+                      style: Fonts.heading
+                          .copyWith(fontSize: 14.0, letterSpacing: 0)),
+                  const SizedBox(height: 16.0),
+                  Button(
+                    onPressed: () {},
+                    buttonText: 'See Menu',
+                    height: 20.0,
+                    expands: false,
+                    fontSize: 10.0,
+                    borderRadius: 4.0,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 4.0, horizontal: 8.0),
+                  ),
+                ],
+              ),
+            ),
+            image,
+            const SizedBox(width: 12.0)
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController search = TextEditingController();
     final mQ = MediaQuery.of(context).size;
     final categorySize = (mQ.width - 32 - 44) / 3;
     return Scaffold(
@@ -135,138 +169,170 @@ class Home extends StatelessWidget {
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(48),
             child: SearchField(
-                hintText: "Search for canteen", controller: search)),
+              hintText: "Search for canteen",
+              readOnly: true,
+              onTap: () => context.go(search),
+            )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Text(
-                "Categories",
-                style: Fonts.heading.copyWith(fontSize: 18),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 22.0, top: 24.0),
+            child: Text(
+              "Nearest Hotspots",
+              style: Fonts.heading.copyWith(fontSize: 18, letterSpacing: 0),
+            ),
+          ),
+          const SizedBox(height: 12.0),
+          SizedBox(
+            height: 120,
+            child: PageView.builder(
+              itemCount: 4,
+              controller: PageController(viewportFraction: 0.9),
+              itemBuilder: (context, index) => Container(
+                margin: const EdgeInsets.only(right: 12.0),
+                child: _buildHotspots(
+                    type: 'Canteen',
+                    name: 'Cluster Innovation Centre',
+                    image: Images.maggi,
+                    color:
+                        index % 2 == 0 ? Palette.background : Palette.stroke),
               ),
             ),
-            Column(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(
+                    "Categories",
+                    style: Fonts.heading.copyWith(fontSize: 18),
+                  ),
+                ),
+                Column(
                   children: [
-                    _buildCategories(
-                        text: "Canteen",
-                        image: Images.canteen,
-                        width: categorySize,
-                        context: context,
-                        route: canteen),
-                    const SizedBox(width: 16),
-                    _buildCategories(
-                        text: "Mess",
-                        image: Images.hostelMess,
-                        width: categorySize,
-                        context: context,
-                        route: canteen),
-                    const SizedBox(width: 16),
-                    _buildCategories(
-                        text: "Micro Cafe",
-                        image: Images.microCafe,
-                        width: categorySize,
-                        context: context,
-                        route: canteen),
+                    Row(
+                      children: [
+                        _buildCategories(
+                            text: "Canteen",
+                            image: Images.canteen,
+                            width: categorySize,
+                            context: context,
+                            route: canteen),
+                        const SizedBox(width: 16),
+                        _buildCategories(
+                            text: "Mess",
+                            image: Images.hostelMess,
+                            width: categorySize,
+                            context: context,
+                            route: canteen),
+                        const SizedBox(width: 16),
+                        _buildCategories(
+                            text: "Micro Cafe",
+                            image: Images.microCafe,
+                            width: categorySize,
+                            context: context,
+                            route: canteen),
+                      ],
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      children: [
+                        _buildCategories(
+                            text: "Corners",
+                            image: Images.corners,
+                            width: categorySize,
+                            context: context,
+                            route: canteen),
+                        const SizedBox(width: 16),
+                        _buildCategories(
+                            text: "Others",
+                            image: Images.others,
+                            width: categorySize,
+                            context: context,
+                            route: categories,
+                            params: false),
+                        const SizedBox(width: 16),
+                      ],
+                    )
                   ],
                 ),
-                const SizedBox(height: 16.0),
-                Row(
+                const SizedBox(height: 26.0),
+                Container(
+                  height: 94,
+                  width: double.maxFinite,
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  decoration: BoxDecoration(
+                    color: Palette.primary,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Stack(
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "No Compromise\n",
+                          style: Fonts.subHeading.copyWith(
+                              fontSize: 18.0,
+                              color: Palette.white,
+                              letterSpacing: 0),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'with food',
+                              style: Fonts.medText.copyWith(
+                                  color: Palette.white, fontSize: 18.0),
+                            )
+                          ],
+                        ),
+                      ),
+                      Positioned(right: 0, bottom: -14, child: Images.feeding),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24.0),
+                Text("Explore by Feeling",
+                    style: Fonts.heading.copyWith(fontSize: 18)),
+                const SizedBox(height: 12.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildCategories(
-                        text: "Corners",
-                        image: Images.corners,
-                        width: categorySize,
-                        context: context,
-                        route: canteen),
-                    const SizedBox(width: 16),
-                    _buildCategories(
-                        text: "Others",
-                        image: Images.others,
-                        width: categorySize,
-                        context: context,
-                        route: categories,
-                        params: false),
-                    const SizedBox(width: 16),
+                    _buildExploreByFeeling(
+                        "Have a meeting in next 10 minutes?",
+                        "Find Nearest Canteen",
+                        "Explore food in your institute premises",
+                        () {},
+                        Gifs.canteen),
+                    const SizedBox(height: 12),
+                    _buildExploreByFeeling(
+                        "Fedup of eating alone?",
+                        "Find Nearest Mess",
+                        "Dine out with peers today",
+                        () {},
+                        Gifs.mess),
+                    const SizedBox(height: 12),
+                    _buildExploreByFeeling(
+                        "Tired, Need a break?",
+                        "Explore Micro Cafe",
+                        "Grab a cup of coffee",
+                        () {},
+                        Gifs.cafe),
+                    const SizedBox(height: 12),
+                    _buildExploreByFeeling(
+                        "Need to charge yourself?",
+                        "Explore Corners",
+                        "Eat something fibrous and healthy",
+                        () {},
+                        Gifs.corners),
+                    const SizedBox(height: 12),
                   ],
                 )
               ],
             ),
-            const SizedBox(height: 26.0),
-            Container(
-              height: 94,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              decoration: BoxDecoration(
-                color: Palette.primary,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Stack(
-                alignment: Alignment.centerLeft,
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      text: "No Compromise\n",
-                      style: Fonts.subHeading.copyWith(
-                          fontSize: 18.0,
-                          color: Palette.white,
-                          letterSpacing: 0),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'with food',
-                          style: Fonts.medText
-                              .copyWith(color: Palette.white, fontSize: 18.0),
-                        )
-                      ],
-                    ),
-                  ),
-                  Positioned(right: 0, bottom: -14, child: Images.feeding),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24.0),
-            Text("Explore by Feeling",
-                style: Fonts.heading.copyWith(fontSize: 18)),
-            const SizedBox(height: 12.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildExploreByFeeling(
-                    "Have a meeting in next 10 minutes?",
-                    "Find Nearest Canteen",
-                    "Explore food in your institute premises",
-                    () {},
-                    Gifs.canteen),
-                const SizedBox(height: 12),
-                _buildExploreByFeeling(
-                    "Fedup of eating alone?",
-                    "Find Nearest Mess",
-                    "Dine out with peers today",
-                    () {},
-                    Gifs.mess),
-                const SizedBox(height: 12),
-                _buildExploreByFeeling(
-                    "Tired, Need a break?",
-                    "Explore Micro Cafe",
-                    "Grab a cup of coffee",
-                    () {},
-                    Gifs.cafe),
-                const SizedBox(height: 12),
-                _buildExploreByFeeling(
-                    "Need to charge yourself?",
-                    "Explore Corners",
-                    "Eat something fibrous and healthy",
-                    () {},
-                    Gifs.corners),
-                const SizedBox(height: 12),
-              ],
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

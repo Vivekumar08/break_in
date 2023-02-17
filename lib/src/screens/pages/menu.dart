@@ -42,6 +42,7 @@ class Menu extends StatelessWidget {
         onPressed: () => showMenuDialog(context: context, children: _menu),
       ),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
             Images.menu,

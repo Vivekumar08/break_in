@@ -19,6 +19,7 @@ const String salutation = '/salutation';
 // Home Route
 const String home = '/home';
 const String categories = '$home/categories';
+const String search = '$home/search';
 
 // Pages Route
 const String canteen = '$home/canteen';

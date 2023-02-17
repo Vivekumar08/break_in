@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../components/input_field.dart';
 import '../../components/button.dart';
 import '../../style/fonts.dart';
+import '../../style/message_dialog.dart';
 import '../../style/palette.dart';
 import '../../utils/images.dart';
 
@@ -47,7 +49,19 @@ class Rate extends StatelessWidget {
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 22.0, vertical: 24.0),
-            child: Button(onPressed: () {}, buttonText: "Submit Ratings"),
+            child: Button(
+                onPressed: () {
+                  showMessageDialog(
+                    context: context,
+                    children: [
+                      Images.happy,
+                      const SizedBox(height: 12.0),
+                      Text('Thank You for rating !',
+                          style: Fonts.subHeading, textAlign: TextAlign.center),
+                    ],
+                  ).whenComplete(() => context.pop());
+                },
+                buttonText: "Submit Ratings"),
           ),
         ],
       ),
