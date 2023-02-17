@@ -1,9 +1,9 @@
-import 'package:break_in/src/style/message_dialog.dart';
-import 'package:break_in/src/utils/images.dart';
 import 'package:flutter/material.dart';
 import '../../components/button.dart';
 import '../../components/input_field.dart';
 import '../../style/fonts.dart';
+import '../../style/message_dialog.dart';
+import '../../utils/images.dart';
 
 class HelpAbout extends StatelessWidget {
   const HelpAbout({super.key});

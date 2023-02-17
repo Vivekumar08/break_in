@@ -25,7 +25,7 @@ class RegisterWithMail extends StatelessWidget {
             Row(children: const [ChevBackButton(), Spacer()]),
             const SizedBox(height: 24.0),
             Text(
-              "Hello! Register to get\nstarted",
+              "Hello! Register to get started",
               style: Fonts.heading,
             ),
             const SizedBox(height: 16.0),

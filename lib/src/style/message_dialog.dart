@@ -1,8 +1,8 @@
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/material.dart';
+import '../style/fonts.dart';
+import '../style/palette.dart';
 
-void showMessageDialog(
+Future<void> showMessageDialog(
         {required BuildContext context,
         required List<Widget> children,
         EdgeInsetsGeometry? contentPadding}) =>
@@ -17,7 +17,7 @@ void showMessageDialog(
       ),
     );
 
-void showMenuDialog({
+Future<void> showMenuDialog({
   required BuildContext context,
   required List<String> children,
 }) =>

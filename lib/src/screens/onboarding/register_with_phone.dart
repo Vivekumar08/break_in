@@ -24,7 +24,7 @@ class RegisterWithPhone extends StatelessWidget {
             const ChevBackButton(),
             const SizedBox(height: 24.0),
             Text(
-              "Hello! Register to get\nstarted",
+              "Hello! Register to get started",
               style: Fonts.heading,
             ),
             const SizedBox(height: 16.0),
@@ -35,7 +35,8 @@ class RegisterWithPhone extends StatelessWidget {
             InputField(
                 inputText: "Phone Number*",
                 hintText: "Enter your phone number",
-                controller: phone),
+                controller: phone,
+                isPhone: true),
             const SizedBox(height: 24.0),
             Button(
                 onPressed: () => context.go(registerWithOtp),

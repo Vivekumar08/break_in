@@ -1,8 +1,9 @@
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/utils/symbols.dart';
 import 'package:flutter/material.dart';
-import '../utils/images.dart';
+import '../screens/pages/menu.dart';
 import '../style/palette.dart';
+import '../style/fonts.dart';
+import '../utils/images.dart';
+import '../utils/symbols.dart';
 
 class FoodCard extends StatelessWidget {
   /// Creates the [FoodCard] with prerequisite UI
@@ -22,7 +23,6 @@ class FoodCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 312,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(width: 1.0, color: Palette.stroke),
@@ -32,7 +32,7 @@ class FoodCard extends StatelessWidget {
             children: [
               Images.tempFood,
               Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 16.0, 16.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(8.0, 16.0, 16.0, 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -100,7 +100,6 @@ class FoodCard extends StatelessWidget {
                   ],
                 ),
               )
-              // Expanded(child: Column(children: [])),
             ],
           ),
         ),
@@ -117,10 +116,14 @@ class FoodCard extends StatelessWidget {
         Positioned(
           top: 192.0,
           right: 8.0,
-          child: CircleAvatar(
-            radius: 16.0,
-            backgroundColor: Palette.iconsCol,
-            child: Symbols.menu,
+          child: GestureDetector(
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => const Menu())),
+            child: CircleAvatar(
+              radius: 16.0,
+              backgroundColor: Palette.iconsCol,
+              child: Symbols.menu,
+            ),
           ),
         ),
       ],

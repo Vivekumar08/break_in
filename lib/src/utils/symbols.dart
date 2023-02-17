@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 String _initialPath = 'assets/icons';
 
 class Symbols {
-  static Image get rate => Image.asset("$_initialPath/rate.png", scale: 2);
+  static Image get rate => Image.asset("$_initialPath/rate.png", scale: 4);
   static Image get home => Image.asset("$_initialPath/home.png", scale: 2);
   static Image get grid => Image.asset("$_initialPath/grid.png", scale: 2);
   static Image get passwordIcon =>
@@ -16,6 +16,10 @@ class Symbols {
       Image.asset("$_initialPath/phone_ic.png", scale: 2);
   static Image get mailIcon =>
       Image.asset("$_initialPath/mail_ic.png", scale: 2);
+  static Image get gmailIcon =>
+      Image.asset("$_initialPath/gmail_ic.png", scale: 2);
+  static Image get linkedinIcon =>
+      Image.asset("$_initialPath/linkedin_ic.png", scale: 2);
   static Image get locationMark =>
       Image.asset("$_initialPath/Vector.png", scale: 2);
   static Image get profile =>

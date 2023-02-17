@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'constants.dart';
-import '../screens/home/home.dart';
 import '../screens/home/categories.dart';
+import '../screens/home/home.dart';
+import '../screens/home/search.dart';
 import '../screens/location/detected_location.dart';
 import '../screens/onboarding/forgot_passwd.dart';
 import '../screens/onboarding/login_with_mail.dart';
@@ -18,6 +18,7 @@ import '../screens/onboarding/salutation.dart';
 import '../screens/pages/canteen.dart';
 import '../screens/pages/favourite.dart';
 import '../screens/pages/menu.dart';
+import '../screens/pages/rate.dart';
 import '../screens/settings/detect_new_location.dart';
 import '../screens/settings/feedback.dart';
 import '../screens/settings/help_about.dart';
@@ -27,9 +28,10 @@ import '../screens/settings/suggest_place.dart';
 import '../screens/settings/about.dart';
 import '../screens/settings/settings.dart';
 import '../style/transitions.dart';
+import 'constants.dart';
 
 final router = GoRouter(
-  initialLocation: home,
+  initialLocation: loginWithPhone,
   routes: [
     GoRoute(
       path: '/',
@@ -104,20 +106,31 @@ final router = GoRouter(
           FadeTransitionPage(key: state.pageKey, child: const Home()),
       routes: [
         GoRoute(
+          path: 'search',
+          builder: (context, state) => const Search(),
+        ),
+
+        GoRoute(
           path: 'categories',
           pageBuilder: (context, state) =>
               FadeTransitionPage(key: state.pageKey, child: const Categories()),
+        ),
+
+        GoRoute(
+          path: 'canteen/:appBarTitle',
+          builder: (context, state) =>
+              Canteen(appBarTitle: state.params['appBarTitle']!),
           routes: [
             GoRoute(
-              path: 'canteen',
-              builder: (context, state) => const Canteen(),
+              path: 'menu',
+              builder: (context, state) => const Menu(),
               routes: [
                 GoRoute(
-                  path: 'menu',
-                  builder: (context, state) => const Menu(),
-                )
+                  path: 'rate',
+                  builder: (context, state) => const Rate(),
+                ),
               ],
-            )
+            ),
           ],
         ),
 

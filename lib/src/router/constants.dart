@@ -19,15 +19,17 @@ const String salutation = '/salutation';
 // Home Route
 const String home = '/home';
 const String categories = '$home/categories';
+const String search = '$home/search';
 
 // Pages Route
-const String canteen = '$categories/canteen';
+const String canteen = '$home/canteen';
 const String menu = '$canteen/menu';
-const String favourite = '$profile/favourite';
+const String rate = '$menu/rate';
 
 // Settings Route
 const String profile = '$home/profile';
 const String myProfile = '$profile/myProfile';
+const String favourite = '$profile/favourite';
 const String help = '$profile/help';
 const String feedback = '$profile/feedback';
 const String settings = '$profile/settings';

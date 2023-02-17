@@ -4,17 +4,18 @@ import '../../components/input_field.dart';
 import '../../style/fonts.dart';
 
 class Canteen extends StatelessWidget {
-  const Canteen({super.key});
+  const Canteen({super.key, required this.appBarTitle});
+
+  final String appBarTitle;
 
   @override
   Widget build(BuildContext context) {
     TextEditingController search = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leadingWidth: 72.0,
-        title: Text("Canteen", style: Fonts.appBarTitle),
+        title: Text(appBarTitle, style: Fonts.appBarTitle),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
           child:
