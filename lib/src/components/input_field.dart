@@ -16,6 +16,7 @@ class InputField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.keyboardType,
+    this.isPhone = false,
     this.expands = false,
     this.height,
   }) : assert(
@@ -27,17 +28,9 @@ class InputField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final TextInputType? keyboardType;
+  final bool isPhone;
   final bool expands;
   final double? height;
-
-  double _textSize(String text, TextStyle style) {
-    final TextPainter textPainter = TextPainter(
-        text: TextSpan(text: text, style: style),
-        maxLines: 1,
-        textDirection: TextDirection.ltr)
-      ..layout(minWidth: 0, maxWidth: double.infinity);
-    return textPainter.size.width;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,19 +50,10 @@ class InputField extends StatelessWidget {
               textAlignVertical: TextAlignVertical.top,
               expands: expands,
               maxLines: expands ? null : 1,
-              keyboardType: keyboardType,
+              keyboardType: isPhone ? TextInputType.number : keyboardType,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Palette.inputField,
-                // prefix: SizedBox(
-                //   width: _textSize(
-                //           '+91  |', Fonts.hintText.copyWith(fontSize: 16.0)) +
-                //       10,
-                //   child: Align(
-                //       alignment: Alignment.centerLeft,
-                //       child: Text('+91  |',
-                //           style: Fonts.hintText.copyWith(fontSize: 16.0))),
-                // ),
                 border: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide(width: 1, color: Palette.stroke)),
@@ -84,6 +68,13 @@ class InputField extends StatelessWidget {
                 hintText: hintText,
                 hintStyle: Fonts.hintText,
               ),
+              onTap: () {
+                if (FocusScope.of(context).isFirstFocus &&
+                    !controller.text.contains('+91') &&
+                    isPhone) {
+                  controller.text = '+91 ${controller.text}';
+                }
+              },
             ),
           ),
         ),

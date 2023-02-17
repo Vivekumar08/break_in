@@ -30,7 +30,8 @@ class LoginWithPhone extends StatelessWidget {
             InputField(
                 inputText: "Phone*",
                 hintText: "Enter your phone number",
-                controller: phone),
+                controller: phone,
+                isPhone: true),
             const SizedBox(height: 24.0),
             Button(
                 onPressed: () => context.go(otpWithPhone),

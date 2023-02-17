@@ -31,7 +31,8 @@ class MyProfile extends StatelessWidget {
             InputField(
                 inputText: "Phone*",
                 hintText: "Enter Your Phone Number",
-                controller: phone),
+                controller: phone,
+                isPhone: true),
             InputField(
                 inputText: "Email*",
                 hintText: "Enter Your Email",

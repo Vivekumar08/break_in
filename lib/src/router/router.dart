@@ -31,7 +31,7 @@ import '../style/transitions.dart';
 import 'constants.dart';
 
 final router = GoRouter(
-  initialLocation: home,
+  initialLocation: loginWithPhone,
   routes: [
     GoRoute(
       path: '/',
