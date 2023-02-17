@@ -1,6 +1,6 @@
-import 'package:break_in/src/components/food_card.dart';
-import 'package:break_in/src/style/fonts.dart';
 import 'package:flutter/material.dart';
+import '../../components/food_card.dart';
+import '../../style/fonts.dart';
 
 class Favourite extends StatelessWidget {
   const Favourite({super.key});

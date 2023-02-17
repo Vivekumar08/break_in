@@ -1,9 +1,9 @@
-import 'package:break_in/src/utils/symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../components/routing_list.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
+import '../../utils/symbols.dart';
 
 class About extends StatelessWidget {
   const About({super.key});

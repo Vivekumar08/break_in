@@ -18,6 +18,7 @@ import '../screens/onboarding/salutation.dart';
 import '../screens/pages/canteen.dart';
 import '../screens/pages/favourite.dart';
 import '../screens/pages/menu.dart';
+import '../screens/pages/rate.dart';
 import '../screens/settings/detect_new_location.dart';
 import '../screens/settings/feedback.dart';
 import '../screens/settings/help_about.dart';
@@ -29,7 +30,7 @@ import '../screens/settings/settings.dart';
 import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: ourTeam,
+  initialLocation: home,
   routes: [
     GoRoute(
       path: '/',
@@ -117,7 +118,13 @@ final router = GoRouter(
             GoRoute(
               path: 'menu',
               builder: (context, state) => const Menu(),
-            )
+              routes: [
+                GoRoute(
+                  path: 'rate',
+                  builder: (context, state) => const Rate(),
+                ),
+              ],
+            ),
           ],
         ),
 

@@ -1,6 +1,6 @@
-import 'package:break_in/src/router/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../router/constants.dart';
 import '../../style/fonts.dart';
 import '../../utils/symbols.dart';
 

@@ -1,11 +1,14 @@
-import 'package:break_in/src/components/accordion.dart';
-import 'package:break_in/src/style/fonts.dart';
-import 'package:break_in/src/style/message_dialog.dart';
-import 'package:break_in/src/style/palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../components/accordion.dart';
 import '../../models/example.dart';
 import '../../models/menu.dart';
+import '../../router/constants.dart';
+import '../../screens/pages/rate.dart';
+import '../../style/fonts.dart';
+import '../../style/message_dialog.dart';
+import '../../style/palette.dart';
 import '../../utils/images.dart';
 import '../../utils/symbols.dart';
 
@@ -42,7 +45,7 @@ class Menu extends StatelessWidget {
         child: Column(
           children: [
             Images.menu,
-            const SizedBox(height: 18.0),
+            const SizedBox(height: 8.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22.0),
               child: Column(
@@ -58,13 +61,19 @@ class Menu extends StatelessWidget {
                       const Icon(Icons.favorite_outline),
                       const SizedBox(width: 20.0),
                       const Icon(Icons.share_outlined),
+                      const SizedBox(width: 20.0),
+                      IconButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Rate())),
+                          icon: Symbols.rate),
                     ],
                   ),
-                  const SizedBox(height: 16.0),
                   Text('The Burger Club',
                       style: Fonts.otpText.copyWith(fontSize: 16.0)),
                   const SizedBox(height: 4.0),
-                  Text('North Indian, Snacks', style: Fonts.simTextBlack),
+                  Text('Sector 7, Rohini (15 KM)', style: Fonts.simTextBlack),
                   const SizedBox(height: 12.0),
                   Row(
                     children: [

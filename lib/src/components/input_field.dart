@@ -61,15 +61,15 @@ class InputField extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Palette.inputField,
-                prefix: SizedBox(
-                  width: _textSize(
-                          '+91  |', Fonts.hintText.copyWith(fontSize: 16.0)) +
-                      10,
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('+91  |',
-                          style: Fonts.hintText.copyWith(fontSize: 16.0))),
-                ),
+                // prefix: SizedBox(
+                //   width: _textSize(
+                //           '+91  |', Fonts.hintText.copyWith(fontSize: 16.0)) +
+                //       10,
+                //   child: Align(
+                //       alignment: Alignment.centerLeft,
+                //       child: Text('+91  |',
+                //           style: Fonts.hintText.copyWith(fontSize: 16.0))),
+                // ),
                 border: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide(width: 1, color: Palette.stroke)),
