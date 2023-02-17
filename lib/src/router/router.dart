@@ -29,7 +29,7 @@ import '../screens/settings/settings.dart';
 import '../style/transitions.dart';
 
 final router = GoRouter(
-  initialLocation: home,
+  initialLocation: ourTeam,
   routes: [
     GoRoute(
       path: '/',
