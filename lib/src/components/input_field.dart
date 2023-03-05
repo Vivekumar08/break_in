@@ -47,6 +47,7 @@ class InputField extends StatelessWidget {
             height: height,
             child: TextField(
               controller: controller,
+              style: Fonts.inputText.copyWith(color: Palette.text),
               textAlignVertical: TextAlignVertical.top,
               expands: expands,
               maxLines: expands ? null : 1,
@@ -109,6 +110,7 @@ class SearchField extends StatelessWidget {
             border: Border.all(width: 1, color: Palette.stroke)),
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
+          style: Fonts.inputText.copyWith(color: Palette.text),
           readOnly: readOnly,
           controller: controller,
           decoration: InputDecoration(
@@ -282,6 +284,7 @@ class _PasswordFieldState extends State<PasswordField> {
           padding: const EdgeInsets.only(top: 4.0),
           child: TextField(
             controller: widget.controller,
+            style: Fonts.inputText.copyWith(color: Palette.text),
             obscureText: isObscure,
             textAlignVertical: TextAlignVertical.top,
             decoration: InputDecoration(
