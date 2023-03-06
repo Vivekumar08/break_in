@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../components/auth_options.dart';
 import '../../components/button.dart';
 import '../../components/input_field.dart';
+import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 
-class LoginWithMail extends StatelessWidget {
+class LoginWithMail extends StatefulWidget {
   const LoginWithMail({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController passwd = TextEditingController();
+  State<LoginWithMail> createState() => _LoginWithMailState();
+}
 
+class _LoginWithMailState extends State<LoginWithMail> {
+  final TextEditingController email = TextEditingController();
+  final TextEditingController passwd = TextEditingController();
+
+  @override
+  void dispose() {
+    email.dispose();
+    passwd.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -40,12 +55,20 @@ class LoginWithMail extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: GestureDetector(
-                  onTap: () => context.go(forgotPassword),
+                  onTap: () {
+                    context.go(forgotPassword);
+                  },
                   child: Text("Forgot Password?", style: Fonts.textButton)),
             ),
             const SizedBox(height: 24.0),
             Button(
-                onPressed: () => context.go(salutation), buttonText: "Login"),
+                onPressed: () {
+                  auth.loginWithMail(email: email.text, password: passwd.text);
+                  auth.state.isAuthenticated() ? context.go(salutation) : null;
+                },
+                buttonText: "Login"),
+            const SizedBox(height: 10),
+            Button(onPressed: () {}, buttonText: auth.state.toString()),
             AuthOptions(
               emailAuth: false,
               text: "Or Login with",

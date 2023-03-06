@@ -286,6 +286,7 @@ class _PasswordFieldState extends State<PasswordField> {
             controller: widget.controller,
             style: Fonts.inputText.copyWith(color: Palette.text),
             obscureText: isObscure,
+            obscuringCharacter: '●',
             textAlignVertical: TextAlignVertical.top,
             decoration: InputDecoration(
               filled: true,

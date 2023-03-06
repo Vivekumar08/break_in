@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../components/auth_options.dart';
 import '../../components/button.dart';
 import '../../components/input_field.dart';
+import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 
-class RegisterWithMail extends StatelessWidget {
+class RegisterWithMail extends StatefulWidget {
   const RegisterWithMail({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    TextEditingController email = TextEditingController();
-    TextEditingController passwd = TextEditingController();
-    TextEditingController confirmPasswd = TextEditingController();
+  State<RegisterWithMail> createState() => _RegisterWithMailState();
+}
 
+class _RegisterWithMailState extends State<RegisterWithMail> {
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController passwd = TextEditingController();
+  TextEditingController confirmPasswd = TextEditingController();
+
+  @override
+  void dispose() {
+    name.dispose();
+    email.dispose();
+    passwd.dispose();
+    confirmPasswd.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(22.0, 56.0, 22.0, 27.0),
@@ -47,7 +64,14 @@ class RegisterWithMail extends StatelessWidget {
                 controller: confirmPasswd),
             const SizedBox(height: 24.0),
             Button(
-                onPressed: () => context.go(salutation),
+                onPressed: () async {
+                  auth.registerWithMail(
+                    name: name.text,
+                    email: email.text,
+                    password: passwd.text,
+                  );
+                  context.go(salutation);
+                },
                 buttonText: "Register"),
             AuthOptions(
               emailAuth: false,

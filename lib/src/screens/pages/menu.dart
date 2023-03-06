@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../components/accordion.dart';
 import '../../models/example.dart';
 import '../../models/menu.dart';
-import '../../router/constants.dart';
 import '../../screens/pages/rate.dart';
 import '../../style/fonts.dart';
 import '../../style/message_dialog.dart';
@@ -67,6 +65,7 @@ class Menu extends StatelessWidget {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
+                                  fullscreenDialog: true,
                                   builder: (context) => const Rate())),
                           icon: Symbols.rate),
                     ],
