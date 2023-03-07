@@ -3,6 +3,7 @@ enum AuthState { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
 extension CheckAuthenticated on AuthState {
   bool isAuthenticating() => this == AuthState.Authenticating ? true : false;
+  bool isAuthenticated() => this == AuthState.Authenticated ? true : false;
 }
 
 // AuthSchema

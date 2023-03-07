@@ -34,6 +34,8 @@ class AuthProvider extends ChangeNotifier {
     Map<String, dynamic>? response =
         await locator.get<AuthService>().loginWithMail(email, password);
 
+    print(response);
+
     if (response[code] == 200) {
       _user = User.fromJson(response[UserLogin]);
       locator
@@ -42,7 +44,9 @@ class AuthProvider extends ChangeNotifier {
           .whenComplete(() => TokenProvider.init());
       _changeAuthState(AuthState.Authenticated);
     } else {
-      showSnackBar(response[msg].toString());
+      if (response[msg] != null) {
+        showSnackBar(response[msg].toString());
+      }
       _changeAuthState(AuthState.Unauthenticated);
     }
   }
@@ -57,6 +61,8 @@ class AuthProvider extends ChangeNotifier {
         .get<AuthService>()
         .registerWithMail(name, email, password);
 
+    print(response);
+
     if (response[code] == 200) {
       _user = User.fromJson(response[UserLogin]);
       locator
@@ -65,7 +71,9 @@ class AuthProvider extends ChangeNotifier {
           .whenComplete(() => TokenProvider.init());
       _changeAuthState(AuthState.Authenticated);
     } else {
-      showSnackBar(response[msg]);
+      if (response[msg] != null) {
+        showSnackBar(response[msg].toString());
+      }
       _changeAuthState(AuthState.Unauthenticated);
     }
   }

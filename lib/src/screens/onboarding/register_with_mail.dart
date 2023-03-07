@@ -7,6 +7,7 @@ import '../../components/input_field.dart';
 import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
+import '../../style/loader.dart';
 import '../../utils/validators.dart';
 
 class RegisterWithMail extends StatefulWidget {
@@ -52,6 +53,7 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(22.0, 56.0, 22.0, 27.0),
@@ -93,14 +95,18 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
               Button(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      Provider.of<AuthProvider>(context).registerWithMail(
-                        name: name.text,
-                        email: email.text,
-                        password: passwd.text,
-                      );
+                      showLoader(context);
+                      auth
+                          .registerWithMail(
+                              name: name.text,
+                              email: email.text,
+                              password: passwd.text)
+                          .whenComplete(
+                            () => auth.state.isAuthenticated()
+                                ? context.go(salutation)
+                                : context.pop(),
+                          );
                     }
-                    // TODO: set route
-                    // context.go(salutation);
                   },
                   buttonText: "Register"),
               AuthOptions(

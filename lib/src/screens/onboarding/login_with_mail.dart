@@ -59,7 +59,8 @@ class _LoginWithMailState extends State<LoginWithMail> {
               PasswordField(
                   inputText: "Password*",
                   hintText: "Enter your password",
-                  controller: passwd),
+                  controller: passwd,
+                  validator: null),
               const SizedBox(height: 8.0),
               Align(
                 alignment: Alignment.bottomRight,
@@ -73,10 +74,16 @@ class _LoginWithMailState extends State<LoginWithMail> {
               Button(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      auth.loginWithMail(
-                          email: email.text, password: passwd.text);
+                      showLoader(context);
+                      auth
+                          .loginWithMail(
+                              email: email.text, password: passwd.text)
+                          .whenComplete(
+                            () => auth.state.isAuthenticated()
+                                ? context.go(salutation)
+                                : context.pop(),
+                          );
                     }
-                    // TODO: set route
                   },
                   buttonText: "Login"),
               const SizedBox(height: 10),
