@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../providers/providers.dart';
 import '../screens/home/categories.dart';
 import '../screens/home/home.dart';
 import '../screens/home/search.dart';
@@ -31,11 +33,18 @@ import '../style/transitions.dart';
 import 'constants.dart';
 
 final router = GoRouter(
-  initialLocation: loginWithPhone,
   routes: [
     GoRoute(
       path: '/',
       builder: (context, state) => const Onboarding(),
+      redirect: (context, GoRouterState state) async {
+        bool token = await context.read<TokenProvider>().doesTokenExists();
+        if (token) {
+          return salutation;
+        } else {
+          return null;
+        }
+      },
       routes: [
         GoRoute(
           path: 'loginWithMail',

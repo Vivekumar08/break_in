@@ -7,6 +7,7 @@ import '../../components/input_field.dart';
 import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
+import '../../style/loader.dart';
 
 class LoginWithMail extends StatefulWidget {
   const LoginWithMail({super.key});
@@ -46,7 +47,8 @@ class _LoginWithMailState extends State<LoginWithMail> {
             InputField(
                 inputText: "Email*",
                 hintText: "Enter your email",
-                controller: email),
+                controller: email,
+                keyboardType: TextInputType.emailAddress),
             PasswordField(
                 inputText: "Password*",
                 hintText: "Enter your password",
@@ -64,11 +66,10 @@ class _LoginWithMailState extends State<LoginWithMail> {
             Button(
                 onPressed: () {
                   auth.loginWithMail(email: email.text, password: passwd.text);
-                  auth.state.isAuthenticated() ? context.go(salutation) : null;
+                  // TODO: set route
                 },
                 buttonText: "Login"),
             const SizedBox(height: 10),
-            Button(onPressed: () {}, buttonText: auth.state.toString()),
             AuthOptions(
               emailAuth: false,
               text: "Or Login with",

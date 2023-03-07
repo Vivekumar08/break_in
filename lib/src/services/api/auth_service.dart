@@ -1,12 +1,13 @@
 import 'dart:async' show TimeoutException;
 import 'dart:convert' show jsonEncode, jsonDecode;
 import 'dart:io' show SocketException;
-import '../../models/models.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  Future<User?> loginWithMail(String email, String password) async {
+  Future<Map<String, dynamic>> loginWithMail(
+      String email, String password) async {
+    Map<String, dynamic> body = {};
     try {
       http.Response response = await http.post(
         Uri.parse('$baseUrl/user/loginWithEmail'),
@@ -16,10 +17,8 @@ class AuthService {
         },
       ).timeout(timeout);
 
-      if (response.statusCode == 200) {
-        Map<String, dynamic> body = jsonDecode(response.body);
-        return User.fromJson(body['UserLogin']);
-      }
+      body = jsonDecode(response.body);
+      body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {
       timeOut();
     } on SocketException catch (_) {
@@ -27,11 +26,12 @@ class AuthService {
     } catch (e) {
       throw Exception(e);
     }
-    return null;
+    return body;
   }
 
-  Future<User?> registerWithMail(
+  Future<Map<String, dynamic>> registerWithMail(
       String name, String email, String password) async {
+    Map<String, dynamic> body = {};
     try {
       http.Response response = await http.post(
         Uri.parse('$baseUrl/user/registerWithEmail'),
@@ -42,10 +42,8 @@ class AuthService {
         },
       ).timeout(timeout);
 
-      if (response.statusCode == 200) {
-        var body = jsonDecode(response.body);
-        return User.fromJson(body);
-      }
+      body = jsonDecode(response.body);
+      body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {
       timeOut();
     } on SocketException catch (_) {
@@ -53,6 +51,6 @@ class AuthService {
     } catch (e) {
       throw Exception(e);
     }
-    return null;
+    return body;
   }
 }

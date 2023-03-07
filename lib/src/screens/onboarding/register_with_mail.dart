@@ -32,7 +32,6 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(22.0, 56.0, 22.0, 27.0),
@@ -65,7 +64,7 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
             const SizedBox(height: 24.0),
             Button(
                 onPressed: () async {
-                  auth.registerWithMail(
+                  Provider.of<AuthProvider>(context).registerWithMail(
                     name: name.text,
                     email: email.text,
                     password: passwd.text,
