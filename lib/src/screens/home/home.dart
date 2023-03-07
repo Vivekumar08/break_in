@@ -81,8 +81,7 @@ class Home extends StatelessWidget {
                     borderRadius: 4.0,
                     fontSize: 10.0,
                     expands: false,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   ),
                 ],
               ),
@@ -121,8 +120,7 @@ class Home extends StatelessWidget {
                     expands: false,
                     fontSize: 10.0,
                     borderRadius: 4.0,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   ),
                 ],
               ),
