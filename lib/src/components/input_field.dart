@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../style/palette.dart';
 import '../style/fonts.dart';
 import '../utils/symbols.dart';
+import '../utils/validators.dart';
 
 // Basic Input Field
 class InputField extends StatelessWidget {
@@ -19,6 +20,8 @@ class InputField extends StatelessWidget {
     this.isPhone = false,
     this.expands = false,
     this.height,
+    this.validator,
+    this.autofillHints,
   }) : assert(
           (!expands && height == null) || (expands && height != null),
           'height must be non-null, when expands is true.',
@@ -31,6 +34,8 @@ class InputField extends StatelessWidget {
   final bool isPhone;
   final bool expands;
   final double? height;
+  final String? Function(String?)? validator;
+  final String? autofillHints;
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +50,15 @@ class InputField extends StatelessWidget {
           padding: const EdgeInsets.only(top: 4.0),
           child: SizedBox(
             height: height,
-            child: TextField(
+            child: TextFormField(
               controller: controller,
               style: Fonts.inputText.copyWith(color: Palette.text),
               textAlignVertical: TextAlignVertical.top,
               expands: expands,
               maxLines: expands ? null : 1,
               keyboardType: isPhone ? TextInputType.number : keyboardType,
+              validator: validator,
+              autofillHints: autofillHints == null ? null : [autofillHints!],
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Palette.inputField,
@@ -259,11 +266,13 @@ class PasswordField extends StatefulWidget {
     required this.inputText,
     required this.hintText,
     required this.controller,
+    this.validator = passwordValidation,
   });
 
   final String inputText;
   final String hintText;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -282,12 +291,13 @@ class _PasswordFieldState extends State<PasswordField> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 4.0),
-          child: TextField(
+          child: TextFormField(
             controller: widget.controller,
             style: Fonts.inputText.copyWith(color: Palette.text),
             obscureText: isObscure,
             obscuringCharacter: '●',
             textAlignVertical: TextAlignVertical.top,
+            validator: widget.validator,
             decoration: InputDecoration(
               filled: true,
               suffixIcon: GestureDetector(
