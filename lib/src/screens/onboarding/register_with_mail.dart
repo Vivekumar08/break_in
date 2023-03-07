@@ -38,7 +38,8 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
       return 'Field is required';
     } else if (input.length < 8) {
       return 'Password must have 8 characters';
-    } else if (RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
+    } else if (RegExp(
+            r'^(?=.*?[A-Z]|.*?[!@#\$&*~])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
         .hasMatch(input)) {
       if (passwd.text == confirmPasswd.text) {
         return null;
@@ -70,7 +71,8 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
               InputField(
                   inputText: "Full Name*",
                   hintText: "Enter your full name",
-                  controller: name),
+                  controller: name,
+                  validator: nullValidation),
               InputField(
                   inputText: "Email*",
                   hintText: "Enter your email",
@@ -107,7 +109,7 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
                 onTapWithPhone: () =>
                     context.pushReplacement(registerWithPhone),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
               BottomTextButton(
                 text: 'Already have an account?',
                 buttonText: 'Login',

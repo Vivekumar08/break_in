@@ -36,8 +36,11 @@ class Button extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(borderRadius)))),
         onPressed: onPressed,
-        child: Text(buttonText,
-            style: Fonts.buttonText.copyWith(fontSize: fontSize)),
+        child: Text(
+          buttonText,
+          style: Fonts.buttonText.copyWith(fontSize: fontSize),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
@@ -66,13 +69,20 @@ class BottomTextButton extends StatelessWidget {
             : Text(text!,
                 style: Fonts.hintText
                     .copyWith(fontSize: 14.0, color: Palette.iconsCol)),
-        const SizedBox(width: 5.0),
         buttonText == null
             ? Container()
-            : GestureDetector(
+            : InkWell(
+                borderRadius: BorderRadius.circular(8.0),
+                radius: 8.0,
                 onTap: onTap,
-                child: Text(buttonText!,
-                    style: Fonts.buttonText.copyWith(color: Palette.primary))),
+                customBorder: Border.all(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: 8.0),
+                  child: Text(buttonText!,
+                      style: Fonts.buttonText.copyWith(color: Palette.primary)),
+                ),
+              ),
       ],
     );
   }
@@ -83,7 +93,8 @@ class ChevBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: BorderRadius.circular(12.0),
       onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : null,
       child: Container(
         // 8.0 is default padding for an icon

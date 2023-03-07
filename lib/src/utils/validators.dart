@@ -42,7 +42,8 @@ String? passwordValidation(String? input) {
     return 'Field is required';
   } else if (input.length < 8) {
     return 'Password must have 8 characters';
-  } else if (RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
+  } else if (RegExp(
+          r'^(?=.*?[A-Z]|.*?[!@#\$&*~])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
       .hasMatch(input)) {
     return null;
   }
