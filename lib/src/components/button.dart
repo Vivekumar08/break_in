@@ -69,16 +69,17 @@ class BottomTextButton extends StatelessWidget {
             : Text(text!,
                 style: Fonts.hintText
                     .copyWith(fontSize: 14.0, color: Palette.iconsCol)),
+        const SizedBox(width: 2.0),
         buttonText == null
             ? Container()
             : InkWell(
-                borderRadius: BorderRadius.circular(8.0),
-                radius: 8.0,
+                borderRadius: BorderRadius.circular(4.0),
+                radius: 4.0,
                 onTap: onTap,
                 customBorder: Border.all(),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 4.0, horizontal: 8.0),
+                      vertical: 4.0, horizontal: 5.0),
                   child: Text(buttonText!,
                       style: Fonts.buttonText.copyWith(color: Palette.primary)),
                 ),

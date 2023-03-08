@@ -7,5 +7,7 @@ final GetIt locator = GetIt.instance;
 setup() {
   // Services
   locator.registerLazySingleton<AuthService>(() => AuthService());
+  locator.registerLazySingleton<OtpServiceViaEmail>(() => OtpServiceViaEmail());
   locator.registerLazySingleton<TokenStorage>(() => TokenStorage());
+  locator.registerLazySingleton<UserStorage>(() => UserStorage.init());
 }

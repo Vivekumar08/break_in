@@ -16,7 +16,7 @@ String? emailValidation(String? input) {
       .hasMatch(input)) {
     return null;
   }
-  return 'invalid email format';
+  return 'Invalid email format';
 }
 
 // No Special Character Validation

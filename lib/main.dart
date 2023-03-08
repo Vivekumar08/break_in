@@ -1,6 +1,6 @@
-import 'package:break_in/src/locator.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:provider/provider.dart';
+import 'src/locator.dart';
 import 'src/providers/providers.dart';
 import 'src/router/router.dart';
 import '../src/style/theme.dart';
@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthProvider.init(),
           update: (_, token, __) => AuthProvider.fromToken(token.tokenExists),
         ),
+        ChangeNotifierProvider<OtpProviderViaMail>(
+            create: (context) => OtpProviderViaMail())
       ],
       child: MaterialApp.router(
         theme: theme,

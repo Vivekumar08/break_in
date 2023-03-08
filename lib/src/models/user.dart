@@ -1,10 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'generated/user.g.dart';
 
+@HiveType(typeId: 0)
 @JsonSerializable()
-class User {
+class User extends HiveObject {
   User({
     required this.FullName,
     required this.Email,

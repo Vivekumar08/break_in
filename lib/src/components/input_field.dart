@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../style/palette.dart';
 import '../style/fonts.dart';
 import '../utils/symbols.dart';
@@ -192,6 +193,7 @@ class _OtpFieldState extends State<OtpField> {
                 keyboardType: TextInputType.number,
                 autofocus: index == 0 ? true : false,
                 maxLength: 1,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 style: Fonts.otpText,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(

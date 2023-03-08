@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'constants.dart';
-import 'token_provider.dart';
 import '../locator.dart';
 import '../models/models.dart';
 import '../services/api/api.dart';
@@ -8,7 +7,6 @@ import '../services/db/db.dart';
 import '../style/snack_bar.dart';
 
 class AuthProvider extends ChangeNotifier {
-  late User _user;
   AuthState _state = AuthState.Uninitialized;
 
   AuthState get state => _state;
@@ -31,17 +29,15 @@ class AuthProvider extends ChangeNotifier {
     required String password,
   }) async {
     _changeAuthState(AuthState.Authenticating);
-    Map<String, dynamic>? response =
+    Map<String, dynamic> response =
         await locator.get<AuthService>().loginWithMail(email, password);
 
     print(response);
 
     if (response[code] == 200) {
-      _user = User.fromJson(response[UserLogin]);
-      locator
-          .get<TokenStorage>()
-          .setToken(response[token])
-          .whenComplete(() => TokenProvider.init());
+      User user = User.fromJson(response[userLogin]);
+      locator.get<TokenStorage>().setToken(response[token]);
+      locator.get<UserStorage>().addUser(user);
       _changeAuthState(AuthState.Authenticated);
     } else {
       if (response[msg] != null) {
@@ -57,18 +53,16 @@ class AuthProvider extends ChangeNotifier {
     required String password,
   }) async {
     _changeAuthState(AuthState.Authenticating);
-    Map<String, dynamic>? response = await locator
+    Map<String, dynamic> response = await locator
         .get<AuthService>()
         .registerWithMail(name, email, password);
 
     print(response);
 
     if (response[code] == 200) {
-      _user = User.fromJson(response[UserLogin]);
-      locator
-          .get<TokenStorage>()
-          .setToken(response[token])
-          .whenComplete(() => TokenProvider.init());
+      User user = User.fromJson(response[savedUser]);
+      locator.get<TokenStorage>().setToken(response[token]);
+      locator.get<UserStorage>().addUser(user);
       _changeAuthState(AuthState.Authenticated);
     } else {
       if (response[msg] != null) {
