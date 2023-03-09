@@ -168,6 +168,14 @@ class _OtpFieldState extends State<OtpField> {
     super.initState();
   }
 
+  String getOtp() {
+    String otp = '';
+    for (var controller in controllerList) {
+      otp += controller.text;
+    }
+    return otp;
+  }
+
   @override
   void dispose() {
     for (var c in controllerList) {
@@ -243,7 +251,7 @@ class _OtpFieldState extends State<OtpField> {
                     FocusScope.of(context).nextFocus();
                   }
                   controllerList[index].text = value;
-                  widget.controller.text += value;
+                  widget.controller.text = getOtp();
                   if (controllerList.last.text.isNotEmpty) {
                     FocusScope.of(context).unfocus();
                   }

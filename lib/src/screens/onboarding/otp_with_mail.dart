@@ -55,21 +55,25 @@ class _OTPWithMailState extends State<OTPWithMail> {
             Form(child: OtpField(length: 4, controller: otp)),
             const SizedBox(height: 24.0),
             Button(
-                onPressed: () {
-                  if (otp.text.length == 4) {
-                    showLoader(context);
-                    otpProvider.verifyOTP(otp: otp.text).whenComplete(
-                          () => otpProvider.state.verified()
-                              ? context.go(newPassword)
-                              : context.pop(),
-                        );
-                  }
-                },
+                onPressed: otpProvider.state.expired()
+                    ? null
+                    : () {
+                        if (otp.text.length == 4) {
+                          showLoader(context);
+                          otpProvider.verifyOTP(otp: otp.text).whenComplete(
+                                () => otpProvider.state.verified()
+                                    ? context.go(newPassword)
+                                    : context.pop(),
+                              );
+                        }
+                      },
                 buttonText: "Verify"),
             const Spacer(),
-            const BottomTextButton(
+            BottomTextButton(
               text: 'Didn\'t receive code?',
               buttonText: 'Resend',
+              // TODO: Implement reset otp
+              onTap: () {},
             ),
           ],
         ),

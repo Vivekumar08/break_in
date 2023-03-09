@@ -57,12 +57,9 @@ class _LoginWithMailState extends State<LoginWithMail> {
                   validator: emailValidation,
                   autofillHints: AutofillHints.email),
               PasswordField(
-                inputText: "Password*",
-                hintText: "Enter your password",
-                controller: passwd,
-                // TODO: remove validator
-                validator: null,
-              ),
+                  inputText: "Password*",
+                  hintText: "Enter your password",
+                  controller: passwd),
               const SizedBox(height: 8.0),
               Align(
                 alignment: Alignment.bottomRight,

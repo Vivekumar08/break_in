@@ -21,6 +21,6 @@ class TokenProvider {
       _changeTokenState(token != null);
     });
     // Uncomment the line below to clear token
-    locator.get<TokenStorage>().clearToken();
+    // locator.get<TokenStorage>().clearToken();
   }
 }

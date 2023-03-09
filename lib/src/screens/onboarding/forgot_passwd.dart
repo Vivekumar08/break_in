@@ -65,7 +65,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     showLoader(context);
                     otpProvider.forgotPassword(email: email.text).whenComplete(
                           () => otpProvider.state.sent()
-                              ? context.go(otpWithMail)
+                              ? context.pushReplacement(otpWithMail)
                               : context.pop(),
                         );
                   }

@@ -5,7 +5,7 @@ import '../style/palette.dart';
 class Button extends StatelessWidget {
   const Button(
       {Key? key,
-      required this.onPressed,
+      this.onPressed,
       required this.buttonText,
       this.color,
       this.height = 56.0,
@@ -16,7 +16,7 @@ class Button extends StatelessWidget {
       : super(key: key);
 
   final String buttonText;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color? color;
   final double height;
   final bool expands;

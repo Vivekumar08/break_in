@@ -28,12 +28,12 @@ class OtpServiceViaEmail {
     return body;
   }
 
-  Future<Map<String, dynamic>> verifyOTP(String otp) async {
+  Future<Map<String, dynamic>> verifyOTP(String email, String otp) async {
     Map<String, dynamic> body = {};
     try {
-      http.Response response = await http.post(
+      http.Response response = await http.put(
         Uri.parse('$baseUrl/verifyOTPviaEmail'),
-        body: jsonEncode({"otp": otp}),
+        body: jsonEncode({"Email": email, "otp": otp}),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -51,12 +51,13 @@ class OtpServiceViaEmail {
     return body;
   }
 
-  Future<Map<String, dynamic>> updatePassword(String password) async {
+  Future<Map<String, dynamic>> updatePassword(
+      String email, String password) async {
     Map<String, dynamic> body = {};
     try {
-      http.Response response = await http.post(
+      http.Response response = await http.put(
         Uri.parse('$baseUrl/updatePasswordViaEmail'),
-        body: jsonEncode({"Password": password}),
+        body: jsonEncode({"Email": email, "Password": password}),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

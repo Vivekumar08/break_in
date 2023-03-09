@@ -11,8 +11,10 @@ class UserStorage {
     Directory directory = await getApplicationDocumentsDirectory();
     String hivePath = directory.path;
     Hive.init(hivePath);
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(UserAdapter());
+    }
     await Hive.openBox('user');
-    Hive.registerAdapter(UserAdapter());
     return UserStorage();
   }
 

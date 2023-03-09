@@ -6,6 +6,14 @@ import '../services/api/api.dart';
 import '../services/db/db.dart';
 import '../style/snack_bar.dart';
 
+// AuthProvider Constants
+// ignore: constant_identifier_names
+enum AuthState { Uninitialized, Authenticated, Authenticating, Unauthenticated }
+
+extension AuthExtension on AuthState {
+  bool isAuthenticated() => this == AuthState.Authenticated ? true : false;
+}
+
 class AuthProvider extends ChangeNotifier {
   AuthState _state = AuthState.Uninitialized;
 
