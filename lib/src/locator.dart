@@ -9,5 +9,6 @@ setup() {
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<OtpServiceViaEmail>(() => OtpServiceViaEmail());
   locator.registerLazySingleton<TokenStorage>(() => TokenStorage());
-  locator.registerLazySingleton<UserStorage>(() => UserStorage.init());
+  locator.registerLazySingletonAsync<UserStorage>(
+      () async => await UserStorage.init());
 }
