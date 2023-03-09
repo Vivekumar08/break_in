@@ -50,7 +50,7 @@ class InputField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 4.0),
           child: SizedBox(
-            height: height,
+            height: height == null ? null : height! + 12,
             child: TextFormField(
               controller: controller,
               style: Fonts.inputText.copyWith(color: Palette.text),
@@ -62,6 +62,7 @@ class InputField extends StatelessWidget {
               autofillHints: autofillHints == null ? null : [autofillHints!],
               decoration: InputDecoration(
                 filled: true,
+                helperText: expands ? ' ' : null,
                 fillColor: Palette.inputField,
                 border: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(8.0)),
