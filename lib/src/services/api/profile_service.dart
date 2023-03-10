@@ -12,12 +12,10 @@ class ProfileService {
         Uri.parse('$baseUrl/feedbackUser'),
         body: jsonEncode({"Message": message}),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
           HttpHeaders.authorizationHeader: token,
+          'Content-Type': 'application/json; charset=UTF-8',
         },
       ).timeout(settingsTimeout);
-
-      print(response.body);
 
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});
@@ -39,46 +37,8 @@ class ProfileService {
         Uri.parse('$baseUrl/HelpUser'),
         body: jsonEncode({"Name": name, "Email": email, "Message": message}),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
           HttpHeaders.authorizationHeader: token,
-        },
-      ).timeout(settingsTimeout);
-
-      body = jsonDecode(response.body);
-      body.addAll({'code': response.statusCode});
-    } on TimeoutException catch (_) {
-      timeOut();
-    } on SocketException catch (_) {
-      noInternet();
-    } catch (e) {
-      throw Exception(e);
-    }
-    return body;
-  }
-
-  Future<Map<String, dynamic>> ratePlace(
-      String token,
-      String overallRating,
-      String hygiene,
-      String taste,
-      String quality,
-      String ambience,
-      String comment) async {
-    Map<String, dynamic> body = {};
-    try {
-      http.Response response = await http.post(
-        Uri.parse('$baseUrl/ratePlace'),
-        body: jsonEncode({
-          "OverallRating": overallRating,
-          "Hygiene": hygiene,
-          "Taste": taste,
-          "Quality": taste,
-          "Ambience": quality,
-          "Comment": comment,
-        }),
-        headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          HttpHeaders.authorizationHeader: token,
         },
       ).timeout(settingsTimeout);
 
@@ -103,8 +63,8 @@ class ProfileService {
         body: jsonEncode(
             {"PlaceName": placeName, "Address": address, "Contact": contact}),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
           HttpHeaders.authorizationHeader: token,
+          'Content-Type': 'application/json; charset=UTF-8',
         },
       ).timeout(settingsTimeout);
 

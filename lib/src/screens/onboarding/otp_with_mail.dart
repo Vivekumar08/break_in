@@ -72,7 +72,6 @@ class _OTPWithMailState extends State<OTPWithMail> {
             BottomTextButton(
               text: 'Didn\'t receive code?',
               buttonText: 'Resend',
-              // TODO: Implement reset otp
               onTap: () {
                 showLoader(context);
                 otpProvider

@@ -1,40 +1,48 @@
 import 'package:flutter/foundation.dart';
-import '../services/db/db.dart';
 import 'constants.dart';
 import '../locator.dart';
 import '../services/api/api.dart';
-import '../style/snack_bar.dart';
+import '../services/db/db.dart';
 
-// ProfileProvider Constants
-// ignore: constant_identifier_names
-enum ProfileState { Idle, Busy }
-
-extension ProfileExtension on ProfileState {
-  bool isBusy() => this == ProfileState.Busy ? true : false;
-}
-
-class ProfileProvider extends ChangeNotifier {
-  ProfileState _state = ProfileState.Idle;
-
-  ProfileState get state => _state;
-
-  void _changeProfileState(ProfileState profileState) {
-    _state = profileState;
-    notifyListeners();
-  }
-
+class ProfileProvider {
   Future<void> feedback({required String feedback}) async {
-    _changeProfileState(ProfileState.Busy);
     String? token = await locator.get<TokenStorage>().getToken();
     Map<String, dynamic> response =
         await locator.get<ProfileService>().feedback(token!, feedback);
-    if (response[code] == 200) {
-      showSnackBar(response[msg].toString());
-    } else {
-      if (response[error] != null) {
-        showSnackBar(response[error].toString());
-      }
+    if (response[code] != 200) {
+      debugPrint(response.toString());
     }
-    _changeProfileState(ProfileState.Idle);
+  }
+
+  Future<void> help(
+      {required String name,
+      required String email,
+      required String message}) async {
+    String? token = await locator.get<TokenStorage>().getToken();
+    Map<String, dynamic> response =
+        await locator.get<ProfileService>().help(token!, name, email, message);
+    if (response[code] != 200) {
+      debugPrint(response.toString());
+    }
+  }
+
+  Future<void> logout() async {
+    locator.get<TokenStorage>().clearToken();
+    await locator.isReady<UserStorage>();
+    locator.get<UserStorage>().deleteUser();
+    debugPrint('logged Out Successfully');
+  }
+
+  Future<void> suggestPlace(
+      {required String placeName,
+      required String address,
+      required String contact}) async {
+    String? token = await locator.get<TokenStorage>().getToken();
+    Map<String, dynamic> response = await locator
+        .get<ProfileService>()
+        .suggestPlace(token!, placeName, address, contact);
+    if (response[code] != 200) {
+      debugPrint(response.toString());
+    }
   }
 }

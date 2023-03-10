@@ -62,8 +62,6 @@ class OtpServiceViaEmail {
         },
       ).timeout(otpTimeout);
 
-      print(response.body);
-
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {

@@ -1,10 +1,11 @@
 // Contact Validation
 String? contactValidation(String? input) {
-  if (input?.length != 10) {
-    return 'Input should be of 10 digit';
-  } else {
+  if (input == null || input.trim().isEmpty) {
+    return 'Field is required';
+  } else if (RegExp(r"^(\+91[\-\s]?)?[0-9]{10}$").hasMatch(input)) {
     return null;
   }
+  return 'Invalid phone format';
 }
 
 // Email Validation

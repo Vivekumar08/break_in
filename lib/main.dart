@@ -26,8 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<OtpProviderViaMail>(
             create: (context) => OtpProviderViaMail()),
-        ChangeNotifierProvider<ProfileProvider>(
-            create: (context) => ProfileProvider())
+        Provider<ProfileProvider>(create: (context) => ProfileProvider())
       ],
       child: MaterialApp.router(
         theme: theme,

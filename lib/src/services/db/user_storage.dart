@@ -32,13 +32,7 @@ class UserStorage {
   }
 
   // Delete User
-  Future<void> deleteUser(User user) async {
+  Future<void> deleteUser() async {
     storage.delete(key);
-  }
-
-  // Delete User
-  Future<void> deleteStorage(User user) async {
-    storage.deleteFromDisk();
-    storage.close();
   }
 }
