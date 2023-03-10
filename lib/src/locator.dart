@@ -9,6 +9,7 @@ setup() {
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<OtpServiceViaEmail>(() => OtpServiceViaEmail());
   locator.registerLazySingleton<ProfileService>(() => ProfileService());
+  locator.registerLazySingleton<UserService>(() => UserService());
 
   // DB services
   locator.registerLazySingleton<TokenStorage>(() => TokenStorage());

@@ -29,6 +29,7 @@ class _FeedbackState extends State<Feedback> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leadingWidth: 72.0,

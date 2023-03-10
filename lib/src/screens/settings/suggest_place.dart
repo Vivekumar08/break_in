@@ -33,6 +33,7 @@ class _SuggestPlaceState extends State<SuggestPlace> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leadingWidth: 72.0,

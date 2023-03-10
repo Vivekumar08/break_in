@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<OtpProviderViaMail>(
             create: (context) => OtpProviderViaMail()),
+        ChangeNotifierProxyProvider2<TokenProvider, AuthProvider, UserProvider>(
+            create: (context) => UserProvider.init(),
+            update: (_, token, auth, __) => UserProvider.fromProvider(
+                token.tokenExists, auth.state.isAuthenticated())),
         Provider<ProfileProvider>(create: (context) => ProfileProvider())
       ],
       child: MaterialApp.router(

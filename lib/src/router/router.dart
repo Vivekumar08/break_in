@@ -21,10 +21,9 @@ import '../screens/pages/canteen.dart';
 import '../screens/pages/favourite.dart';
 import '../screens/pages/menu.dart';
 import '../screens/pages/rate.dart';
-import '../screens/settings/detect_new_location.dart';
 import '../screens/settings/feedback.dart';
 import '../screens/settings/help_about.dart';
-import '../screens/settings/my_profile.dart';
+import '../screens/settings/edit_profile.dart';
 import '../screens/settings/profile.dart';
 import '../screens/settings/suggest_place.dart';
 import '../screens/settings/about.dart';
@@ -150,13 +149,7 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: 'myProfile',
-              builder: (context, state) => const MyProfile(),
-              routes: [
-                GoRoute(
-                  path: 'detectionNewLocation',
-                  builder: (context, state) => const DetectingNewLocation(),
-                )
-              ],
+              builder: (context, state) => const EditProfile(),
             ),
             GoRoute(
               path: 'favourite',

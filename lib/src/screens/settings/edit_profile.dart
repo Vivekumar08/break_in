@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 import '../../components/input_field.dart';
 import '../../style/fonts.dart';
-import '../../style/palette.dart';
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
+class EditProfile extends StatefulWidget {
+  const EditProfile({super.key});
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController email = TextEditingController();
+
+  @override
+  void dispose() {
+    name.dispose();
+    phone.dispose();
+    email.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    TextEditingController phone = TextEditingController();
-    TextEditingController email = TextEditingController();
-    TextEditingController location = TextEditingController();
-
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leadingWidth: 72.0,
-        title: Text("My Profile", style: Fonts.appBarTitle),
+        title: Text("Edit Profile", style: Fonts.appBarTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.all(22.0),
@@ -37,15 +49,6 @@ class MyProfile extends StatelessWidget {
                 inputText: "Email*",
                 hintText: "Enter Your Email",
                 controller: email),
-            InputField(
-                inputText: "Location*",
-                hintText: "Enter Location",
-                controller: location),
-            const SizedBox(height: 16.0),
-            Text(
-              "Detect New Location",
-              style: Fonts.textButton.copyWith(color: Palette.link),
-            ),
           ],
         ),
       ),
