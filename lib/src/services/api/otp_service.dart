@@ -51,6 +51,31 @@ class OtpServiceViaEmail {
     return body;
   }
 
+  Future<Map<String, dynamic>> resendOTP(String email) async {
+    Map<String, dynamic> body = {};
+    try {
+      http.Response response = await http.put(
+        Uri.parse('$baseUrl/resendOTPviaEmail'),
+        body: jsonEncode({"Email": email}),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      ).timeout(otpTimeout);
+
+      print(response.body);
+
+      body = jsonDecode(response.body);
+      body.addAll({'code': response.statusCode});
+    } on TimeoutException catch (_) {
+      timeOut();
+    } on SocketException catch (_) {
+      noInternet();
+    } catch (e) {
+      throw Exception(e);
+    }
+    return body;
+  }
+
   Future<Map<String, dynamic>> updatePassword(
       String email, String password) async {
     Map<String, dynamic> body = {};

@@ -18,13 +18,13 @@ class ProfileProvider extends ChangeNotifier {
 
   ProfileState get state => _state;
 
-  void _changeAuthState(ProfileState profileState) {
+  void _changeProfileState(ProfileState profileState) {
     _state = profileState;
     notifyListeners();
   }
 
   Future<void> feedback({required String feedback}) async {
-    _changeAuthState(ProfileState.Busy);
+    _changeProfileState(ProfileState.Busy);
     String? token = await locator.get<TokenStorage>().getToken();
     Map<String, dynamic> response =
         await locator.get<ProfileService>().feedback(token!, feedback);
@@ -35,6 +35,6 @@ class ProfileProvider extends ChangeNotifier {
         showSnackBar(response[error].toString());
       }
     }
-    _changeAuthState(ProfileState.Idle);
+    _changeProfileState(ProfileState.Idle);
   }
 }

@@ -73,7 +73,12 @@ class _OTPWithMailState extends State<OTPWithMail> {
               text: 'Didn\'t receive code?',
               buttonText: 'Resend',
               // TODO: Implement reset otp
-              onTap: () {},
+              onTap: () {
+                showLoader(context);
+                otpProvider
+                    .resendOTP(email: otpProvider.email)
+                    .whenComplete(() => context.pop());
+              },
             ),
           ],
         ),
