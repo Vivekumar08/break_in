@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../components/routing_list.dart';
+import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 import '../../style/palette.dart';
@@ -33,33 +35,40 @@ class Profile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Vikshat',
-                          style: Fonts.subHeading
-                              .copyWith(color: Palette.text, fontSize: 16.0)),
-                      const SizedBox(height: 8.0),
-                      Text('vikshat@gmail.com',
-                          style: Fonts.medTextBlack.copyWith(fontSize: 12.0)),
-                      Text('+91 9876543210',
-                          style: Fonts.medTextBlack.copyWith(fontSize: 12.0)),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () => context.go(myProfile),
-                        child: Row(
-                          children: [
-                            Symbols.edit,
-                            const SizedBox(width: 8.0),
-                            Text('Edit Profile',
-                                style: Fonts.medTextBlack
-                                    .copyWith(fontSize: 12.0)),
-                            const Icon(Icons.arrow_forward, size: 12.0),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                  Consumer<UserProvider>(builder: (context, provider, _) {
+                    final user = provider.user;
+                    return user == null
+                        ? Container()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(user.FullName,
+                                  style: Fonts.subHeading.copyWith(
+                                      color: Palette.text, fontSize: 16.0)),
+                              const SizedBox(height: 8.0),
+                              Text(user.Email ?? 'Email',
+                                  style: Fonts.medTextBlack
+                                      .copyWith(fontSize: 12.0)),
+                              Text(user.PhoneNo ?? 'Phone No.',
+                                  style: Fonts.medTextBlack
+                                      .copyWith(fontSize: 12.0)),
+                              const Spacer(),
+                              GestureDetector(
+                                onTap: () => context.go(myProfile),
+                                child: Row(
+                                  children: [
+                                    Symbols.edit,
+                                    const SizedBox(width: 8.0),
+                                    Text('Edit Profile',
+                                        style: Fonts.medTextBlack
+                                            .copyWith(fontSize: 12.0)),
+                                    const Icon(Icons.arrow_forward, size: 12.0),
+                                  ],
+                                ),
+                              )
+                            ],
+                          );
+                  }),
                   CircleAvatar(
                     radius: 40.0,
                     backgroundColor: Palette.background,

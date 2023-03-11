@@ -19,47 +19,50 @@ class UserProvider extends ChangeNotifier {
   UserState _state = UserState.Uninitialized;
   UserState get state => _state;
 
-  // Details
-  String? get name => user?.FullName;
-
-  UserProvider.init() {
-    if (user == null) {
-      locator.isReady<UserStorage>().whenComplete(() {
-        dynamic userStored = locator.get<UserStorage>().getUser();
-        if (userStored is User) {
-          _user = userStored;
-          _changeUserState(UserState.Initialized);
-        } else {
-          getUserData();
-        }
-      });
-    }
-  }
-
-  UserProvider.fromProvider(bool token, bool auth) {
-    if (token && auth) {
-      if (user == null) {
-        locator.isReady<UserStorage>().whenComplete(() {
-          dynamic userStored = locator.get<UserStorage>().getUser();
-          if (userStored is User) {
-            _user = userStored;
-            _changeUserState(UserState.Initialized);
-          } else {
-            getUserData();
-          }
-        });
-      }
-    } else {
-      _changeUserState(UserState.Uninitialized);
-    }
-  }
+  String? get name => _user?.FullName;
 
   void _changeUserState(UserState userState) {
     _state = userState;
     notifyListeners();
   }
 
-  Future<void> getUserData() async {
+  UserProvider.init() {
+    if (user == null) {
+      getUserDataLocally();
+    }
+  }
+
+  UserProvider.fromProvider(bool token, bool auth) {
+    if (token && auth) {
+      if (user == null) {
+        getUserDataLocally();
+      }
+    } else {
+      _changeUserState(UserState.Uninitialized);
+    }
+  }
+
+  Future<String> getName() async {
+    if (user == null) {
+      return getUserDataLocally().then((_) => user!.FullName);
+    } else {
+      return user!.FullName;
+    }
+  }
+
+  Future<void> getUserDataLocally() async {
+    locator.isReady<UserStorage>().whenComplete(() {
+      dynamic userStored = locator.get<UserStorage>().getUser();
+      if (userStored is User) {
+        _user = userStored;
+        _changeUserState(UserState.Initialized);
+      } else {
+        getUserDataFromServer();
+      }
+    });
+  }
+
+  Future<void> getUserDataFromServer() async {
     // _changeUserState(UserState.Uninitialized);
     String? token = await locator.get<TokenStorage>().getToken();
     Map<String, dynamic> response =

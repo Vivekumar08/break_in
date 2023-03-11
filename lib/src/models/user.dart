@@ -9,7 +9,7 @@ part 'generated/user.g.dart';
 class User extends HiveObject {
   User({
     required this.FullName,
-    required this.Email,
+    this.Email,
     this.PhoneNo,
     this.ProfilePic,
     this.Location,
@@ -17,7 +17,7 @@ class User extends HiveObject {
   @HiveField(0)
   final String FullName;
   @HiveField(1)
-  final String Email;
+  final String? Email;
   @HiveField(2)
   final String? PhoneNo;
   @HiveField(3)

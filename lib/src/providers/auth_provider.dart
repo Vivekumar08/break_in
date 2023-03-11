@@ -45,8 +45,7 @@ class AuthProvider extends ChangeNotifier {
     if (response[code] == 200) {
       User user = User.fromJson(response[userLogin]);
       locator.get<TokenStorage>().setToken(response[token]);
-      await locator.isReady<UserStorage>();
-      locator.get<UserStorage>().addUser(user);
+      (await locator.getAsync<UserStorage>()).addUser(user);
       _changeAuthState(AuthState.Authenticated);
     } else {
       if (response[msg] != null) {
@@ -71,8 +70,7 @@ class AuthProvider extends ChangeNotifier {
     if (response[code] == 200) {
       User user = User.fromJson(response[savedUser]);
       locator.get<TokenStorage>().setToken(response[token]);
-      await locator.isReady<UserStorage>();
-      locator.get<UserStorage>().addUser(user);
+      (await locator.getAsync<UserStorage>()).addUser(user);
       _changeAuthState(AuthState.Authenticated);
     } else {
       if (response[msg] != null) {

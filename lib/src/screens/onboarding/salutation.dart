@@ -22,20 +22,24 @@ class _SalutationState extends State<Salutation> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context);
     return Scaffold(
-      body: Consumer<UserProvider>(builder: (context, user, child) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(flex: 2, child: Container()),
-            Gifs.hello,
-            Text(user.state.initialized() ? user.name! : 'User',
-                style: Fonts.title, textAlign: TextAlign.center),
-            Expanded(flex: 4, child: Container()),
-          ],
-        );
-      }),
+      body: FutureBuilder<String>(
+          initialData: 'User',
+          future: user.getName(),
+          builder: (context, snapshot) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(flex: 2, child: Container()),
+                Gifs.hello,
+                Text(snapshot.data.toString(),
+                    style: Fonts.title, textAlign: TextAlign.center),
+                Expanded(flex: 4, child: Container()),
+              ],
+            );
+          }),
     );
   }
 }
