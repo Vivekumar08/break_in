@@ -31,6 +31,23 @@ class UserStorage {
     storage.put(key, user);
   }
 
+  Future<void> updateProfilePic(String profilePic) async {
+    try {
+      User user = storage.get(key);
+      user.profilePic = profilePic;
+      await updateUser(user);
+    } catch (_) {}
+  }
+
+  Future<void> updateUserDetails(Map<String, dynamic> map) async {
+    try {
+      User user = storage.get(key);
+      Map<String, dynamic> userMap = user.toJson();
+      map.forEach((key, value) => userMap[key] = value);
+      await updateUser(User.fromJson(userMap));
+    } catch (_) {}
+  }
+
   // Delete User
   Future<void> deleteUser() async {
     storage.delete(key);
