@@ -1,4 +1,5 @@
 import 'dart:async' show TimeoutException;
+import 'dart:convert' show jsonDecode;
 import 'dart:io' show HttpHeaders, SocketException;
 import '../constants.dart';
 import 'package:http/http.dart' as http;
@@ -15,10 +16,8 @@ class UserService {
         },
       ).timeout(authTimeout);
 
-      print(response.body);
-
-      // body = jsonDecode(response.body);
-      // body.addAll({'code': response.statusCode});
+      body = jsonDecode(response.body);
+      body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {
       timeOut();
     } on SocketException catch (_) {

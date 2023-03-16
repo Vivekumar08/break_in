@@ -1,12 +1,14 @@
+import 'dart:io' show File;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../../components/routing_list.dart';
 import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
+import '../../style/loader.dart';
 import '../../style/palette.dart';
-import '../../utils/images.dart';
 import '../../utils/symbols.dart';
 
 class Profile extends StatelessWidget {
@@ -69,11 +71,7 @@ class Profile extends StatelessWidget {
                             ],
                           );
                   }),
-                  CircleAvatar(
-                    radius: 40.0,
-                    backgroundColor: Palette.background,
-                    child: Images.feeding,
-                  )
+                  const ProfilePic(),
                 ],
               ),
             ),
@@ -99,6 +97,72 @@ class Profile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProfilePic extends StatefulWidget {
+  const ProfilePic({super.key});
+
+  @override
+  State<ProfilePic> createState() => _ProfilePicState();
+}
+
+class _ProfilePicState extends State<ProfilePic> {
+  final ImagePicker _picker = ImagePicker();
+  XFile? file;
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<ProfileProvider>(context);
+    return InkWell(
+      customBorder: const CircleBorder(),
+      onTap: () => showModalBottomSheet(
+        context: context,
+        builder: (context) => SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () async {
+                    showLoader(context);
+                    final XFile? photo = await _picker.pickImage(
+                        source: ImageSource.camera, imageQuality: 80);
+                  },
+                  child: const ListTile(
+                    leading: Icon(Icons.camera),
+                    title: Text('Camera'),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    file = await _picker
+                        .pickImage(source: ImageSource.gallery)
+                        .whenComplete(() {
+                      setState(() {});
+                      context.pop();
+                    });
+                    if (file != null) {
+                      provider.uploadProfilePic(file!);
+                    }
+                  },
+                  child: const ListTile(
+                    leading: Icon(Icons.image),
+                    title: Text('Gallery'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      child: CircleAvatar(
+        radius: 40.0,
+        backgroundColor: Palette.background,
+        backgroundImage: file == null
+            ? Symbols.profile.image
+            : Image.file(File(file!.path)).image,
       ),
     );
   }

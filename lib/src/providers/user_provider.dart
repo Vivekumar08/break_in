@@ -6,7 +6,7 @@ import '../services/db/db.dart';
 import 'constants.dart';
 
 // ignore: constant_identifier_names
-enum UserState { Uninitialized, Initialized }
+enum UserState { Uninitialized, Initializing, Initialized }
 
 extension UserExtension on UserState {
   bool initialized() => this == UserState.Initialized ? true : false;
@@ -63,18 +63,21 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> getUserDataFromServer() async {
-    // _changeUserState(UserState.Uninitialized);
+    if (state == UserState.Initializing) {
+      return;
+    }
+    _changeUserState(UserState.Initializing);
     String? token = await locator.get<TokenStorage>().getToken();
     Map<String, dynamic> response =
         await locator.get<UserService>().getUserDetails(token!);
 
-    print(response);
-
     if (response[code] == 200) {
-      User user = User.fromJson(response[userLogin]);
+      User user = User.fromJson(response);
       _user = user;
       locator.get<UserStorage>().addUser(user);
-      // _changeUserState(UserState.Initialized);
+      _changeUserState(UserState.Initialized);
+    } else {
+      _changeUserState(UserState.Uninitialized);
     }
   }
 }
