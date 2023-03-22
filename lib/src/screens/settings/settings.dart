@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../../providers/providers.dart';
 import '../../style/message_dialog.dart';
 import '../../components/button.dart';
 import '../../style/fonts.dart';
@@ -61,7 +63,12 @@ class Settings extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Button(
-                    onPressed: () => context.go(root),
+                    onPressed: () {
+                      context
+                          .read<ProfileProvider>()
+                          .logout()
+                          .whenComplete(() => context.go(root));
+                    },
                     buttonText: 'Logout Anyway',
                   )
                 ],

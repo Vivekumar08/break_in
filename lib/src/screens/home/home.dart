@@ -160,8 +160,11 @@ class Home extends StatelessWidget {
         ),
         leadingWidth: 40.0,
         actions: [
-          GestureDetector(
-              onTap: () => context.go(profile), child: Symbols.profile),
+          InkWell(
+            customBorder: const CircleBorder(),
+            onTap: () => context.go(profile),
+            child: Symbols.profile,
+          ),
           const SizedBox(width: 24.0),
         ],
         bottom: PreferredSize(

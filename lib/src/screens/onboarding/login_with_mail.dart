@@ -60,14 +60,13 @@ class _LoginWithMailState extends State<LoginWithMail> {
                   inputText: "Password*",
                   hintText: "Enter your password",
                   controller: passwd,
-                  validator: null),
+                  // TODO: remove validator
+                  validator: nullValidation),
               const SizedBox(height: 8.0),
               Align(
                 alignment: Alignment.bottomRight,
                 child: GestureDetector(
-                    onTap: () {
-                      context.go(forgotPassword);
-                    },
+                    onTap: () => context.go(forgotPassword),
                     child: Text("Forgot Password?", style: Fonts.textButton)),
               ),
               const SizedBox(height: 24.0),

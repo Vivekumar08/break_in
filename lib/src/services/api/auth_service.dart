@@ -10,12 +10,12 @@ class AuthService {
     Map<String, dynamic> body = {};
     try {
       http.Response response = await http.post(
-        Uri.parse('$baseUrl/user/loginWithEmail'),
+        Uri.parse('$baseUrl/loginWithEmail'),
         body: jsonEncode({"Email": email, "Password": password}),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-      ).timeout(timeout);
+      ).timeout(authTimeout);
 
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});
@@ -34,13 +34,13 @@ class AuthService {
     Map<String, dynamic> body = {};
     try {
       http.Response response = await http.post(
-        Uri.parse('$baseUrl/user/registerWithEmail'),
+        Uri.parse('$baseUrl/registerWithEmail'),
         body: jsonEncode(
             {"FullName": name, "Email": email, "Password": password}),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-      ).timeout(timeout);
+      ).timeout(authTimeout);
 
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});

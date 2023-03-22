@@ -74,7 +74,8 @@ class _RegisterWithMailState extends State<RegisterWithMail> {
                   inputText: "Full Name*",
                   hintText: "Enter your full name",
                   controller: name,
-                  validator: nullValidation),
+                  validator: nullValidation,
+                  autofillHints: AutofillHints.name),
               InputField(
                   inputText: "Email*",
                   hintText: "Enter your email",

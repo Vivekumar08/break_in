@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../style/palette.dart';
 import '../style/fonts.dart';
 import '../utils/symbols.dart';
@@ -49,7 +50,7 @@ class InputField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 4.0),
           child: SizedBox(
-            height: height,
+            height: height == null ? null : height! + 12,
             child: TextFormField(
               controller: controller,
               style: Fonts.inputText.copyWith(color: Palette.text),
@@ -61,6 +62,7 @@ class InputField extends StatelessWidget {
               autofillHints: autofillHints == null ? null : [autofillHints!],
               decoration: InputDecoration(
                 filled: true,
+                helperText: expands ? ' ' : null,
                 fillColor: Palette.inputField,
                 border: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -167,6 +169,14 @@ class _OtpFieldState extends State<OtpField> {
     super.initState();
   }
 
+  String getOtp() {
+    String otp = '';
+    for (var controller in controllerList) {
+      otp += controller.text;
+    }
+    return otp;
+  }
+
   @override
   void dispose() {
     for (var c in controllerList) {
@@ -192,6 +202,7 @@ class _OtpFieldState extends State<OtpField> {
                 keyboardType: TextInputType.number,
                 autofocus: index == 0 ? true : false,
                 maxLength: 1,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 style: Fonts.otpText,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
@@ -241,7 +252,7 @@ class _OtpFieldState extends State<OtpField> {
                     FocusScope.of(context).nextFocus();
                   }
                   controllerList[index].text = value;
-                  widget.controller.text += value;
+                  widget.controller.text = getOtp();
                   if (controllerList.last.text.isNotEmpty) {
                     FocusScope.of(context).unfocus();
                   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../utils/gifs.dart';
 import '../../style/fonts.dart';
@@ -20,17 +22,24 @@ class _SalutationState extends State<Salutation> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context);
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(flex: 2, child: Container()),
-          Gifs.hello,
-          Text("John", style: Fonts.title, textAlign: TextAlign.center),
-          Expanded(flex: 4, child: Container()),
-        ],
-      ),
+      body: FutureBuilder<String>(
+          initialData: 'User',
+          future: user.getName(),
+          builder: (context, snapshot) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(flex: 2, child: Container()),
+                Gifs.hello,
+                Text(snapshot.data.toString(),
+                    style: Fonts.title, textAlign: TextAlign.center),
+                Expanded(flex: 4, child: Container()),
+              ],
+            );
+          }),
     );
   }
 }

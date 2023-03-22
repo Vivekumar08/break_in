@@ -5,7 +5,7 @@ import '../style/palette.dart';
 class Button extends StatelessWidget {
   const Button(
       {Key? key,
-      required this.onPressed,
+      this.onPressed,
       required this.buttonText,
       this.color,
       this.height = 56.0,
@@ -16,7 +16,7 @@ class Button extends StatelessWidget {
       : super(key: key);
 
   final String buttonText;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color? color;
   final double height;
   final bool expands;
@@ -69,16 +69,17 @@ class BottomTextButton extends StatelessWidget {
             : Text(text!,
                 style: Fonts.hintText
                     .copyWith(fontSize: 14.0, color: Palette.iconsCol)),
+        const SizedBox(width: 2.0),
         buttonText == null
             ? Container()
             : InkWell(
-                borderRadius: BorderRadius.circular(8.0),
-                radius: 8.0,
+                borderRadius: BorderRadius.circular(4.0),
+                radius: 4.0,
                 onTap: onTap,
                 customBorder: Border.all(),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 4.0, horizontal: 8.0),
+                      vertical: 4.0, horizontal: 5.0),
                   child: Text(buttonText!,
                       style: Fonts.buttonText.copyWith(color: Palette.primary)),
                 ),

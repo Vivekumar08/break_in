@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import '../locator.dart';
 import '../services/db/db.dart';
 
-class TokenProvider {
+class TokenProvider extends ChangeNotifier {
   late bool _tokenExists;
   bool get tokenExists => _tokenExists;
 
@@ -20,7 +21,7 @@ class TokenProvider {
     locator.get<TokenStorage>().getToken().then((token) {
       _changeTokenState(token != null);
     });
-    // // Uncomment the line below to clear token
-    locator.get<TokenStorage>().clearToken();
+    // Uncomment the line below to clear token
+    // locator.get<TokenStorage>().clearToken();
   }
 }

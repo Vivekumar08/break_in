@@ -1,13 +1,11 @@
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
-enum AuthState { Uninitialized, Authenticated, Authenticating, Unauthenticated }
-
-extension CheckAuthenticated on AuthState {
-  bool isAuthenticating() => this == AuthState.Authenticating ? true : false;
-  bool isAuthenticated() => this == AuthState.Authenticated ? true : false;
-}
-
-// AuthSchema
+// Schema
 String code = 'code';
-String UserLogin = 'UserLogin';
+String userLogin = 'UserLogin';
+String savedUser = 'savedUser';
 String token = 'token';
 String msg = 'msg';
+String error = 'error';
+String fileName = 'filename';
+
+// Constants
+
