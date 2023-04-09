@@ -10,10 +10,10 @@ const String registerWithPhone = '$loginWithPhone/registerWithPhone';
 const String registerWithOtp = '$registerWithPhone/registerWithOtp';
 const String registerWithMail = '$loginWithMail/registerWithMail';
 
-// TODO: Configure root
-const String detectingLocation = '/detectingLocation';
-const String detectedLocation = '/detectedLocation';
-const String manualLocation = '/manualLocation';
+// Location
+const String location = '/location';
+
+// salutation
 const String salutation = '/salutation';
 
 // Home Route
@@ -34,10 +34,4 @@ const String help = '$profile/help';
 const String feedback = '$profile/feedback';
 const String settings = '$profile/settings';
 const String aboutUs = '$profile/aboutUs';
-const String ourStory = '$aboutUs/ourStory';
-const String ourValue = '$aboutUs/ourValue';
-const String ourMission = '$aboutUs/ourMission';
-const String ourTeam = '$aboutUs/ourTeam';
 const String suggestPlace = '$profile/suggestPlace';
-const String detectionNewLocation = '$myProfile/detectionNewLocation';
-const String detectNewLocation = '$myProfile/detectedNewLocation';

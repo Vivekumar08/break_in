@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart' hide Feedback;
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/providers.dart';
 import '../screens/home/categories.dart';
 import '../screens/home/home.dart';
 import '../screens/home/search.dart';
-import '../screens/location/detected_location.dart';
+import '../screens/location/location_screen.dart';
 import '../screens/onboarding/forgot_passwd.dart';
 import '../screens/onboarding/login_with_mail.dart';
 import '../screens/onboarding/login_with_phone.dart';
@@ -97,8 +98,9 @@ final router = GoRouter(
     ),
 
     GoRoute(
-      path: '/detectedLocation',
-      builder: (context, state) => const DetectedLocation(),
+      path: '/location',
+      pageBuilder: (context, state) =>
+          const MaterialPage(fullscreenDialog: true, child: LocationScreen()),
     ),
 
     // Salutation
@@ -120,8 +122,7 @@ final router = GoRouter(
 
         GoRoute(
           path: 'categories',
-          pageBuilder: (context, state) =>
-              FadeTransitionPage(key: state.pageKey, child: const Categories()),
+          builder: (context, state) => const Categories(),
         ),
 
         GoRoute(
@@ -135,7 +136,8 @@ final router = GoRouter(
               routes: [
                 GoRoute(
                   path: 'rate',
-                  builder: (context, state) => const Rate(),
+                  pageBuilder: (context, state) =>
+                      const MaterialPage(fullscreenDialog: true, child: Rate()),
                 ),
               ],
             ),
@@ -174,24 +176,6 @@ final router = GoRouter(
             GoRoute(
               path: 'aboutUs',
               builder: (context, state) => const About(),
-              routes: [
-                GoRoute(
-                  path: "ourStory",
-                  builder: (context, state) => const OurStory(),
-                ),
-                GoRoute(
-                  path: "ourValue",
-                  builder: (context, state) => const OurValue(),
-                ),
-                GoRoute(
-                  path: "ourMission",
-                  builder: (context, state) => const OurMission(),
-                ),
-                GoRoute(
-                  path: "ourTeam",
-                  builder: (context, state) => const OurTeam(),
-                ),
-              ],
             ),
           ],
         ),

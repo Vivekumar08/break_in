@@ -1,43 +1,61 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'generated/menu.g.dart';
+
+@JsonSerializable()
 class MenuCategory {
   MenuCategory({
-    required this.menuCategory,
-    required this.menuItems,
+    required this.name,
+    required this.items,
     this.isExpanded = false,
   });
 
-  final String menuCategory;
-  final List<MenuItem> menuItems;
+  @JsonKey(name: 'Name')
+  final String name;
+
+  @JsonKey(name: 'Items')
+  List<MenuItem>? items;
+
+  @JsonKey(includeToJson: false, includeFromJson: false)
   bool isExpanded;
 
-  static MenuCategory fromJson(Map<String, dynamic> map) => MenuCategory(
-        menuCategory: map['menuCategory'],
-        menuItems: MenuItem.fromJsonToList(map['menuItems']),
-      );
+  factory MenuCategory.fromJson(Map<String, dynamic> json) =>
+      _$MenuCategoryFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MenuCategoryToJson(this);
 }
 
+@JsonSerializable()
 class MenuItem {
   MenuItem({
-    required this.item,
-    required this.itemDetails,
+    this.id,
+    required this.name,
+    required this.details,
     required this.price,
     required this.isVeg,
+    this.isAvailable = true,
   });
-  final String item;
-  final String itemDetails;
+
+  @JsonKey(name: '_id')
+  String? id;
+
+  @JsonKey(name: 'ItemName')
+  final String name;
+
+  @JsonKey(name: 'Ingredients')
+  final String details;
+
+  @JsonKey(name: 'Price')
   final int price;
+
+  @JsonKey(toJson: _toJson)
   final bool isVeg;
 
-  static MenuItem fromJson(Map<String, dynamic> map) => MenuItem(
-      item: map['item'],
-      itemDetails: map['itemDetails'],
-      price: map['price'],
-      isVeg: map['isVeg']);
+  bool isAvailable;
 
-  static List<MenuItem> fromJsonToList(List<Map<String, dynamic>> list) {
-    List<MenuItem> menuItems = [];
-    for (Map<String, dynamic> item in list)
-      // ignore: curly_braces_in_flow_control_structures
-      menuItems.add(MenuItem.fromJson(item));
-    return menuItems;
-  }
+  static String _toJson(var value) => value.toString();
+
+  factory MenuItem.fromJson(Map<String, dynamic> json) =>
+      _$MenuItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MenuItemToJson(this);
 }

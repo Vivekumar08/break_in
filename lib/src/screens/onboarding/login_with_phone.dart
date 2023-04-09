@@ -6,13 +6,24 @@ import '../../components/input_field.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 
-class LoginWithPhone extends StatelessWidget {
+class LoginWithPhone extends StatefulWidget {
   const LoginWithPhone({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController phone = TextEditingController();
+  State<LoginWithPhone> createState() => _LoginWithPhoneState();
+}
 
+class _LoginWithPhoneState extends State<LoginWithPhone> {
+  TextEditingController phone = TextEditingController();
+
+  @override
+  void dispose() {
+    phone.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../components/accordion.dart';
+import '../../components/button.dart';
 import '../../models/example.dart';
 import '../../models/menu.dart';
 import '../../screens/pages/rate.dart';
@@ -98,19 +98,15 @@ class Menu extends StatelessWidget {
                       Text('Veg Only',
                           style: Fonts.appBarTitle.copyWith(fontSize: 12.0)),
                       const SizedBox(width: 8.0),
-                      SizedBox(
-                        height: 20.0,
-                        child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: CupertinoSwitch(
-                                value: true, onChanged: (value) {})),
-                      ),
+                      ToggleButton(
+                        notifier: ValueNotifier(true),
+                        onTap: (state) {},
+                      )
                     ],
                   ),
                   const SizedBox(height: 6.0),
-                  for (Map<String, dynamic> item
-                      in menuComplete['menuCategories'])
-                    Accordion(menu: MenuCategory.fromJson(item))
+                  for (Map<String, dynamic> item in menuExample['Menu'])
+                    MenuAccordion(menu: MenuCategory.fromJson(item))
                 ],
               ),
             ),

@@ -4,7 +4,30 @@ import 'dart:io' show HttpHeaders, SocketException;
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 
-class PlaceService {
+class FoodPlaceService {
+  Future<Map<String, dynamic>> getFoodPlace(String token) async {
+    Map<String, dynamic> body = {};
+    try {
+      http.Response response = await http.get(
+        Uri.parse('$dataUrl/get/foodPlace'),
+        headers: <String, String>{
+          HttpHeaders.authorizationHeader: token,
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      ).timeout(duration_10);
+
+      body = jsonDecode(response.body);
+      body.addAll({'code': response.statusCode});
+    } on TimeoutException catch (_) {
+      timeOut();
+    } on SocketException catch (_) {
+      noInternet();
+    } catch (e) {
+      throw Exception(e);
+    }
+    return body;
+  }
+
   Future<Map<String, dynamic>> ratePlace(
       String token,
       String overallRating,
@@ -29,7 +52,7 @@ class PlaceService {
           'Content-Type': 'application/json; charset=UTF-8',
           HttpHeaders.authorizationHeader: token,
         },
-      ).timeout(settingsTimeout);
+      ).timeout(duration_5);
 
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});

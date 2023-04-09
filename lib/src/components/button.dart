@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../style/fonts.dart';
 import '../style/palette.dart';
@@ -106,6 +107,35 @@ class ChevBackButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Icon(Icons.chevron_left, size: 32.0, color: Palette.primary),
+      ),
+    );
+  }
+}
+
+class ToggleButton extends StatelessWidget {
+  const ToggleButton({super.key, required this.notifier, this.onTap});
+
+  final ValueNotifier<bool> notifier;
+  final void Function(bool)? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 20.0,
+      child: FittedBox(
+        fit: BoxFit.cover,
+        child: ValueListenableBuilder<bool>(
+          valueListenable: notifier,
+          builder: (context, state, _) {
+            return CupertinoSwitch(
+              value: state,
+              onChanged: (value) {
+                notifier.value = value;
+                onTap?.call(value);
+              },
+            );
+          },
+        ),
       ),
     );
   }

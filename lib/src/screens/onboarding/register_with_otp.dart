@@ -5,12 +5,24 @@ import '../../components/input_field.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 
-class RegisterWithOTP extends StatelessWidget {
+class RegisterWithOTP extends StatefulWidget {
   const RegisterWithOTP({super.key});
 
   @override
+  State<RegisterWithOTP> createState() => _RegisterWithOTPState();
+}
+
+class _RegisterWithOTPState extends State<RegisterWithOTP> {
+  TextEditingController otp = TextEditingController();
+
+  @override
+  void dispose() {
+    otp.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController otp = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(

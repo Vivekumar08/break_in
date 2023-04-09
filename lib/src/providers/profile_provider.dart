@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/painting.dart';
 import 'constants.dart';
 import '../locator.dart';
 import '../services/api/api.dart';
@@ -30,6 +31,7 @@ class ProfileProvider {
     locator.get<TokenStorage>().clearToken();
     await locator.isReady<UserStorage>();
     locator.get<UserStorage>().deleteUser();
+    PaintingBinding.instance.imageCache.clear();
     debugPrint('logged Out Successfully');
   }
 

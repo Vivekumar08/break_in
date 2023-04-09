@@ -3,33 +3,86 @@ import '../models/menu.dart';
 import '../style/fonts.dart';
 import '../style/palette.dart';
 
-class Accordion extends StatefulWidget {
-  const Accordion({Key? key, required this.menu}) : super(key: key);
+typedef ItemFilterCallback = bool Function(String category, MenuItem item);
 
-  final MenuCategory menu;
+class Accordion extends StatefulWidget {
+  const Accordion({
+    super.key,
+    required this.header,
+    this.expandedheader,
+    this.body,
+    this.initialValue,
+    this.expansionCallback,
+  });
+
+  final Widget header;
+  final Widget? expandedheader;
+  final Widget? body;
+  final bool? initialValue;
+  final void Function(bool)? expansionCallback;
 
   @override
   State<Accordion> createState() => _AccordionState();
 }
 
 class _AccordionState extends State<Accordion> {
-  void expansionCallback(int index, bool isExpanded) => setState(() {
-        widget.menu.isExpanded = !widget.menu.isExpanded;
-      });
+  late bool isExpanded;
+
+  @override
+  void initState() {
+    isExpanded = widget.initialValue ?? false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        InkWell(
+          onTap: () => setState(() {
+            isExpanded = !isExpanded;
+            widget.expansionCallback?.call(isExpanded);
+          }),
+          child: widget.expandedheader == null
+              ? widget.header
+              : (isExpanded ? widget.expandedheader : widget.header),
+        ),
+        isExpanded ? widget.body ?? Container() : Container(),
+      ],
+    );
+  }
+}
+
+class MenuAccordion extends StatefulWidget {
+  const MenuAccordion({Key? key, required this.menu, this.itemFilter})
+      : super(key: key);
+
+  final MenuCategory menu;
+  final ItemFilterCallback? itemFilter;
+
+  @override
+  State<MenuAccordion> createState() => _MenuAccordionState();
+}
+
+class _MenuAccordionState extends State<MenuAccordion> {
+  void expansionCallback(int index, bool isExpanded) => setState(() {
+        widget.menu.isExpanded = !widget.menu.isExpanded;
+      });
+
+  @override
+  // TODO: Implement accordion in menu accordion
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         _AccordionHeader(
-            title: widget.menu.menuCategory,
+            title: widget.menu.name,
             isExpanded: widget.menu.isExpanded,
             onPressed: () => expansionCallback(0, widget.menu.isExpanded)),
         widget.menu.isExpanded
             ? Column(
                 children: [
-                  for (MenuItem item in widget.menu.menuItems)
-                    _AccordionBody(menuItem: item)
+                  for (MenuItem item in widget.menu.items!)
+                    _AccordionBody(item: item, itemFilter: widget.itemFilter)
                 ],
               )
             : Container()
@@ -73,18 +126,20 @@ class _AccordionHeader extends StatelessWidget {
 }
 
 class _AccordionBody extends StatelessWidget {
-  const _AccordionBody({Key? key, required this.menuItem}) : super(key: key);
+  const _AccordionBody({Key? key, required this.item, this.itemFilter})
+      : super(key: key);
 
-  final MenuItem menuItem;
+  final MenuItem item;
+  final ItemFilterCallback? itemFilter;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(menuItem.item,
+      title: Text(item.name,
           style: Fonts.textButton.copyWith(color: Palette.text, height: 1.11)),
-      subtitle: Text(menuItem.itemDetails,
+      subtitle: Text(item.details,
           style: Fonts.simTextBlack.copyWith(letterSpacing: 0)),
-      leading: menuItem.isVeg
+      leading: item.isVeg
           ? Stack(
               alignment: Alignment.center,
               children: const [
@@ -99,7 +154,7 @@ class _AccordionBody extends StatelessWidget {
                 Icon(Icons.circle, color: Colors.red, size: 14),
               ],
             ),
-      trailing: Text('Rs. ${menuItem.price}',
+      trailing: Text('Rs. ${item.price}',
           style: Fonts.otpText.copyWith(fontSize: 16.0)),
       horizontalTitleGap: 0,
       contentPadding: EdgeInsets.zero,

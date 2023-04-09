@@ -6,14 +6,26 @@ import '../../components/input_field.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 
-class RegisterWithPhone extends StatelessWidget {
+class RegisterWithPhone extends StatefulWidget {
   const RegisterWithPhone({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    TextEditingController phone = TextEditingController();
+  State<RegisterWithPhone> createState() => _RegisterWithPhoneState();
+}
 
+class _RegisterWithPhoneState extends State<RegisterWithPhone> {
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+
+  @override
+  void dispose() {
+    name.dispose();
+    phone.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(

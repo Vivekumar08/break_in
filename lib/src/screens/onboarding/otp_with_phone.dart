@@ -5,12 +5,24 @@ import '../../components/input_field.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 
-class OTPWithPhone extends StatelessWidget {
+class OTPWithPhone extends StatefulWidget {
   const OTPWithPhone({super.key});
 
   @override
+  State<OTPWithPhone> createState() => _OTPWithPhoneState();
+}
+
+class _OTPWithPhoneState extends State<OTPWithPhone> {
+  TextEditingController otp = TextEditingController();
+
+  @override
+  void dispose() {
+    otp.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController otp = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
