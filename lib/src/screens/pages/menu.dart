@@ -1,9 +1,10 @@
+import 'package:break_in/src/router/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../components/accordion.dart';
 import '../../components/button.dart';
 import '../../models/example.dart';
 import '../../models/menu.dart';
-import '../../screens/pages/rate.dart';
 import '../../style/fonts.dart';
 import '../../style/message_dialog.dart';
 import '../../style/palette.dart';
@@ -62,11 +63,7 @@ class Menu extends StatelessWidget {
                       const Icon(Icons.share_outlined),
                       const SizedBox(width: 20.0),
                       IconButton(
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  fullscreenDialog: true,
-                                  builder: (context) => const Rate())),
+                          onPressed: () => context.push(rate),
                           icon: Symbols.rate),
                     ],
                   ),

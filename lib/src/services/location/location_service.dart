@@ -93,20 +93,21 @@ class LocationService {
   Future<void> openLocationSettings() async =>
       await Geolocator.openLocationSettings();
 
-  String placemarkToAddress(geocode.Placemark placemark) {
-    bool check(String? s) {
+  String placemarkToAddress(geocode.Placemark p) {
+    // Check Empty
+    bool e(String? s) {
       if (s != null && s.isNotEmpty) {
         return true;
       }
       return false;
     }
 
-    String address = '';
-    if (check(placemark.name)) address += '${placemark.name}, ';
-    if (check(placemark.subLocality)) address += '${placemark.subLocality}, ';
-    if (check(placemark.locality)) address += '${placemark.locality}, ';
-    if (check(placemark.country)) address += '${placemark.country}, ';
-    if (check(placemark.postalCode)) address += '${placemark.postalCode}';
-    return address;
+    String ad = '';
+    if (e(p.name)) ad += '${p.name}, ';
+    if (e(p.subLocality) && p.name != p.subLocality) ad += '${p.subLocality}, ';
+    if (e(p.locality)) ad += '${p.locality}, ';
+    if (e(p.country)) ad += '${p.country}, ';
+    if (e(p.postalCode)) ad += '${p.postalCode}';
+    return ad;
   }
 }

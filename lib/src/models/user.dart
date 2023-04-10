@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'food_place_model.dart';
 part 'generated/user.g.dart';
 
 @HiveType(typeId: 0)
@@ -29,7 +30,12 @@ class User extends HiveObject {
   String? profilePic;
 
   @HiveField(4)
-  String? location;
+  @JsonKey(fromJson: _fromJson)
+  Location? location;
+
+  static Location? _fromJson(var location) => location == null
+      ? null
+      : Location.fromJson((location as Location).toJson());
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

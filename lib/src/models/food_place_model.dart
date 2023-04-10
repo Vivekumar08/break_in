@@ -1,7 +1,8 @@
 // ignore_for_file: constant_identifier_names
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'models.dart';
-part 'generated/food_place.g.dart';
+part 'generated/food_place_model.g.dart';
 
 @JsonSerializable()
 class FoodPlaceModel {
@@ -52,16 +53,9 @@ class FoodPlaceModel {
   Map<String, dynamic> toJson() => _$FoodPlaceModelToJson(this);
 }
 
-enum FoodPlaceCategory {
-  Canteen,
+enum FoodPlaceCategory { Canteen, Mess, Micro_Cafe, Juice_Corner, Diary_Booth }
 
-  Mess,
-  Micro_Cafe,
-
-  Juice_Corner,
-  Diary_Booth
-}
-
+@HiveType(typeId: 1)
 @JsonSerializable()
 class Location {
   Location({
@@ -71,9 +65,16 @@ class Location {
     this.landmark,
   });
 
+  @HiveField(0)
   final double lat;
+
+  @HiveField(1)
   final double lng;
+
+  @HiveField(2)
   final String address;
+
+  @HiveField(3)
   final String? landmark;
 
   factory Location.fromJson(Map<String, dynamic> json) =>

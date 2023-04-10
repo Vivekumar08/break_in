@@ -1,6 +1,53 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../food_place.dart';
+part of '../food_place_model.dart';
+
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class LocationAdapter extends TypeAdapter<Location> {
+  @override
+  final int typeId = 1;
+
+  @override
+  Location read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Location(
+      lat: fields[0] as double,
+      lng: fields[1] as double,
+      address: fields[2] as String,
+      landmark: fields[3] as String?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Location obj) {
+    writer
+      ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.lat)
+      ..writeByte(1)
+      ..write(obj.lng)
+      ..writeByte(2)
+      ..write(obj.address)
+      ..writeByte(3)
+      ..write(obj.landmark);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LocationAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
 
 // **************************************************************************
 // JsonSerializableGenerator

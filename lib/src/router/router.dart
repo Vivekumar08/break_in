@@ -126,9 +126,9 @@ final router = GoRouter(
         ),
 
         GoRoute(
-          path: 'canteen/:appBarTitle',
+          path: 'foodPlace',
           builder: (context, state) =>
-              Canteen(appBarTitle: state.params['appBarTitle']!),
+              Canteen(appBarTitle: state.queryParams['appBarTitle']!),
           routes: [
             GoRoute(
               path: 'menu',

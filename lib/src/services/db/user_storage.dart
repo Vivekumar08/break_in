@@ -14,6 +14,9 @@ class UserStorage {
     if (!Hive.isAdapterRegistered(0)) {
       Hive.registerAdapter(UserAdapter());
     }
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(LocationAdapter());
+    }
     await Hive.openBox('user');
     return UserStorage();
   }

@@ -16,7 +16,11 @@ class Salutation extends StatefulWidget {
 class _SalutationState extends State<Salutation> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 4), () => context.go(home));
+    Future.delayed(const Duration(seconds: 4), () {
+      context.go(home);
+      final provider = Provider.of<UserProvider>(context, listen: false);
+      if (provider.user?.location == null) context.push(location);
+    });
     super.initState();
   }
 

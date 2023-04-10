@@ -21,7 +21,7 @@ class UserAdapter extends TypeAdapter<User> {
       email: fields[1] as String?,
       phoneNo: fields[2] as String?,
       profilePic: fields[3] as String?,
-      location: fields[4] as String?,
+      location: fields[4] as Location?,
     );
   }
 
@@ -61,7 +61,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       email: json['Email'] as String?,
       phoneNo: json['PhoneNo'] as String?,
       profilePic: json['profilePic'] as String?,
-      location: json['location'] as String?,
+      location: User._fromJson(json['location']),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{

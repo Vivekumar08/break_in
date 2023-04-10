@@ -22,8 +22,8 @@ const String categories = '$home/categories';
 const String search = '$home/search';
 
 // Pages Route
-const String canteen = '$home/canteen';
-const String menu = '$canteen/menu';
+const String foodPlace = '$home/foodPlace';
+const String menu = '$foodPlace/menu';
 const String rate = '$menu/rate';
 
 // Settings Route

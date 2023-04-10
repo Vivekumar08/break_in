@@ -12,7 +12,7 @@ class Categories extends StatelessWidget {
         leading: image,
         title: Text(text, style: Fonts.poppins),
         horizontalTitleGap: 0,
-        onTap: () => context.go('$canteen/$text'),
+        onTap: () => context.go('$foodPlace/$text'),
         dense: true,
         trailing: const Icon(Icons.chevron_right, size: 32),
       );

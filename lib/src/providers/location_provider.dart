@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../services/db/db.dart';
 import '../services/location/location.dart';
 import '../locator.dart';
 import '../models/models.dart';
@@ -22,7 +23,9 @@ class LocationProvider extends ChangeNotifier {
   LocationState _state = LocationState.Uninitialized;
   LocationState get state => _state;
 
-  LocationProvider.init();
+  LocationProvider.init() {
+    _location = (locator.get<UserStorage>().getUser() as User).location;
+  }
 
   void _changeLocationState(LocationState locationState) {
     _state = locationState;
@@ -34,6 +37,7 @@ class LocationProvider extends ChangeNotifier {
     _changeLocationState(LocationState.Detecting);
     try {
       _location = await locator.get<LocationService>().getLocation();
+      await saveLocation();
       _changeLocationState(LocationState.Detected);
     } catch (e) {
       switch (e) {
@@ -55,12 +59,12 @@ class LocationProvider extends ChangeNotifier {
       Map<String, dynamic> response = await locator
           .get<LocationService>()
           .getCoordinatesFromServer(address);
-
       if (response[code] == 200) {
         _location = Location(
             lat: double.parse(response["lat"]),
             lng: double.parse(response["lon"]),
             address: response["display_name"]);
+        await saveLocation();
         _changeLocationState(LocationState.Detected);
       } else {
         _changeLocationState(LocationState.Uninitialized);
@@ -74,6 +78,9 @@ class LocationProvider extends ChangeNotifier {
       }
     }
   }
+
+  Future<void> saveLocation() async =>
+      locator.get<UserStorage>().updateUserDetails({"location": location});
 
   Future<void> toManual() async => _changeLocationState(LocationState.Manual);
 
