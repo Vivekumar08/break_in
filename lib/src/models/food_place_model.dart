@@ -39,7 +39,7 @@ class FoodPlaceModel {
   final Location location;
 
   @JsonKey(name: 'Menu')
-  List<MenuCategory> menu;
+  List<MenuCategory>? menu;
 
   @JsonKey(name: 'Ratings')
   double? rating;

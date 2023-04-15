@@ -62,8 +62,8 @@ FoodPlaceModel _$FoodPlaceModelFromJson(Map<String, dynamic> json) =>
       foodType: json['type'] as String,
       image: json['CoverPhoto'] as String,
       location: Location.fromJson(json['Locations'] as Map<String, dynamic>),
-      menu: (json['Menu'] as List<dynamic>)
-          .map((e) => MenuCategory.fromJson(e as Map<String, dynamic>))
+      menu: (json['Menu'] as List<dynamic>?)
+          ?.map((e) => MenuCategory.fromJson(e as Map<String, dynamic>))
           .toList(),
       rating: (json['Ratings'] as num?)?.toDouble(),
       ratedBy: json['RatedBy'] as int,

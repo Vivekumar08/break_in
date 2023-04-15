@@ -1,5 +1,6 @@
 library providers;
 
+export 'app_provider.dart';
 export 'auth_provider.dart';
 export 'location_provider.dart';
 export 'otp_provider.dart';

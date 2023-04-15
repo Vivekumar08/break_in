@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
                 token.tokenExists, auth.state.isAuthenticated())),
         Provider<ProfileProvider>(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(create: (context) => LocationProvider.init()),
+        ChangeNotifierProvider(create: (context) => AppProvider()),
       ],
       child: MaterialApp.router(
         theme: theme,

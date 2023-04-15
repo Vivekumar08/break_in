@@ -8,6 +8,7 @@ final GetIt locator = GetIt.instance;
 
 setup() {
   // Api Services
+  locator.registerLazySingleton<AppService>(() => AppService());
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<FoodPlaceService>(() => FoodPlaceService());
   locator.registerLazySingleton<OtpServiceViaEmail>(() => OtpServiceViaEmail());
