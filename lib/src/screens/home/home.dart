@@ -8,6 +8,7 @@ import '../../providers/providers.dart';
 import '../../router/constants.dart';
 import '../../style/fonts.dart';
 import '../../style/palette.dart';
+import '../../utils/constants.dart';
 import '../../utils/images.dart';
 import '../../utils/symbols.dart';
 import '../../utils/gifs.dart';
@@ -73,115 +74,24 @@ class _HomeState extends State<Home> {
           ),
           body: ListView(
             children: [
-              ap.hotspots.isEmpty || !ap.state.isLoading()
-                  ? Padding(
+              ap.hotspots.isEmpty && !ap.state.isLoading()
+                  ? Container()
+                  : Padding(
                       padding: const EdgeInsets.only(left: 22.0, top: 24.0),
                       child: Text(
                         "Nearest Hotspots",
                         style: Fonts.heading
                             .copyWith(fontSize: 18, letterSpacing: 0),
                       ),
-                    )
-                  : Container(),
+                    ),
               const SizedBox(height: 12.0),
-              SizedBox(
-                height: 120,
-                child: ap.state.isLoading()
-                    ? Shimmer.fromColors(
-                        baseColor: Colors.grey.shade300,
-                        highlightColor: Colors.grey.shade100,
-                        child: PageView.builder(
-                          itemCount: 4,
-                          controller: PageController(viewportFraction: 0.9),
-                          itemBuilder: (context, index) => Container(
-                            margin: const EdgeInsets.only(right: 12.0),
-                            child: _buildHotspots(
-                              type: 'Canteen',
-                              name: 'name',
-                              image: Images.maggi,
-                              color: Colors.grey.shade300,
-                            ),
-                          ),
-                        ),
-                      )
-                    : ap.hotspots.isEmpty
-                        ? null
-                        : PageView.builder(
-                            itemCount: ap.hotspots.length,
-                            controller: PageController(viewportFraction: 0.9),
-                            itemBuilder: (context, index) => Container(
-                              margin: const EdgeInsets.only(right: 12.0),
-                              child: _buildHotspots(
-                                type: ap.hotspots[index].category.name,
-                                name: ap.hotspots[index].name,
-                                image: Images.maggi,
-                                color: index % 2 == 0
-                                    ? Palette.background
-                                    : Palette.stroke,
-                              ),
-                            ),
-                          ),
-              ),
+              _buildHotspots(ap),
+              _buildCategory(categorySize),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text(
-                        "Categories",
-                        style: Fonts.heading.copyWith(fontSize: 18),
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            _buildCategories(
-                                text: "Canteen",
-                                image: Images.canteen,
-                                width: categorySize,
-                                context: context,
-                                route: foodPlace),
-                            const SizedBox(width: 16),
-                            _buildCategories(
-                                text: "Mess",
-                                image: Images.hostelMess,
-                                width: categorySize,
-                                context: context,
-                                route: foodPlace),
-                            const SizedBox(width: 16),
-                            _buildCategories(
-                                text: "Micro Cafe",
-                                image: Images.microCafe,
-                                width: categorySize,
-                                context: context,
-                                route: foodPlace),
-                          ],
-                        ),
-                        const SizedBox(height: 16.0),
-                        Row(
-                          children: [
-                            _buildCategories(
-                                text: "Corners",
-                                image: Images.corners,
-                                width: categorySize,
-                                context: context,
-                                route: foodPlace),
-                            const SizedBox(width: 16),
-                            _buildCategories(
-                                text: "Others",
-                                image: Images.others,
-                                width: categorySize,
-                                context: context,
-                                route: categories),
-                            const SizedBox(width: 16),
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 26.0),
                     Container(
                       height: 94,
                       width: double.maxFinite,
@@ -218,39 +128,7 @@ class _HomeState extends State<Home> {
                     Text("Explore by Feeling",
                         style: Fonts.heading.copyWith(fontSize: 18)),
                     const SizedBox(height: 12.0),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildExploreByFeeling(
-                            "Have a meeting in next 10 minutes?",
-                            "Find Nearest Canteen",
-                            "Explore food in your institute premises",
-                            () {},
-                            Gifs.canteen),
-                        const SizedBox(height: 12),
-                        _buildExploreByFeeling(
-                            "Fedup of eating alone?",
-                            "Find Nearest Mess",
-                            "Dine out with peers today",
-                            () {},
-                            Gifs.mess),
-                        const SizedBox(height: 12),
-                        _buildExploreByFeeling(
-                            "Tired, Need a break?",
-                            "Explore Micro Cafe",
-                            "Grab a cup of coffee",
-                            () {},
-                            Gifs.cafe),
-                        const SizedBox(height: 12),
-                        _buildExploreByFeeling(
-                            "Need to charge yourself?",
-                            "Explore Corners",
-                            "Eat something fibrous and healthy",
-                            () {},
-                            Gifs.corners),
-                        const SizedBox(height: 12),
-                      ],
-                    )
+                    _buildExploreByFeeling()
                   ],
                 ),
               )
@@ -261,87 +139,47 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _buildCategories({
-    required String text,
-    required Image image,
-    required double width,
-    required BuildContext context,
-    required String route,
-  }) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () => context.go(
-            Uri(path: route, queryParameters: {'appBarTitle': text}).toString(),
-          ),
-          child: Container(
-            width: width,
-            height: 100,
-            padding: const EdgeInsets.symmetric(
-                vertical: 13.08 - 8.0, horizontal: 14.17 - 8.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Palette.stroke),
-              borderRadius: BorderRadius.circular(12.0),
-              image: DecorationImage(image: image.image, fit: BoxFit.cover),
-            ),
-          ),
-        ),
-        const SizedBox(height: 8.0),
-        Text(
-          text,
-          style: Fonts.medTextBlack
-              .copyWith(fontWeight: FontWeight.bold, fontSize: 14),
-        )
-      ],
-    );
-  }
-
-  Widget _buildExploreByFeeling(String heading, String buttonText, String text,
-      VoidCallback onPressed, Image image) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Palette.stroke),
-        borderRadius: BorderRadius.circular(8.0),
-        color: Palette.inputField,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: image,
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(heading, style: Fonts.otpText.copyWith(fontSize: 14)),
-                const SizedBox(height: 4.0),
-                Text(text, style: Fonts.simTextBlack),
-                const SizedBox(height: 16.0),
-                Button(
-                  onPressed: () {},
-                  buttonText: buttonText,
-                  height: 20.0,
-                  borderRadius: 4.0,
-                  fontSize: 10.0,
-                  expands: false,
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+  Widget _buildHotspots(AppProvider ap) {
+    return SizedBox(
+      height: ap.hotspots.isEmpty && !ap.state.isLoading() ? 0 : 120,
+      child: ap.state.isLoading()
+          ? Shimmer.fromColors(
+              baseColor: Colors.grey.shade300,
+              highlightColor: Colors.grey.shade100,
+              child: PageView.builder(
+                itemCount: 4,
+                controller: PageController(viewportFraction: 0.9),
+                itemBuilder: (context, index) => Container(
+                  margin: const EdgeInsets.only(right: 12.0),
+                  child: _buildHotspotsUnit(
+                    type: 'Canteen',
+                    name: 'name',
+                    image: Images.maggi,
+                    color: Colors.grey.shade300,
+                  ),
                 ),
-              ],
-            ),
-          ),
-        ],
-      ),
+              ),
+            )
+          : ap.hotspots.isEmpty
+              ? null
+              : PageView.builder(
+                  itemCount: ap.hotspots.length,
+                  controller: PageController(viewportFraction: 0.9),
+                  itemBuilder: (context, index) => Container(
+                    margin: const EdgeInsets.only(right: 12.0),
+                    child: _buildHotspotsUnit(
+                      type: ap.hotspots[index].category.name,
+                      name: ap.hotspots[index].name,
+                      image: Images.maggi,
+                      color:
+                          index % 2 == 0 ? Palette.background : Palette.stroke,
+                    ),
+                  ),
+                ),
     );
   }
 
-  Widget _buildHotspots(
+  Widget _buildHotspotsUnit(
       {required String type,
       required String name,
       required Image image,
@@ -379,6 +217,163 @@ class _HomeState extends State<Home> {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: image,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategory(double categorySize) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 22.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Text(
+              "Categories",
+              style: Fonts.heading.copyWith(fontSize: 18),
+            ),
+          ),
+          Row(
+            children: List.generate(
+              3,
+              (index) => _buildCategoryUnit(
+                  text: categoryMapWithImage.keys.elementAt(index),
+                  image: categoryMapWithImage.values.elementAt(index),
+                  width: categorySize),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Row(children: [
+            _buildCategoryUnit(
+                text: categoryMapWithImage.keys.elementAt(3),
+                image: categoryMapWithImage.values.elementAt(3),
+                width: categorySize),
+            _buildCategoryUnit(
+                text: 'Others',
+                image: Images.others,
+                width: categorySize,
+                route: categories),
+          ]),
+          const SizedBox(height: 26.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryUnit({
+    required String text,
+    required Image image,
+    required double width,
+    String? route,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () => context.go(
+              route ??
+                  Uri(path: foodPlace, queryParameters: {'appBarTitle': text})
+                      .toString(),
+            ),
+            child: Container(
+              width: width,
+              height: 100,
+              padding: const EdgeInsets.symmetric(
+                  vertical: 13.08 - 8.0, horizontal: 14.17 - 8.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Palette.stroke),
+                borderRadius: BorderRadius.circular(12.0),
+                image: DecorationImage(image: image.image, fit: BoxFit.cover),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            text,
+            style: Fonts.medTextBlack
+                .copyWith(fontWeight: FontWeight.bold, fontSize: 14),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExploreByFeeling() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildExploreByFeelingUnit(
+            "Have a meeting in next 10 minutes?",
+            "Find Nearest Canteen",
+            "Explore food in your institute premises",
+            Gifs.canteen),
+        const SizedBox(height: 12),
+        _buildExploreByFeelingUnit("Fedup of eating alone?",
+            "Find Nearest Mess", "Dine out with peers today", Gifs.mess),
+        const SizedBox(height: 12),
+        _buildExploreByFeelingUnit("Tired, Need a break?", "Explore Micro Cafe",
+            "Grab a cup of coffee", Gifs.cafe,
+            title: "Micro Cafe"),
+        const SizedBox(height: 12),
+        _buildExploreByFeelingUnit(
+            "Need to charge yourself?",
+            "Explore Corners",
+            "Eat something fibrous and healthy",
+            Gifs.corners,
+            title: "Juice Corner"),
+        const SizedBox(height: 12),
+      ],
+    );
+  }
+
+  Widget _buildExploreByFeelingUnit(
+      String heading, String buttonText, String text, Image image,
+      {String? title}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Palette.stroke),
+        borderRadius: BorderRadius.circular(8.0),
+        color: Palette.inputField,
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: image,
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(heading, style: Fonts.otpText.copyWith(fontSize: 14)),
+                const SizedBox(height: 4.0),
+                Text(text, style: Fonts.simTextBlack),
+                const SizedBox(height: 16.0),
+                Button(
+                  onPressed: () => context.go(
+                    Uri(path: foodPlace, queryParameters: {
+                      'appBarTitle': title ?? buttonText.split(" ").last
+                    }).toString(),
+                  ),
+                  buttonText: buttonText,
+                  height: 20.0,
+                  borderRadius: 4.0,
+                  fontSize: 10.0,
+                  expands: false,
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                ),
+              ],
+            ),
           ),
         ],
       ),

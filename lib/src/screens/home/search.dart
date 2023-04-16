@@ -26,8 +26,8 @@ class Search extends StatelessWidget {
         title: Text('Search', style: Fonts.appBarTitle),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
-          child:
-              SearchField(hintText: "Search for category", controller: search),
+          child: SearchField(
+              hintText: "Search for canteen, mess...", controller: search),
         ),
       ),
       body: Padding(
@@ -49,7 +49,7 @@ class Search extends StatelessWidget {
             for (int i = 0; i < 4; i++)
               Column(
                 children: const [
-                  FoodCard(isFavourite: true),
+                  // FoodCard(isFavourite: true),
                   SizedBox(height: 16.0),
                 ],
               ),

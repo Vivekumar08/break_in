@@ -18,7 +18,7 @@ import '../screens/onboarding/register_with_mail.dart';
 import '../screens/onboarding/register_with_otp.dart';
 import '../screens/onboarding/register_with_phone.dart';
 import '../screens/onboarding/salutation.dart';
-import '../screens/pages/canteen.dart';
+import '../screens/pages/food_place.dart';
 import '../screens/pages/favourite.dart';
 import '../screens/pages/menu.dart';
 import '../screens/pages/rate.dart';
@@ -128,7 +128,7 @@ final router = GoRouter(
         GoRoute(
           path: 'foodPlace',
           builder: (context, state) =>
-              Canteen(appBarTitle: state.queryParams['appBarTitle']!),
+              FoodPlace(appBarTitle: state.queryParams['appBarTitle']!),
           routes: [
             GoRoute(
               path: 'menu',

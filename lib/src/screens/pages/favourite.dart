@@ -18,7 +18,8 @@ class Favourite extends StatelessWidget {
         child: ListView.separated(
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) =>
-              const FoodCard(isFavourite: true),
+              // const FoodCard(isFavourite: true),
+              Container(),
           separatorBuilder: (BuildContext context, int index) =>
               const SizedBox(height: 16.0),
         ),

@@ -1,10 +1,10 @@
 Map<String, dynamic> menuExample = {
-  "Locations": {"lat": 0, "lng": 0, "address": "", "landmark": "landmark"},
+  "Locations": {"lat": 0, "lng": 0, "address": "", "landmark": ""},
   "_id": "id",
   "foodPlaceId": "foodPlaceId",
   "FoodPlaceName": "Loading...",
   "status": true,
-  "type": "North Indian",
+  "type": "Loading...",
   "category": "Canteen",
   "CoverPhoto": "",
   "mimetype": "application/octet-stream",

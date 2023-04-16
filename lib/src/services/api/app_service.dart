@@ -28,9 +28,9 @@ class AppService {
     return body;
   }
 
-  Future<Map<String, dynamic>> filterSearch(
+  Future<List<dynamic>> filterSearch(
       String token, double lat, double lng, String category) async {
-    Map<String, dynamic> body = {};
+    List<dynamic> body = [];
     try {
       http.Response response = await http.get(
         Uri.parse('$dataUrl/filterSearch?lat=$lat&lng=$lng&cat=$category'),
@@ -40,8 +40,8 @@ class AppService {
         },
       );
 
+      print(response.body);
       body = jsonDecode(response.body);
-      body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {
       timeOut();
     } on SocketException catch (_) {
@@ -64,6 +64,7 @@ class AppService {
         },
       );
 
+      print(response.body);
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {
@@ -87,6 +88,7 @@ class AppService {
         },
       );
 
+      print(response.body);
       body = jsonDecode(response.body);
       body.addAll({'code': response.statusCode});
     } on TimeoutException catch (_) {

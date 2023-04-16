@@ -4,18 +4,23 @@ import '../../router/constants.dart';
 import '../../style/fonts.dart';
 import '../../utils/symbols.dart';
 
-class Categories extends StatelessWidget {
+class Categories extends StatefulWidget {
   const Categories({super.key});
 
-  Widget _buildCategories(String text, Image image, BuildContext context) =>
-      ListTile(
+  @override
+  State<Categories> createState() => _CategoriesState();
+}
+
+class _CategoriesState extends State<Categories> {
+  Widget _buildCategories(String text, Image image) => ListTile(
         leading: image,
         title: Text(text, style: Fonts.poppins),
         horizontalTitleGap: 0,
-        onTap: () => context.go('$foodPlace/$text'),
+        onTap: () => context.go('$foodPlace?appBarTitle=$text'),
         dense: true,
         trailing: const Icon(Icons.chevron_right, size: 32),
       );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,15 +34,15 @@ class Categories extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            _buildCategories("Canteen", Symbols.canteen, context),
-            _buildCategories("Mess", Symbols.mess, context),
-            _buildCategories("Micro Cafe", Symbols.microCafe, context),
-            _buildCategories("Juice Corner", Symbols.juiceCorner, context),
-            _buildCategories("Tea Stall", Symbols.teaStall, context),
-            _buildCategories("Fruit Cart", Symbols.fruit, context),
-            _buildCategories("Diary Booth", Symbols.diary, context),
-            _buildCategories("Ice Cream Trolly", Symbols.ice, context),
-            _buildCategories("Other Food Spot", Symbols.others, context),
+            _buildCategories("Canteen", Symbols.canteen),
+            _buildCategories("Mess", Symbols.mess),
+            _buildCategories("Micro Cafe", Symbols.microCafe),
+            _buildCategories("Juice Corner", Symbols.juiceCorner),
+            // _buildCategories("Tea Stall", Symbols.teaStall),
+            // _buildCategories("Fruit Cart", Symbols.fruit),
+            _buildCategories("Diary Booth", Symbols.diary),
+            // _buildCategories("Ice Cream Trolly", Symbols.ice),
+            // _buildCategories("Other Food Spot", Symbols.others),
           ],
         ),
       ),

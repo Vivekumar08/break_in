@@ -101,11 +101,13 @@ class SearchField extends StatelessWidget {
     this.controller,
     this.onTap,
     this.readOnly = false,
+    this.onChanged,
   });
   final String hintText;
   final TextEditingController? controller;
   final VoidCallback? onTap;
   final bool readOnly;
+  final Function(String value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -134,6 +136,7 @@ class SearchField extends StatelessWidget {
             border: InputBorder.none,
           ),
           onTap: onTap,
+          onChanged: onChanged,
         ),
       ),
     );
