@@ -32,7 +32,7 @@ String calculateTime(String distance) {
     } else if (time.inHours < 24) {
       return '> 10 hrs';
     } else {
-      return '';
+      return '> 1 day';
     }
   }
 }

@@ -19,7 +19,7 @@ Future<void> showMessageDialog(
 
 Future<void> showMenuDialog({
   required BuildContext context,
-  required List<String> children,
+  required List<Widget> children,
 }) =>
     showDialog(
       context: context,
@@ -44,13 +44,7 @@ Future<void> showMenuDialog({
                   style: Fonts.heading
                       .copyWith(fontSize: 12.0, letterSpacing: 0))),
           Divider(color: Palette.greyNormal, thickness: 1.0),
-          for (String item in children)
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(item,
-                  style: Fonts.simTextBlack
-                      .copyWith(fontSize: 10.0, letterSpacing: 0)),
-            )
+          for (Widget item in children) item
         ],
       ),
     );

@@ -29,22 +29,31 @@ class _MenuState extends State<Menu> {
   FoodPlaceModel? model;
   ValueNotifier<bool> notifier = ValueNotifier(false);
 
+  List<GlobalKey> keyList = [];
+
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) => context
-        .read<AppProvider>()
-        .getfoodPlace(widget.id)
-        .then((value) => model = value));
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        context.read<AppProvider>().getfoodPlace(widget.id).then((value) {
+          keyList =
+              List.generate(value?.menu?.length ?? 0, (index) => GlobalKey());
+          return model = value;
+        }));
     context
         .read<AppProvider>()
         .getPreference()
         .then((value) => notifier.value = value ?? false);
+
     super.initState();
   }
 
   @override
   void dispose() {
     notifier.dispose();
+    // ignore: avoid_function_literals_in_foreach_calls
+    keyList.forEach((element) {
+      element.currentState?.dispose();
+    });
     super.dispose();
   }
 
@@ -77,8 +86,22 @@ class _MenuState extends State<Menu> {
                                 context: context,
                                 children: List.generate(
                                   model?.menu?.length ?? 0,
-                                  (index) => '${model!.menu![index].name} '
-                                      '(${model!.menu![index].items?.length})',
+                                  (index) => Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: GestureDetector(
+                                      onTap: () => setState(() {
+                                        model!.menu![index].isExpanded = true;
+                                        Scrollable.ensureVisible(
+                                          keyList[index].currentContext!,
+                                          duration: const Duration(seconds: 1),
+                                        );
+                                      }),
+                                      child: Text(model!.menu![index].name,
+                                          style: Fonts.simTextBlack.copyWith(
+                                              fontSize: 10.0,
+                                              letterSpacing: 0)),
+                                    ),
+                                  ),
                                 ),
                               )
                             : null,
@@ -108,24 +131,24 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  Column _buildPage(FoodPlaceModel foodPlace, {Location? loc, bool? loading}) {
+  Column _buildPage(FoodPlaceModel fP, {Location? loc, bool loading = false}) {
     return Column(
       children: [
         Stack(
           children: [
-            foodPlace.image.isEmpty
+            fP.image.isEmpty
                 ? Container(height: 300, color: Palette.white)
                 : Container(
                     alignment: Alignment.center,
                     height: 300,
-                    child: Image.network('$fileInfo/${foodPlace.image}'),
+                    child: Image.network('$fileInfo/${fP.image}'),
                   ),
             AppBar(
               automaticallyImplyLeading: true,
               backgroundColor: Colors.transparent,
               iconTheme: IconThemeData(color: Palette.white, size: 19.0),
               leadingWidth: 72.0,
-              title: Text(foodPlace.name,
+              title: Text(fP.name,
                   style: Fonts.appBarTitle.copyWith(color: Palette.white)),
             ),
           ],
@@ -138,11 +161,11 @@ class _MenuState extends State<Menu> {
             children: [
               Row(
                 children: [
-                  foodPlace.rating == null ? Container() : Symbols.star,
+                  fP.rating == null ? Container() : Symbols.star,
                   const SizedBox(width: 7.0),
-                  foodPlace.rating == null
+                  fP.rating == null
                       ? Container()
-                      : Text(foodPlace.rating!.toStringAsFixed(2),
+                      : Text(fP.rating!.toStringAsFixed(2),
                           style: Fonts.simTextBlack.copyWith(fontSize: 16.0)),
                   const Spacer(),
                   const Icon(Icons.favorite_outline),
@@ -154,10 +177,9 @@ class _MenuState extends State<Menu> {
                 ],
               ),
               const SizedBox(height: 16.0),
-              Text(foodPlace.name,
-                  style: Fonts.otpText.copyWith(fontSize: 16.0)),
+              Text(fP.name, style: Fonts.otpText.copyWith(fontSize: 16.0)),
               const SizedBox(height: 4.0),
-              Text(foodPlace.location.address, style: Fonts.simTextBlack),
+              Text(fP.location.address, style: Fonts.simTextBlack),
               const SizedBox(height: 12.0),
               Row(
                 children: [
@@ -167,7 +189,7 @@ class _MenuState extends State<Menu> {
                       ? Container()
                       : Text(
                           calculateTime(calculateDistance(loc.lat, loc.lng,
-                              foodPlace.location.lat, foodPlace.location.lng)),
+                              fP.location.lat, fP.location.lng)),
                           style: Fonts.appBarTitle.copyWith(fontSize: 12.0)),
                   const Spacer(),
                   Text('Get Directions',
@@ -191,10 +213,10 @@ class _MenuState extends State<Menu> {
                 ],
               ),
               const SizedBox(height: 8.0),
-              foodPlace.menu == null || foodPlace.menu!.isEmpty
+              fP.menu == null || fP.menu!.isEmpty
                   ? Text('No Items Yet',
                       style: Fonts.otpText.copyWith(fontSize: 16.0))
-                  : _buildMenu(foodPlace.menu!),
+                  : _buildMenu(fP.menu!, loading: loading),
               const SizedBox(height: 100),
             ],
           ),
@@ -203,14 +225,18 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  Widget _buildMenu(List<MenuCategory> menu) {
+  Widget _buildMenu(List<MenuCategory> menu, {loading = false}) {
     return ValueListenableBuilder<bool>(
       valueListenable: notifier,
       builder: (context, value, _) {
         return Column(
           children: List.generate(
             menu.length,
-            (index) => MenuAccordion(menu: menu[index]),
+            (index) => MenuAccordion(
+              key: loading ? null : keyList[index],
+              menu: menu[index],
+              itemFilter: value ? (category, item) => item.isVeg : null,
+            ),
           ),
         );
       },

@@ -69,20 +69,35 @@ class _MenuAccordionState extends State<MenuAccordion> {
         widget.menu.isExpanded = !widget.menu.isExpanded;
       });
 
+  int _lengthViaFilter(MenuCategory m) {
+    if (widget.itemFilter != null) {
+      int length = 0;
+      m.items?.forEach((element) {
+        if (widget.itemFilter!.call(m.name, element)) length++;
+      });
+      return length;
+    }
+    return m.items?.length ?? 0;
+  }
+
   @override
   // TODO: Implement accordion in menu accordion
   Widget build(BuildContext context) {
     return Column(
       children: [
         _AccordionHeader(
-            title: '${widget.menu.name} (${widget.menu.items?.length})',
+            title: '${widget.menu.name} (${_lengthViaFilter(widget.menu)})',
             isExpanded: widget.menu.isExpanded,
             onPressed: () => expansionCallback(0, widget.menu.isExpanded)),
         widget.menu.isExpanded
             ? Column(
                 children: [
                   for (MenuItem item in widget.menu.items!)
-                    _AccordionBody(item: item, itemFilter: widget.itemFilter)
+                    _AccordionBody(
+                      item: item,
+                      category: widget.menu.name,
+                      itemFilter: widget.itemFilter,
+                    )
                 ],
               )
             : Container()
@@ -126,42 +141,49 @@ class _AccordionHeader extends StatelessWidget {
 }
 
 class _AccordionBody extends StatelessWidget {
-  const _AccordionBody({Key? key, required this.item, this.itemFilter})
+  const _AccordionBody(
+      {Key? key, required this.item, required this.category, this.itemFilter})
       : super(key: key);
 
   final MenuItem item;
+  final String category;
   final ItemFilterCallback? itemFilter;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(item.name,
-          style: Fonts.textButton.copyWith(color: Palette.text, height: 1.11)),
-      subtitle: Text(item.details,
-          style: Fonts.simTextBlack.copyWith(letterSpacing: 0)),
-      leading: item.isVeg
-          ? Stack(
-              alignment: Alignment.center,
-              children: const [
-                Icon(Icons.crop_square_sharp, color: Colors.green, size: 30),
-                Icon(Icons.circle, color: Colors.green, size: 12),
-              ],
-            )
-          : Stack(
-              alignment: Alignment.center,
-              children: const [
-                Icon(Icons.crop_square_sharp, color: Colors.red, size: 36),
-                Icon(Icons.circle, color: Colors.red, size: 14),
-              ],
+    return itemFilter == null || itemFilter!.call(category, item)
+        ? ListTile(
+            title: Text(item.name,
+                style: Fonts.textButton
+                    .copyWith(color: Palette.text, height: 1.11)),
+            subtitle: Text(item.details,
+                style: Fonts.simTextBlack.copyWith(letterSpacing: 0)),
+            leading: item.isVeg
+                ? Stack(
+                    alignment: Alignment.center,
+                    children: const [
+                      Icon(Icons.crop_square_sharp,
+                          color: Colors.green, size: 30),
+                      Icon(Icons.circle, color: Colors.green, size: 12),
+                    ],
+                  )
+                : Stack(
+                    alignment: Alignment.center,
+                    children: const [
+                      Icon(Icons.crop_square_sharp,
+                          color: Colors.red, size: 36),
+                      Icon(Icons.circle, color: Colors.red, size: 14),
+                    ],
+                  ),
+            trailing: Text('Rs. ${item.price}',
+                style: Fonts.otpText.copyWith(fontSize: 16.0)),
+            horizontalTitleGap: 0,
+            contentPadding: EdgeInsets.zero,
+            shape: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black.withOpacity(0.24)),
             ),
-      trailing: Text('Rs. ${item.price}',
-          style: Fonts.otpText.copyWith(fontSize: 16.0)),
-      horizontalTitleGap: 0,
-      contentPadding: EdgeInsets.zero,
-      shape: UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.black.withOpacity(0.24)),
-      ),
-      dense: true,
-    );
+            dense: true,
+          )
+        : Container();
   }
 }
