@@ -56,7 +56,7 @@ class _FoodPlaceState extends State<FoodPlace> {
         ),
       ),
       body: Consumer<AppProvider>(builder: (context, ap, _) {
-        return !ap.state.isLoading() && ap.foodPlace.isEmpty
+        return !ap.state.isLoading() && ap.categorySearchResults.isEmpty
             ? Center(
                 child: RichText(
                   text: TextSpan(
@@ -67,7 +67,7 @@ class _FoodPlaceState extends State<FoodPlace> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => context.push(suggestPlace),
                         text: 'Suggest One',
-                        style: Fonts.appBarTitle.copyWith(color: Palette.link),
+                        style: Fonts.buttonText.copyWith(color: Palette.link),
                       ),
                     ],
                   ),
@@ -76,15 +76,18 @@ class _FoodPlaceState extends State<FoodPlace> {
             : ListView.separated(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
-                itemCount: ap.state.isLoading() ? 4 : ap.foodPlace.length,
+                itemCount:
+                    ap.state.isLoading() ? 4 : ap.categorySearchResults.length,
                 itemBuilder: (context, index) => ap.state.isLoading()
                     ? Shimmer.fromColors(
                         baseColor: Colors.grey.shade300,
                         highlightColor: Colors.grey.shade100,
                         child: FoodCard(
                             model: FoodPlaceModel.fromJson(menuExample)))
-                    : ap.foodPlace[index].name.toLowerCase().contains(q.text)
-                        ? FoodCard(model: ap.foodPlace[index])
+                    : ap.categorySearchResults[index].name
+                            .toLowerCase()
+                            .contains(q.text)
+                        ? FoodCard(model: ap.categorySearchResults[index])
                         : Container(),
                 separatorBuilder: (BuildContext context, int index) =>
                     const SizedBox(height: 16.0),

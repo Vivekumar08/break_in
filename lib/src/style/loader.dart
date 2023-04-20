@@ -7,13 +7,22 @@ void showLoader(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(
-        child: CircularProgressIndicator(
-          color: Palette.primary,
-        ),
-      ),
+      builder: (context) => const Loader(),
     );
   } catch (e) {
     debugPrint(e.toString());
+  }
+}
+
+class Loader extends StatelessWidget {
+  const Loader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(
+        color: Palette.primary,
+      ),
+    );
   }
 }

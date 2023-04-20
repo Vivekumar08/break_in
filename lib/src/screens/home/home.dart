@@ -155,6 +155,7 @@ class _HomeState extends State<Home> {
                     type: 'Canteen',
                     name: 'name',
                     image: Images.maggi,
+                    id: '',
                     color: Colors.grey.shade300,
                   ),
                 ),
@@ -171,6 +172,7 @@ class _HomeState extends State<Home> {
                       type: ap.hotspots[index].category.name,
                       name: ap.hotspots[index].name,
                       image: Images.maggi,
+                      id: ap.hotspots[index].id,
                       color:
                           index % 2 == 0 ? Palette.background : Palette.stroke,
                     ),
@@ -183,6 +185,7 @@ class _HomeState extends State<Home> {
       {required String type,
       required String name,
       required Image image,
+      required String id,
       required Color color}) {
     return Container(
       decoration:
@@ -203,7 +206,7 @@ class _HomeState extends State<Home> {
                         .copyWith(fontSize: 14.0, letterSpacing: 0)),
                 const SizedBox(height: 16.0),
                 Button(
-                  onPressed: () {},
+                  onPressed: () => context.push('$menu?id=$id'),
                   buttonText: 'See Menu',
                   height: 20.0,
                   expands: false,

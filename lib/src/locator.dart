@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'services/api/api.dart';
 import 'services/db/db.dart';
 import 'services/location/location.dart';
-import 'services/preferences.dart';
+import 'services/cache/cache.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -25,4 +25,5 @@ setup() {
 
   // Other
   locator.registerLazySingletonAsync<Preferences>(() => Preferences.init());
+  locator.registerLazySingletonAsync<History>(() => History.init());
 }

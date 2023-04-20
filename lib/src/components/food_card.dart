@@ -95,7 +95,7 @@ class FoodCard extends StatelessWidget {
           top: 184.0,
           right: 8.0,
           child: GestureDetector(
-            onTap: () => context.push(menu),
+            onTap: () => context.push('$menu?id=${model.id}'),
             child: CircleAvatar(
               radius: 16.0,
               backgroundColor: Palette.iconsCol,

@@ -75,7 +75,7 @@ class _MenuAccordionState extends State<MenuAccordion> {
     return Column(
       children: [
         _AccordionHeader(
-            title: widget.menu.name,
+            title: '${widget.menu.name} (${widget.menu.items?.length})',
             isExpanded: widget.menu.isExpanded,
             onPressed: () => expansionCallback(0, widget.menu.isExpanded)),
         widget.menu.isExpanded

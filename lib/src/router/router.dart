@@ -132,7 +132,8 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: 'menu',
-              builder: (context, state) => const Menu(),
+              builder: (context, state) =>
+                  Menu(id: state.queryParams['id'] ?? ''),
               routes: [
                 GoRoute(
                   path: 'rate',
